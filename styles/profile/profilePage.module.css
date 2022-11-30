@@ -1,0 +1,76 @@
+.section {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.underline {
+  height: 4px;
+  width: 100%;
+  background-color: #f76c2f;
+  margin-top: 10px;
+}
+
+.mainContent,
+.mainHeader {
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+}
+
+.content {
+  width: 100%;
+  padding: 10px;
+}
+
+.photoProfile {
+  align-items: center;
+  width: 200px;
+  padding: 25px;
+  margin-bottom: 0;
+  left: 7.43%;
+  right: 76.46%;
+  top: 37.47%;
+  bottom: 51.55%;
+}
+
+.chooseFile {
+  width: 500px;
+  margin: 5px auto;
+  /* padding: 10px; */
+}
+
+.form {
+  color: #f76c2f;
+  border-color: #f76c2f;
+}
+
+.form::placeholder {
+  color: #f76c2f;
+}
+
+.form:focus {
+  border: 1px solid #f76c2f;
+  box-shadow: 0 0 5px #ad4e20;
+}
+
+.btnUpdate {
+  float: right;
+  background-color: white;
+  color: black;
+  border-color: #ad4e20;
+}
+.btnUpdate:hover {
+  background-color: #f76c2f;
+  border-color: #ad4e20;
+}
+
+@media (max-width: 1000px) {
+  .mainContent,
+  .mainHeader {
+    flex-direction: column;
+  }
+
+  .content {
+    width: 100%;
+  }
+}

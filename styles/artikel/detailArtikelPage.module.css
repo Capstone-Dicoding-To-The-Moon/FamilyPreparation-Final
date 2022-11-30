@@ -1,0 +1,56 @@
+.mainContent,
+.mainHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  overflow: auto;
+}
+
+.contentHeader {
+  width: 100%;
+}
+
+.underline {
+  height: 4px;
+  width: 100%;
+  background-color: #f76c2f;
+  margin-top: 10px;
+}
+
+.content {
+  width: 70%;
+  padding: 10px;
+}
+
+.imagesCard {
+  height: 400px;
+}
+
+.aside {
+  width: 314px;
+  padding: 10px;
+}
+
+.title {
+  font-size: 18px;
+  text-align: center;
+}
+
+@media (max-width: 1000px) {
+  .mainContent,
+  .mainHeader {
+    flex-direction: column;
+  }
+  .content {
+    width: 100%;
+  }
+  .contentHeader {
+    width: 100%;
+  }
+  .imagesCard {
+    height: 100%;
+  }
+  .aside {
+    width: 100%;
+  }
+}
