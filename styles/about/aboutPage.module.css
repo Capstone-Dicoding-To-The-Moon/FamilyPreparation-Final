@@ -1,0 +1,71 @@
+.member {
+  position: relative;
+  padding: 30px;
+  border-radius: 5px;
+  background: #fff;
+}
+
+.teampic {
+  overflow: hidden;
+  width: 180px;
+  border-radius: 50%;
+}
+
+.memberInfo {
+  color: tomato;
+  padding-left: 30px;
+  margin: auto 0;
+}
+
+.sectionTittle {
+  color: tomato;
+  text-align: center;
+}
+.sectionTittle h2 {
+  text-align: center;
+  font-weight: 800;
+}
+
+.sectionTittle p {
+  text-align: center;
+  font-weight: 450;
+}
+
+.social {
+  display: flex;
+}
+
+.social a {
+  font-size: 20px;
+  text-align: center;
+  flex-basis: 15%;
+}
+
+.social a:hover {
+  color: orangered;
+}
+
+.aboutBrand {
+  text-align: left;
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  /* text-left d-flex flex-column align-self-center */
+}
+
+@media only screen and (max-width: 600px) {
+  .member {
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+  }
+  .aboutBrand {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .aboutBrand {
+    text-align: center;
+  }
+}

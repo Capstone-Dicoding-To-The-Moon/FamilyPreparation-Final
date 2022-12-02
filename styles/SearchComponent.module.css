@@ -1,0 +1,13 @@
+.btnColor {
+    background-color: #f76c2f;
+    border-color: #f76c2f;
+    margin-right: 0px;
+  }
+  .btnColor:hover {
+    background-color: #f37e4c;
+    border-color: #f37e4c;
+  }
+
+  .icon{
+    font-size: 25px;
+  }
