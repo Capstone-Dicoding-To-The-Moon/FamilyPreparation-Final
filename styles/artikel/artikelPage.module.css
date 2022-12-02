@@ -58,3 +58,16 @@
   background-color: #f37e4c;
   border-color: #f37e4c;
 }
+
+@media only screen and (max-width: 768px) {
+  .mainContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .aside {
+    width: 100%;
+    padding: 10px;
+  }
+}

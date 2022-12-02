@@ -44,7 +44,7 @@ const CardSliderComponent = () => {
       <Slider {...settings}>
         {[1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => {
           return (
-            <Card>
+            <Card key={index}>
               <Card.Img variant="top" src="/artikel.jpg" />
               <Card.Body>
                 <Card.Title className="mb-4">Card Title</Card.Title>
