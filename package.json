@@ -19,7 +19,8 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.6.0",
     "react-slick": "^0.29.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.6.15"
   },
   "devDependencies": {
     "sass": "^1.56.1"

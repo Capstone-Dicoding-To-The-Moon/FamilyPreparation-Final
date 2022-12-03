@@ -8,8 +8,17 @@ import ListArtikelComponent from '../components/ListArtikelComponent';
 import CardSliderComponent from '../components/CardSliderComponent';
 
 const Home = (props) => {
+  const [token, setToken] = useState();
+
+  useEffect(() => {
+    localStorage.getItem('token');
+  }, token);
+
   const getDataAllProduct = props.allProduct;
   const getDataAllCategories = props.allCategories;
+
+  // const getToken = localStorage.getItem('token');
+  // console.log(getToken);
 
   return (
     <Container className="py-3" style={{ minHeight: '100vh' }}>

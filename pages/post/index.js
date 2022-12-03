@@ -6,8 +6,22 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 
 const postArtikel = ({ listKategori }) => {
+  const router = useRouter();
+  const [token, setToken] = useState();
+
+  // didmount
+  useEffect(() => {
+    const getToken = localStorage.getItem('token');
+    if (!getToken) {
+      router.push('/login');
+    }
+    setToken(getToken);
+  }, token);
+
   return (
     <>
       <Head>

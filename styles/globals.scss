@@ -11,7 +11,7 @@ a {
 }
 
 a:hover {
-  color: #ad4e20;
+  color: #ffffff;
 }
 
 * {
@@ -138,4 +138,29 @@ a:hover {
 }
 .slick-next {
   color: black;
+}
+
+.main-heading {
+  color: #a34a23;
+  font-size: 26px;
+  text-align: left;
+}
+
+.buttonTanya {
+  max-width: 200px;
+  background-color: #ad4e20;
+  border-color: #ad4e20;
+}
+
+.buttonTanya:hover {
+  background-color: #b4663f;
+  border-color: #b45a2d;
+}
+
+.nav-link {
+  color: black;
+}
+
+.nav-link:hover {
+  color: rgb(66, 65, 65);
 }

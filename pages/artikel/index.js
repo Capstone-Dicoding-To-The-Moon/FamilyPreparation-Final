@@ -37,9 +37,11 @@ const Artikel = ({ dataProduct, dataGenre }) => {
                   <CardArtikelComponent dataArtikel={dataProduct} />
                 </div>
                 <aside className={`${Styles.aside}`}>
-                  <Button className={`${Styles.postButton} border rounded d-block mb-3`} style={{ width: '100%' }} variant="primary">
-                    <Link href="/post">Post Artikel</Link>
-                  </Button>
+                  <Link href="/post">
+                    <Button className={`${Styles.postButton} border rounded d-block mb-3`} style={{ width: '100%' }} variant="primary">
+                      Post Artikel
+                    </Button>
+                  </Link>
                   <KategoriArtikelComponent dataKategori={dataGenre} />
                 </aside>
               </main>
