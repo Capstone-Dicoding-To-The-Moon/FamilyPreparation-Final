@@ -3,17 +3,19 @@ import Button from 'react-bootstrap/Button';
 import { CiSearch } from 'react-icons/ci';
 import Styles from '../styles/SearchComponent.module.css';
 import { useRouter } from 'next/router';
+import axios from 'axios';
 
-const SearchElement = ({ getSearch }) => {
+const SearchElement = ({ setKonten, dataAwal }) => {
   const router = useRouter();
-  const click = (e) => {
+
+  const click = async (e) => {
     e.preventDefault();
     const value = e.target.search.value;
-    getSearch(value);
     if (value !== '') {
-      router.push(`?search=${value}`);
-    }else{
-      router.push(``);
+      const update = await axios.get(`http://localhost:5000/search-post/${value}`).then((res) => res.data.data);
+      setKonten(update);
+    } else {
+      setKonten(dataAwal);
     }
   };
 

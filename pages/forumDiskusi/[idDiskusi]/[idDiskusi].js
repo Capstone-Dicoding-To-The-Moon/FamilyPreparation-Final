@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import { Col, Container, Row } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
-import PaginationElement from '../../components/PagenationComponent';
-import SearchElement from '../../components/SearchComponent';
+import PaginationElement from '../../../components/PagenationComponent';
+import SearchElement from '../../../components/SearchComponent';
 
 const detailDiskusi = () => {
   const router = useRouter();
@@ -20,7 +20,7 @@ const detailDiskusi = () => {
                 <div className="contentHeader mb-3">
                   <h3 className="main-heading">The Parentings Forum</h3>
                 </div>
-                <div className="search">
+                <div className="ms-3 search">
                   <SearchElement />
                 </div>
               </div>

@@ -31,7 +31,7 @@ const forumDiskusi = () => {
                       <Table responsive="sm" style={{ textAlign: 'left' }}>
                         <thead>
                           <tr>
-                            <th>Parenting</th>
+                            <th style={{ width: 600 }}>Parenting</th>
                             <th>Topics</th>
                             <th>Views</th>
                             <th style={{ width: 200 }}>Last Post</th>
@@ -44,9 +44,61 @@ const forumDiskusi = () => {
                                 Pregnancy
                               </Link>
                             </td>
+                            <td style={{ borderStyle: 'none' }}>231</td>
+                            <td style={{ borderStyle: 'none' }}>11846</td>
+                            <td style={{ borderStyle: 'none' }}>2022-07-01 00:23:57 by antonio456</td>
+                          </tr>
+                        </tbody>
+                      </Table>
+                    </Card.Body>
+                  </Card>
+
+                  <Card className="mb-3">
+                    <Card.Body>
+                      <Table responsive="sm" style={{ textAlign: 'left' }}>
+                        <thead>
+                          <tr>
+                            <th style={{ width: 600 }}>Parenting</th>
+                            <th>Topics</th>
+                            <th>Views</th>
+                            <th style={{ width: 200 }}>Last Post</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
                             <td style={{ borderStyle: 'none' }}>
-                              231
+                              <Link className="nav-link" href="/forumDiskusi/1">
+                                Pregnancy
+                              </Link>
                             </td>
+                            <td style={{ borderStyle: 'none' }}>231</td>
+                            <td style={{ borderStyle: 'none' }}>11846</td>
+                            <td style={{ borderStyle: 'none' }}>2022-07-01 00:23:57 by antonio456</td>
+                          </tr>
+                        </tbody>
+                      </Table>
+                    </Card.Body>
+                  </Card>
+
+                  <Card className="mb-3">
+                    <Card.Body>
+                      <Table responsive="sm" style={{ textAlign: 'left' }}>
+                        <thead>
+                          <tr>
+                            <th style={{ width: 600 }}>Parenting</th>
+                            <th>Topics</th>
+                            <th>Views</th>
+                            <th style={{ width: 200 }}>Last Post</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td style={{ borderStyle: 'none' }}>
+                              <Link className="nav-link" href="/forumDiskusi/1">
+                                Pregnancy
+                              </Link>
+                            </td>
+                            <td style={{ borderStyle: 'none' }}>231</td>
                             <td style={{ borderStyle: 'none' }}>11846</td>
                             <td style={{ borderStyle: 'none' }}>2022-07-01 00:23:57 by antonio456</td>
                           </tr>

@@ -6,7 +6,7 @@ export default function Layout({ children }) {
   return (
     <>
       <NavbarComponent />
-      <main className={`${styles.main} p-4`} >{children}</main>
+      <main className={`${styles.main} p-4`}>{children}</main>
       <FooterComponent />
     </>
   );

@@ -4,8 +4,22 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 
 const Home = () => {
+  const router = useRouter();
+  const [token, setToken] = useState();
+
+  // didmount
+  useEffect(() => {
+    const getToken = localStorage.getItem('token');
+    if (!getToken) {
+      router.push('/login');
+    }
+    setToken(getToken);
+  }, token);
+
   let currentDate = new Date().toJSON().slice(0, 10);
   console.log(currentDate); // "2022-06-17"
   return (

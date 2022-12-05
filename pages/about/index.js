@@ -23,8 +23,8 @@ const about = () => {
                     <Container>
                       <Row>
                         <Col lg={4}>
-                          <div className={`${Styles.teampic}`} style={{ margin: '0 auto' }}>
-                            <Image src="./profile.png" className="img-fluid" alt="team1" />
+                          <div className={`${Styles.teampic} border`} style={{ margin: '0 auto' }}>
+                            <Image src="./favicon.png" className="img-fluid" alt="team1" />
                           </div>
                         </Col>
                         <Col className={`${Styles.aboutBrand}`}>
@@ -54,7 +54,7 @@ const about = () => {
                         <Col lg={6} mt={4} className="my-2">
                           <div className={`${Styles.member} d-flex  shadow`}>
                             <div className={`${Styles.teampic}`}>
-                              <Image src="./profile.png" className="img-fluid" alt="team1" />
+                              <Image src="./profile_Dewa.jpg" className="img-fluid" alt="team1" height={'20px'} />
                             </div>
                             <div className={`${Styles.memberInfo}`}>
                               <h4 style={{ fontWeight: '700', marginBottom: '5px', fontSize: '20px', color: 'tomato' }}>Dewa Putra Hernanda</h4>
@@ -62,16 +62,16 @@ const about = () => {
                                 Front End Developer
                               </span>
 
-                              <div className={`${Styles.social}`}>
-                                <a href="#">
+                              <div className="fs-5">
+                                <a href="https://github.com/dewa-nanda" target="_blank">
                                   <BsGithub></BsGithub>
                                 </a>
 
-                                <a href="#">
+                                <a href="https://www.instagram.com/dewa_ndn/" target="_blank" className="mx-2">
                                   <BsInstagram></BsInstagram>
                                 </a>
 
-                                <a href="#">
+                                <a href="https://www.linkedin.com/in/dewa-putra-hernanda-147a99202/" target="_blank">
                                   <BsLinkedin></BsLinkedin>
                                 </a>
                               </div>
@@ -86,17 +86,17 @@ const about = () => {
                               <Image src="./profile.png" className="img-fluid" alt="team1" />
                             </div>
                             <div className={`${Styles.memberInfo}`}>
-                              <h4 style={{ fontWeight: '700', marginBottom: '5px', fontSize: '20px', color: 'tomato' }}>Dewa Putra Hernanda</h4>
+                              <h4 style={{ fontWeight: '700', marginBottom: '5px', fontSize: '20px', color: 'tomato' }}>Resa Fajar Sukma</h4>
                               <span className="border-top" style={{ display: 'block', fontSize: '15px', paddingBottom: '10px', position: 'relative', fontWeight: '500' }}>
-                                Front End Developer
+                                Back End Developer
                               </span>
 
-                              <div className={`${Styles.social}`}>
+                              <div className="fs-5">
                                 <a href="#">
                                   <BsGithub></BsGithub>
                                 </a>
 
-                                <a href="#">
+                                <a href="#" className="mx-2">
                                   <BsInstagram></BsInstagram>
                                 </a>
 
@@ -115,17 +115,17 @@ const about = () => {
                               <Image src="./profile.png" className="img-fluid" alt="team1" />
                             </div>
                             <div className={`${Styles.memberInfo}`}>
-                              <h4 style={{ fontWeight: '700', marginBottom: '5px', fontSize: '20px', color: 'tomato' }}>Dewa Putra Hernanda</h4>
+                              <h4 style={{ fontWeight: '700', marginBottom: '5px', fontSize: '20px', color: 'tomato' }}>Desi Sihamita</h4>
                               <span className="border-top" style={{ display: 'block', fontSize: '15px', paddingBottom: '10px', position: 'relative', fontWeight: '500' }}>
                                 Front End Developer
                               </span>
 
-                              <div className={`${Styles.social}`}>
+                              <div className="fs-5">
                                 <a href="#">
                                   <BsGithub></BsGithub>
                                 </a>
 
-                                <a href="#">
+                                <a href="#" className="mx-2">
                                   <BsInstagram></BsInstagram>
                                 </a>
 
@@ -141,20 +141,20 @@ const about = () => {
                         <Col lg={6} mt={4} className="my-2">
                           <div className={`${Styles.member} d-flex  shadow`}>
                             <div className={`${Styles.teampic}`}>
-                              <Image src="./profile.png" className="img-fluid" alt="team1" />
+                              <Image src="./profile_J.PNG" className="img-fluid" alt="team1" />
                             </div>
                             <div className={`${Styles.memberInfo}`}>
-                              <h4 style={{ fontWeight: '700', marginBottom: '5px', fontSize: '20px', color: 'tomato' }}>Dewa Putra Hernanda</h4>
+                              <h4 style={{ fontWeight: '700', marginBottom: '5px', fontSize: '20px', color: 'tomato' }}>Annisa Janiar Husein</h4>
                               <span className="border-top" style={{ display: 'block', fontSize: '15px', paddingBottom: '10px', position: 'relative', fontWeight: '500' }}>
                                 Front End Developer
                               </span>
 
-                              <div className={`${Styles.social}`}>
+                              <div className="fs-5">
                                 <a href="#">
                                   <BsGithub></BsGithub>
                                 </a>
 
-                                <a href="#">
+                                <a href="#" className="mx-2">
                                   <BsInstagram></BsInstagram>
                                 </a>
 

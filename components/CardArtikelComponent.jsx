@@ -10,11 +10,10 @@ import { useState, useEffect } from 'react';
 const CardArtikelComponent = ({ dataArtikel }) => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 10;
+  const pageSize = 6;
 
   useEffect(() => {
     const getPosts = () => {
-      // const { data: res } = await axios.get(`https://fakestoreapi.com/${queryKategori !== undefined ? `products/category/${queryKategori}` : 'products'}`);
       setPosts(dataArtikel);
     };
     getPosts();
@@ -32,13 +31,13 @@ const CardArtikelComponent = ({ dataArtikel }) => {
         {paginatePosts.map((data, idx) => (
           <Col key={idx} sm style={{ minHeight: '388px', minWidth: '296px' }}>
             <Card className="text-center shadow">
-              <Card.Img variant="top" className="border " src={data.image} style={{ height: '212px' }} />
-              <Card.Body style={{ height: '250px' }} className="d-flex flex-column justify-content-between">
+              <Card.Img variant="top" className="border " src={data.image_large} srcSet="./artikel.jpg" style={{ height: '212px' }} />
+              <Card.Body style={{ height: '250px' }} className="d-flex flex-column justify-content-around">
                 <Card.Title style={{ textAlign: 'left', fontWeight: 'bold' }} className={`${styles.cutoffTextTittle} flex-grow-2 text-dark`}>
                   {data.title}
                 </Card.Title>
                 <Card.Text style={{ textAlign: 'left' }} className={`${styles.cutoffText}`}>
-                  {data.description}
+                  {data.content}
                 </Card.Text>
                 <Card.Link href={`/artikel/${data.id}`} bsPrefix={`${styles.cardBtn}`} style={{ width: '50%', margin: '0 auto' }}>
                   Read More

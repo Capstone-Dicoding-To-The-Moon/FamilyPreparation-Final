@@ -8,7 +8,7 @@ const ListArtikelComponent = ({ dataArtikel, title }) => {
         {dataArtikel.map((data, idx) => {
           return (
             <li className="ps-2" key={idx}>
-              <a href="/artikel" >{data}</a>
+              <a href={`/artikel/${data.id}`}>{data.title}</a>
             </li>
           );
         })}

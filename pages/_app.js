@@ -1,3 +1,4 @@
+import 'sweetalert2/src/sweetalert2.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -10,6 +11,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <title>The Parentings</title>
+        <link rel="icon" href="/favicon.png" />
       </Head>
       <Layout>
         <Component {...pageProps} />

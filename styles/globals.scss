@@ -11,7 +11,7 @@ a {
 }
 
 a:hover {
-  color: #ffffff;
+  color: #363232;
 }
 
 * {
@@ -69,7 +69,7 @@ a:hover {
 .page-link:hover {
   background-color: #f37e4c;
   border: #f76c2f;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 .active > .page-link,
 .page-link.active {
@@ -163,4 +163,16 @@ a:hover {
 
 .nav-link:hover {
   color: rgb(66, 65, 65);
+}
+
+.table {
+  border-radius: 12px !important;
+}
+.table > :not(caption) > * > * {
+  border-bottom-width: 0 !important;
+}
+.table > thead {
+  box-sizing: border-box;
+  background: #fff8f4;
+  border: 2px solid #ad4e20;
 }

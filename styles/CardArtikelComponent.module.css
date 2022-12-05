@@ -16,7 +16,7 @@
 }
 
 .cutoffText {
-  --max-lines: 3;
+  --max-lines: 2;
 
   display: -webkit-box;
   overflow: hidden;

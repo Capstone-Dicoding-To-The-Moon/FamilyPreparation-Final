@@ -1,9 +1,11 @@
 import Slider from 'react-slick';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import styles from '../styles/CardArtikelComponent.module.css';
+import Styles from '../styles/CardArtikelComponent.module.css';
+import Link from 'next/link';
 
-const CardSliderComponent = () => {
+const CardSliderComponent = ({ data }) => {
+  console.log(data);
   var settings = {
     dots: true,
     infinite: false,
@@ -42,15 +44,19 @@ const CardSliderComponent = () => {
   return (
     <div>
       <Slider {...settings}>
-        {[1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => {
+        {data.map((item, index) => {
           return (
             <Card key={index}>
-              <Card.Img variant="top" src="/artikel.jpg" />
+              <div style={{ width: '100%' }}>
+                <Card.Img variant="top" className="img-fluid" src="/Hero-img.png" srcSet="/artikel.jpg" style={{ height: '150px' }} />
+              </div>
               <Card.Body>
-                <Card.Title className="mb-4">Card Title</Card.Title>
-                <Button variant="primary" bsPrefix={`${styles.cardBtn}`}>
-                  Go somewhere
-                </Button>
+                <Card.Title className={`${Styles.cutoffTextTittle} mb-4`}>{item.title}</Card.Title>
+                <Link href={`/artikel/${item.id}`}>
+                  <Button variant="primary" bsPrefix={`${Styles.cardBtn}`}>
+                    Read More
+                  </Button>
+                </Link>
               </Card.Body>
             </Card>
           );

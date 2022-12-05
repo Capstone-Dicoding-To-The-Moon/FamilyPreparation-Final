@@ -7,6 +7,8 @@ import Button from 'react-bootstrap/Button';
 import HeroComponent from '../../components/HeroComponent';
 import Styles from '../../styles/profile/profilePage.module.css';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 
 const profile = () => {
   return (
@@ -45,7 +47,7 @@ const profile = () => {
                               Email
                             </Form.Label>
                             <Col sm="10">
-                              <Form.Control type="text" className={`${Styles.form}`}placeholder="Email" />
+                              <Form.Control type="text" className={`${Styles.form}`} placeholder="Email" />
                             </Col>
                           </Form.Group>
                           <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">

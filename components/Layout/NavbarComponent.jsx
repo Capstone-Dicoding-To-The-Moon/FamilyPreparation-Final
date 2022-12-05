@@ -6,38 +6,57 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import { IoPersonCircle } from 'react-icons/io5';
+import Swal from 'sweetalert2';
 
 const NavbarComponent = () => {
   const router = useRouter();
-  const [token, setToken] = useState();
+  const [token, setToken] = useState(null);
 
   useEffect(() => {
     setToken(localStorage.getItem('token'));
   }, token);
 
-
   // Jika ingin akses data, tapi data tertutup oleh token gunakan baris 21
-  const getData = async () => {
-    const headers = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    const data = await axios.get('http://localhost:5000/admin', headers);
-    console.log(data);
-  };
+  // const getData = async () => {
+  //   const headers = {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   };
+  //   const data = await axios.get('http://localhost:5000/admin', headers);
+  //   console.log(data);
+  // };
+
   const logout = () => {
-    localStorage.removeItem('token');
-    setToken();
-    router.push('/');
+    Swal.fire({
+      title: 'Apakah anda yakin untuk logout?',
+      showDenyButton: true,
+      confirmButtonText: 'ya',
+      denyButtonText: `tidak`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Berhasil logout',
+          timer: 1000,
+        });
+        localStorage.removeItem('token');
+        setToken();
+        router.push('/');
+      }
+    });
   };
   return (
     <>
       <Navbar collapseOnSelect expand="md" bg="light" variant="light" className="d-flex flex-column shadow">
         <Container fluid style={{ fontFamily: 'serif' }}>
           <Link href="/" style={{ fontFamily: 'serif', fontWeight: 'bold', fontSize: '24px' }} className="navbar-brand">
+            <img src="/favicon.png" style={{ height: '40px' }} className="border rounded-circle me-2"></img>
             The Parentings
           </Link>
+
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto"></Nav>
@@ -55,9 +74,15 @@ const NavbarComponent = () => {
                 About Us
               </Link>
               {token ? (
-                <Button variant="light" className="ms-3 border-danger" onClick={() => logout()}>
-                  Logout
-                </Button>
+                <DropdownButton id="dropdown-item-button" title={<IoPersonCircle></IoPersonCircle>} variant="" className="border border-2 rounded" size="md" align="end">
+                  <Link href="/profile">
+                    <Dropdown.Item as="button">Profile</Dropdown.Item>
+                  </Link>
+                  <Dropdown.Divider />
+                  <Dropdown.Item as="button" onClick={() => logout()}>
+                    Log out
+                  </Dropdown.Item>
+                </DropdownButton>
               ) : (
                 <Link href="/login">
                   <Button variant="light" className="ms-3 border-success">

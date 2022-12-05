@@ -7,18 +7,14 @@ import Styles from '../styles/Home.module.css';
 import ListArtikelComponent from '../components/ListArtikelComponent';
 import CardSliderComponent from '../components/CardSliderComponent';
 
-const Home = (props) => {
+const Home = ({ allArtikel, allCategories, artikelNewest }) => {
   const [token, setToken] = useState();
 
   useEffect(() => {
     localStorage.getItem('token');
   }, token);
 
-  const getDataAllProduct = props.allProduct;
-  const getDataAllCategories = props.allCategories;
-
-  // const getToken = localStorage.getItem('token');
-  // console.log(getToken);
+  artikelNewest.length = 5;
 
   return (
     <Container className="py-3" style={{ minHeight: '100vh' }}>
@@ -27,7 +23,7 @@ const Home = (props) => {
       <section className="my-3">
         <h1 style={{ color: '#a34a23' }}>Artikel Terbaru</h1>
         <div className={`${Styles.underline} mx-auto mb-4`}></div>
-        <CardSliderComponent />
+        <CardSliderComponent data={artikelNewest} />
       </section>
 
       <section>
@@ -35,10 +31,10 @@ const Home = (props) => {
         <div className={`${Styles.underline} mx-auto mb-4`}></div>
         <Row>
           <Col lg={9}>
-            <CardArtikelComponent dataArtikel={getDataAllProduct} />
+            <CardArtikelComponent dataArtikel={allArtikel} />
           </Col>
           <Col>
-            <ListArtikelComponent dataArtikel={getDataAllCategories} title={'Top Artikel'} />
+            <ListArtikelComponent dataArtikel={allCategories} title={'Top Artikel'} />
           </Col>
         </Row>
       </section>
@@ -47,14 +43,27 @@ const Home = (props) => {
 };
 
 Home.getInitialProps = async (ctx) => {
-  let res = await fetch('https://fakestoreapi.com/products');
-  const allProduct = await res.json();
+  const url = 'http://localhost:5000';
 
-  res = await fetch('https://fakestoreapi.com/products/categories');
-  const allCategories = await res.json();
+  const allArtikel = await fetch(`${url}/posts`)
+    .then((res) => res.json())
+    .then((res) => res.data);
+
+  const allCategories = await fetch(`${url}/categories`)
+    .then((res) => res.json())
+    .then((res) => res.data);
+
+  const artikelNewest = await fetch(`${url}/postsDates`)
+    .then((res) => res.json())
+    .then((res) => res.data);
 
   const currentRoute = ctx.query;
-  return { allProduct: allProduct, allCategories: allCategories, currentRoute: currentRoute };
+
+  return {
+    allArtikel: allArtikel,
+    allCategories: allCategories,
+    artikelNewest: artikelNewest,
+  };
 };
 
 export default Home;

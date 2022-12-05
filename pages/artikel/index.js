@@ -8,7 +8,21 @@ import KategoriArtikelComponent from '../../components/KategoriArtikelComponent'
 import Head from 'next/head';
 import Link from 'next/link';
 
-const Artikel = ({ dataProduct, dataGenre }) => {
+const Artikel = ({ allArtikel, allCategories, queryCheck }) => {
+  const [dataArtikel, setDataArtikel] = useState([]);
+
+  useEffect(() => {
+    const getDataArtikel = () => {
+      setDataArtikel(allArtikel);
+    };
+    getDataArtikel();
+  }, []);
+
+  const changeDataArtikel = (data) => {
+    setDataArtikel(data);
+  };
+
+  console.log(dataArtikel.length);
   return (
     <div style={{ minHeight: '100vh' }}>
       <Head>
@@ -25,7 +39,7 @@ const Artikel = ({ dataProduct, dataGenre }) => {
                     <h1 className={`${Styles.mainHeading} m-2`}>Rekomendasi Artikel</h1>
                   </div>
                   <div className={`${Styles.search} m-2`}>
-                    <SearchElement />
+                    <SearchElement setKonten={changeDataArtikel} dataAwal={allArtikel} />
                   </div>
                 </div>
               </div>
@@ -34,15 +48,22 @@ const Artikel = ({ dataProduct, dataGenre }) => {
 
               <main className={`${Styles.mainContent}`}>
                 <div className={`${Styles.content}`}>
-                  <CardArtikelComponent dataArtikel={dataProduct} />
+                  {dataArtikel.length !== 0 ? (
+                    <CardArtikelComponent dataArtikel={dataArtikel} />
+                  ) : (
+                    <>
+                      {' '}
+                      <img src="./404 Error-pana.svg" height={'340px'} width={'100%'}></img> <h1 className="text-center fs-3">Maaf artikel yang anda cari tidak ditemukan</h1>
+                    </>
+                  )}
                 </div>
                 <aside className={`${Styles.aside}`}>
-                  <Link href="/post">
+                  <Link href="artikel/buatArtikel">
                     <Button className={`${Styles.postButton} border rounded d-block mb-3`} style={{ width: '100%' }} variant="primary">
                       Post Artikel
                     </Button>
                   </Link>
-                  <KategoriArtikelComponent dataKategori={dataGenre} />
+                  <KategoriArtikelComponent dataKategori={allCategories} />
                 </aside>
               </main>
             </div>
@@ -54,13 +75,21 @@ const Artikel = ({ dataProduct, dataGenre }) => {
 };
 
 Artikel.getInitialProps = async (ctx) => {
-  const genre = ctx.query.kategori;
-  const dataProduct = await fetch(`https://fakestoreapi.com/${genre !== undefined ? `products/category/${genre}` : 'products'}`).then((res) => res.json());
-  const dataGenre = await fetch(`https://fakestoreapi.com/products/categories`).then((res) => res.json());
+  const url = 'http://localhost:5000';
 
+  const allArtikel = await fetch(`${url}/posts`)
+    .then((res) => res.json())
+    .then((res) => res.data);
+
+  const allCategories = await fetch(`${url}/categories`)
+    .then((res) => res.json())
+    .then((res) => res.data);
+
+  const test = ctx.query;
   return {
-    dataProduct: dataProduct,
-    dataGenre: dataGenre,
+    allArtikel: allArtikel,
+    allCategories: allCategories,
+    queryCheck: test,
   };
 };
 
