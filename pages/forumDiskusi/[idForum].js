@@ -2,10 +2,10 @@ import { Button, Card, Col, Container, InputGroup, Row } from 'react-bootstrap';
 import { BsChatLeftText } from 'react-icons/bs';
 import BreadcrumbElement from '../../components/ForumDiskusi/BreadcrumbComponent';
 import ListKomentarComponent from '../../components/ForumDiskusi/ListKomentarComponent';
-import Form from 'react-bootstrap/Form';
+import InputKomentarComponent from '../../components/ForumDiskusi/inputKomentarComponent';
 
 const detailForum = ({ dataDetailForum }) => {
-  let currentDate = new Date().toJSON().slice(0, 10);
+  console.log(dataDetailForum);
   return (
     <Container>
       <section className="section">
@@ -55,25 +55,7 @@ const detailForum = ({ dataDetailForum }) => {
                       <hr />
 
                       <div class="card mb-3" style={{ maxWidth: 1200, border: 'none' }}>
-                        <Row>
-                          <Col md={1}>
-                            <img src="/profile.png" className="img-fluid" style={{ width: 70, margin: 12 }}></img>
-                          </Col>
-                          <Col md={8}>
-                            <Card.Body>
-                              <h5 className="card-title">Nama user</h5>
-                              <Card.Subtitle className="mb-3 text-muted">
-                                <span style={{ marginRight: 20 }}>{currentDate}</span>
-                              </Card.Subtitle>
-                              <InputGroup>
-                                <Form.Control placeholder="Masukan komentar anda ..." aria-label="Recipient's username" name="komentar" aria-describedby="basic-addon2" required />
-                                <Button variant="outline-secondary" id="button-addon2" onClick={(e) => clickAddKomentar(e)}>
-                                  Button
-                                </Button>
-                              </InputGroup>
-                            </Card.Body>
-                          </Col>
-                        </Row>
+                        <InputKomentarComponent />
                       </div>
                     </Card.Body>
                   </Card>

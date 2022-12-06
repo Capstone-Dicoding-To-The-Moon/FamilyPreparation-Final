@@ -45,7 +45,17 @@ const detailDiskusi = ({ allForum, id }) => {
               <div className="underline mx-auto mb-4"></div>
               <main className="mainContent">
                 <div className="content">
-                  <ListDiskusiComponent allForum={dataForum} />
+                  {dataForum.length !== 0 ? (
+                    <ListDiskusiComponent allForum={dataForum} />
+                  ) : (
+                    <>
+                      <Card className="mb-3">
+                        <Card.Body>
+                          <img src="./404 Error-pana.svg" height={'340px'} width={'100%'}></img> <h1 className="text-center fs-3">Maaf forum diskusi yang anda cari tidak ditemukan</h1>
+                        </Card.Body>
+                      </Card>
+                    </>
+                  )}
                 </div>
               </main>
             </Col>
