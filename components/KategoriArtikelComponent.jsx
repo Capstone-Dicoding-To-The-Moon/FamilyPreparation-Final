@@ -5,16 +5,17 @@ import Tab from 'react-bootstrap/Tab';
 import { useRouter } from 'next/router';
 import Styles from '../styles/KategoriArtikelComponent.module.css';
 import axios from 'axios';
+import { Button } from 'react-bootstrap';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
-const KategoriArtikelComponent = ({ dataKategori, setKonten, updateKategori }) => {
+const KategoriArtikelComponent = ({ dataKategori, setKonten}) => {
   const click = async (e, data) => {
     e.preventDefault();
-    // console.log(data);
-    // const update = await axios.get(`http://localhost:5000/categories/${data.id}`).then((res) => res.data);
-    // console.log(update);
-    // setKonten(update);
+    const update = await axios.get(`http://localhost:5000/postsCat/${data.id}`).then((res) => res.data.data);
+    setKonten(update);
   };
 
+  console.log(dataKategori);
   return (
     <div className="card p-3">
       <h3 className={`${Styles.title}`}>Kategori Artikel</h3>
@@ -28,7 +29,7 @@ const KategoriArtikelComponent = ({ dataKategori, setKonten, updateKategori }) =
                     onClick={(e) => {
                       click(e, data);
                     }}
-                    className={`${Styles.buttonArtikel} B${idx}`}
+                    className={`${Styles.buttonArtikel} B${idx} ${data.id}`}
                   >
                     {data.title}
                   </Nav.Link>

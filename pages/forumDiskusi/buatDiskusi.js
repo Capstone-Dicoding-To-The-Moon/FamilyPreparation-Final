@@ -6,12 +6,14 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
+import alert from '../../utils/alert';
+import { getHeadersMultiPart } from '../../utils/konstanta';
+import axios from 'axios';
 
-const Home = () => {
+const buatDiskusi = ({ listKategori }) => {
   const router = useRouter();
   const [token, setToken] = useState();
 
-  // didmount
   useEffect(() => {
     const getToken = localStorage.getItem('token');
     if (!getToken) {
@@ -20,8 +22,28 @@ const Home = () => {
     setToken(getToken);
   }, token);
 
+  const click = async (e) => {
+    e.preventDefault();
+    const title = document.querySelector('[name="title"]').value;
+    const kategoriId = document.querySelector('[name="kategori"]').value;
+    const image = document.querySelector('[name="image"]').files[0];
+    const content = document.querySelector('[name="content"]').value;
+
+    if (title === '' || kategoriId === '' || content === '' || image === '') {
+      alert('error', 'error', 'field tidak boleh ada yang kosong');
+    } else {
+      const data = { title, kategoriId, content, image };
+      const headers = getHeadersMultiPart();
+      const post = await axios.post('http://localhost:5000/forum', data, headers);
+
+      const idPost = post.data.data.id;
+
+      alert('success', 'Data berhasil ditambahkan');
+      router.push(`/forumDiskusi/${idPost}`);
+    }
+  };
+
   let currentDate = new Date().toJSON().slice(0, 10);
-  console.log(currentDate); // "2022-06-17"
   return (
     <div style={{ minHeight: '100vh' }}>
       <Container className="py-5">
@@ -37,10 +59,11 @@ const Home = () => {
                           Judul Diskusi
                         </Form.Label>
                         <Col sm="10">
-                          <Form.Control type="text" />
+                          <Form.Control type="text" name="title" />
                         </Col>
                       </Form.Group>
-                      <Form.Group as={Row} className="mb-3" controlId="author">
+
+                      <Form.Group as={Row} className="mb-3" controlId="date">
                         <Form.Label column sm="2">
                           Tanggal
                         </Form.Label>
@@ -48,15 +71,46 @@ const Home = () => {
                           <Form.Control type="text" disabled value={currentDate} />
                         </Col>
                       </Form.Group>
-                      <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
+
+                      <Form.Group as={Row} className="mb-3" controlId="image">
+                        <Form.Label column sm="2">
+                          Image
+                        </Form.Label>
+                        <Col sm="10">
+                          <Form.Control type="file" name="image" />
+                        </Col>
+                      </Form.Group>
+
+                      <Form.Group as={Row} className="mb-3" controlId="kategori">
+                        <Form.Label column sm="2">
+                          Kategori
+                        </Form.Label>
+                        <Col sm="10">
+                          <Form.Select aria-label="Default select example" name="kategori">
+                            <option selected disabled>
+                              Open this select menu
+                            </option>
+                            {listKategori.map((kategori, id) => {
+                              return (
+                                <option value={kategori.id} key={id}>
+                                  {kategori.title}
+                                </option>
+                              );
+                            })}
+                          </Form.Select>
+                        </Col>
+                      </Form.Group>
+
+                      <Form.Group as={Row} className="mb-3" controlId="content">
                         <Form.Label column sm="2">
                           Content
                         </Form.Label>
                         <Col sm="10">
-                          <Form.Control as="textarea" rows={10} />
+                          <Form.Control as="textarea" rows={10} name="content" />
                         </Col>
                       </Form.Group>
-                      <Button variant="primary" type="submit" className="btnUpdate">
+
+                      <Button variant="primary" className="btnUpdate" onClick={(e) => click(e)}>
                         Buat Diskusi
                       </Button>
                     </Form>
@@ -71,4 +125,14 @@ const Home = () => {
   );
 };
 
-export default Home;
+buatDiskusi.getInitialProps = async (ctx) => {
+  const listKategori = await fetch(`http://localhost:5000/categories`)
+    .then((res) => res.json())
+    .then((res) => res.data);
+
+  return {
+    listKategori: listKategori,
+  };
+};
+
+export default buatDiskusi;

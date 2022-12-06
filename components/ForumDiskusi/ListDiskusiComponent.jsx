@@ -4,6 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Link from 'next/link';
 
 const ListDiskusiComponent = ({ allForum }) => {
+  console.log(allForum);
   return (
     <Card className="mb-3">
       <Card.Body>
@@ -27,9 +28,9 @@ const ListDiskusiComponent = ({ allForum }) => {
                       {data.title}
                     </Link>
                   </td>
-                  <td className="text-center">384</td>
+                  <td className="text-center">{data.total_komentar}</td>
                   <td className="text-center">{data.author}</td>
-                  <td className="text-center">{data.createdAt}</td>
+                  <td className="text-center">{data.createdAt.split('T')[0]}</td>
                 </tr>
               );
             })}

@@ -15,7 +15,7 @@ const KomentarComponent = ({ datas, id }) => {
   useEffect(() => {
     setToken(localStorage.getItem('token'));
     setKomentar(datas);
-  }, []);
+  }, [datas]);
 
   const clickAddKomentar = async (e) => {
     e.preventDefault();
@@ -29,7 +29,6 @@ const KomentarComponent = ({ datas, id }) => {
       await axios.post('http://localhost:5000/komentar_post', data, headers);
       // get all komentar
       const komentarUpdate = await axios.get(`http://localhost:5000/postsCom/${id}`).then((res) => res.data.data.komentar);
-
       alert('success', 'komentar berhasil ditambahkan');
       setKomentar(komentarUpdate);
     }

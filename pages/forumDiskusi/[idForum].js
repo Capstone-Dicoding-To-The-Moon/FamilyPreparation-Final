@@ -1,10 +1,11 @@
-import { Card, Col, Container, Row } from 'react-bootstrap';
+import { Button, Card, Col, Container, InputGroup, Row } from 'react-bootstrap';
 import { BsChatLeftText } from 'react-icons/bs';
 import BreadcrumbElement from '../../components/ForumDiskusi/BreadcrumbComponent';
 import ListKomentarComponent from '../../components/ForumDiskusi/ListKomentarComponent';
+import Form from 'react-bootstrap/Form';
 
-const detailForum = ({ listKomentar }) => {
-  console.log(listKomentar);
+const detailForum = ({ dataDetailForum }) => {
+  let currentDate = new Date().toJSON().slice(0, 10);
   return (
     <Container>
       <section className="section">
@@ -22,11 +23,11 @@ const detailForum = ({ listKomentar }) => {
                 <div class="content">
                   <Card className="mb-3">
                     <Card.Body>
-                      <Card.Title>Judul Diskusi</Card.Title>
+                      <Card.Title>{dataDetailForum.title}</Card.Title>
                       <Card.Subtitle className="mb-2 text-muted">
-                        <span style={{ marginRight: 20 }}>11-11-2022 00:10</span>
+                        <span style={{ marginRight: 20 }}>{dataDetailForum.createdAt.split('T')[0]}</span>
                         <span>
-                          <BsChatLeftText /> 13 Komentar
+                          <BsChatLeftText /> {dataDetailForum.komentar.length - 1} Komentar
                         </span>
                       </Card.Subtitle>
 
@@ -37,15 +38,11 @@ const detailForum = ({ listKomentar }) => {
                           </div>
                           <div className="col-md-8">
                             <Card.Body>
-                              <h5 className="card-title">Nama Author</h5>
+                              <h5 className="card-title">{dataDetailForum.author}</h5>
                               <Card.Subtitle className="mb-3 text-muted">
-                                <span style={{ marginRight: 20 }}>Jum’at 11 November 2022 00:10 </span>
+                                <span style={{ marginRight: 20 }}> {dataDetailForum.createdAt.split('T')[0]} </span>
                               </Card.Subtitle>
-                              <Card.Text>
-                                Ini Pertanyaan? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur officiis ipsa ab nihil iure nulla quisquam officia. Quibusdam, rerum perferendis? Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Quis quo laudantium ipsam consectetur tempore quidem quas doloribus expedita quia perspiciatis? Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, natus earum ut tempore sed
-                                voluptatibus repudiandae beatae fugit ratione eligendi.
-                              </Card.Text>
+                              <Card.Text>{dataDetailForum.komentar[0].content}</Card.Text>
                             </Card.Body>
                           </div>
                         </div>
@@ -53,9 +50,31 @@ const detailForum = ({ listKomentar }) => {
 
                       <hr />
                       <div class="card mb-3" style={{ maxWidth: 1200, border: 'none' }}>
-                        <ListKomentarComponent />
+                        <ListKomentarComponent data={dataDetailForum.komentar} />
                       </div>
                       <hr />
+
+                      <div class="card mb-3" style={{ maxWidth: 1200, border: 'none' }}>
+                        <Row>
+                          <Col md={1}>
+                            <img src="/profile.png" className="img-fluid" style={{ width: 70, margin: 12 }}></img>
+                          </Col>
+                          <Col md={8}>
+                            <Card.Body>
+                              <h5 className="card-title">Nama user</h5>
+                              <Card.Subtitle className="mb-3 text-muted">
+                                <span style={{ marginRight: 20 }}>{currentDate}</span>
+                              </Card.Subtitle>
+                              <InputGroup>
+                                <Form.Control placeholder="Masukan komentar anda ..." aria-label="Recipient's username" name="komentar" aria-describedby="basic-addon2" required />
+                                <Button variant="outline-secondary" id="button-addon2" onClick={(e) => clickAddKomentar(e)}>
+                                  Button
+                                </Button>
+                              </InputGroup>
+                            </Card.Body>
+                          </Col>
+                        </Row>
+                      </div>
                     </Card.Body>
                   </Card>
                 </div>
@@ -70,14 +89,15 @@ const detailForum = ({ listKomentar }) => {
 
 detailForum.getInitialProps = async (ctx) => {
   const url = 'http://localhost:5000';
-  const id = ctx.query.idArtikel;
+  const id = ctx.query.idForum;
 
-  const listKomentar = await fetch(`${url}/komentar_forum`)
+  const dataDetailForum = await fetch(`${url}/forumDis/${id}`)
     .then((res) => res.json())
     .then((res) => res.data);
 
   return {
-    listKomentar: listKomentar,
+    dataDetailForum: dataDetailForum,
   };
 };
+
 export default detailForum;

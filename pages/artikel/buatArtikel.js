@@ -13,6 +13,7 @@ import alert from '../../utils/alert';
 import { getHeadersMultiPart } from '../../utils/konstanta';
 
 const postArtikel = ({ listKategori }) => {
+  console.log(listKategori);
   const router = useRouter();
   const [token, setToken] = useState();
 

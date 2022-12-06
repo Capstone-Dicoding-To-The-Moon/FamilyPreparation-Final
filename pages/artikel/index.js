@@ -8,7 +8,7 @@ import KategoriArtikelComponent from '../../components/KategoriArtikelComponent'
 import Head from 'next/head';
 import Link from 'next/link';
 
-const Artikel = ({ allArtikel, allCategories, queryCheck }) => {
+const Artikel = ({ allArtikel, allCategories }) => {
   const [dataArtikel, setDataArtikel] = useState([]);
 
   useEffect(() => {
@@ -62,7 +62,7 @@ const Artikel = ({ allArtikel, allCategories, queryCheck }) => {
                       Post Artikel
                     </Button>
                   </Link>
-                  <KategoriArtikelComponent dataKategori={allCategories} />
+                  <KategoriArtikelComponent dataKategori={allCategories} setKonten={changeDataArtikel} />
                 </aside>
               </main>
             </div>

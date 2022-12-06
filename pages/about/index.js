@@ -30,8 +30,8 @@ const about = () => {
                         <Col className={`${Styles.aboutBrand}`}>
                           <h1 className="my-2">The Parentings</h1>
                           <p>
-                            cznym, pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum
-                            oprogramowaniem przeznaczonym do realizacji druków na komputerach osobistych, jak Aldus PageMaker
+                            The Parentings merupakan aplikasi yang bertujuan untuk membantu persiapan dalam berumah tangga bagi mereka yang akan/sedang menjalin hubungan rumah tangga, dengan dapat <b>membaca/mengirimkan artikel </b>
+                            tentang pengalaman berkeluarga mereka ataupun menggunakan <b>forum diskusi </b> untuk saling bertukar pikiran
                           </p>
                         </Col>
                       </Row>
@@ -41,11 +41,10 @@ const about = () => {
                   <section>
                     <Container>
                       <div className={`${Styles.sectionTittle} my-3`}>
-                        <h2>Team</h2>
+                        <h2>About us</h2>
                         <p>
-                          Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później
-                          zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z
-                          zawierającym różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji druków na komputerach osobistych, jak Aldus PageMaker
+                          Kami adalah sekumpulan mahasiswa Studi Independent MSIB angkatan 3 yang berasal dari kampus kampus berbeda serta mengambil stack front-end dan back-end yang masih terus belajar untuk meningkatkan kemampuan kami
+                          dibidang front-end dan back-end
                         </p>
                       </div>
 
@@ -92,15 +91,15 @@ const about = () => {
                               </span>
 
                               <div className="fs-5">
-                                <a href="#">
+                                <a href="#" target="_blank">
                                   <BsGithub></BsGithub>
                                 </a>
 
-                                <a href="#" className="mx-2">
+                                <a href="#" className="mx-2" target="_blank">
                                   <BsInstagram></BsInstagram>
                                 </a>
 
-                                <a href="#">
+                                <a href="#" target="_blank">
                                   <BsLinkedin></BsLinkedin>
                                 </a>
                               </div>
@@ -121,15 +120,15 @@ const about = () => {
                               </span>
 
                               <div className="fs-5">
-                                <a href="#">
+                                <a href="#" target="_blank">
                                   <BsGithub></BsGithub>
                                 </a>
 
-                                <a href="#" className="mx-2">
+                                <a href="#" className="mx-2" target="_blank">
                                   <BsInstagram></BsInstagram>
                                 </a>
 
-                                <a href="#">
+                                <a href="#" target="_blank">
                                   <BsLinkedin></BsLinkedin>
                                 </a>
                               </div>
@@ -150,15 +149,15 @@ const about = () => {
                               </span>
 
                               <div className="fs-5">
-                                <a href="#">
+                                <a href="https://github.com/janiarhs" target="_blank">
                                   <BsGithub></BsGithub>
                                 </a>
 
-                                <a href="#" className="mx-2">
+                                <a href="https://www.instagram.com/janiar.hs/" className="mx-2" target="_blank">
                                   <BsInstagram></BsInstagram>
                                 </a>
 
-                                <a href="#">
+                                <a href="https://www.linkedin.com/in/annisa-janiar-husein/" target="_blank">
                                   <BsLinkedin></BsLinkedin>
                                 </a>
                               </div>

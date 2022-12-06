@@ -13,26 +13,32 @@ import { getHeaders } from '../../utils/konstanta';
 
 import { BsSuitHeart, BsSuitHeartFill } from 'react-icons/bs';
 
-const artikel = ({ detailArtikel, comentArtikel, artikelRekomendasi, allComentArtikel, id }) => {
+// , comentArtikel, sameKategori,
+const artikel = ({ detailArtikel, id }) => {
   const [token, setToken] = useState();
   const [heart, setHeart] = useState(false);
   const [vote, setVote] = useState(detailArtikel.vote);
+
+  const [dataKomentar, setDataKomentar] = useState(detailArtikel.komentar);
+
+  // console.log(dataKomentar);
+
+  const updateKomentar = () => {};
 
   useEffect(() => {
     const getToken = localStorage.getItem('token');
     if (getToken) {
       setToken(getToken);
     }
-  }, [token]);
+  }, []);
 
   const clickHeart = async (e) => {
     e.preventDefault();
+    const data = { id: id };
+    const headers = getHeaders();
     if (token) {
       if (heart === false) {
-        const headers = getHeaders();
-
-        const data = { id: id };
-        const res = await axios
+        await axios
           .put('http://localhost:5000/postsUpVote', data, headers)
           .then((res) => {
             setHeart(true);
@@ -42,13 +48,22 @@ const artikel = ({ detailArtikel, comentArtikel, artikelRekomendasi, allComentAr
             alert('error', 'Ooopss!!', `${err.response.status} ${err.response.statusText}`);
           });
 
-        let updateVote = await axios.get(`http://localhost:5000/posts/${id}`).then((r) => r.data.data.vote);
+        const updateVote = await axios.get(`http://localhost:5000/posts/${id}`).then((r) => r.data.data.vote);
 
         setVote(updateVote);
       } else {
-        setHeart(false);
+        // postsDownVote
         if (vote !== 0) {
-          let updateVote = await axios.get(`http://localhost:5000/posts/${id}`).then((r) => r.data.data.vote);
+          await axios
+            .put('http://localhost:5000/postsDownVote', data, headers)
+            .then((res) => {
+              setHeart(false);
+            })
+            .catch((err) => {
+              console.error(err);
+              alert('error', 'Ooopss!!', `${err.response.status} ${err.response.statusText}`);
+            });
+          const updateVote = await axios.get(`http://localhost:5000/posts/${id}`).then((r) => r.data.data.vote);
           setVote(updateVote);
         }
       }
@@ -84,7 +99,7 @@ const artikel = ({ detailArtikel, comentArtikel, artikelRekomendasi, allComentAr
                         <div className="d-flex justify-content-between">
                           <div>
                             <p className="mb-1">Diterbitkan oleh : {detailArtikel.author}</p>
-                            <p>{detailArtikel.createdAt}</p>
+                            <p>{detailArtikel.createdAt.split('T')[0]}</p>
                           </div>
 
                           <div className="d-flex flex-column">
@@ -106,11 +121,11 @@ const artikel = ({ detailArtikel, comentArtikel, artikelRekomendasi, allComentAr
 
                 <aside className={`${Styles.aside}`}>
                   <div className="card">
-                    <h3 className={`${Styles.title} border-bottom py-2 pb-3`}>Artikel Lainnya</h3>
+                    <h3 className={`${Styles.title} border-bottom py-2 pb-3`}>Artikel {detailArtikel.kategori.title} Lainnya</h3>
                     <ol>
-                      {[1, 2, 3, 4, 5].map((data, idx) => (
+                      {detailArtikel.kategori.kategori_post.map((data, idx) => (
                         <li key={idx}>
-                          <Link href="/">Artikel {data}</Link>
+                          <Link href={`/artikel/${data.postId}`}>Artikel {data.post.title}</Link>
                         </li>
                       ))}
                     </ol>
@@ -121,7 +136,7 @@ const artikel = ({ detailArtikel, comentArtikel, artikelRekomendasi, allComentAr
               <div style={{ padding: '24px' }}>
                 <h1 className="main-heading">Komentar</h1>
                 <div className={`${Styles.underline} mx-auto`}></div>
-                <KomentarComponent datas={comentArtikel} id={detailArtikel.id} />
+                <KomentarComponent datas={detailArtikel.komentar} id={detailArtikel.id} />
               </div>
             </Col>
           </Row>
@@ -135,27 +150,13 @@ artikel.getInitialProps = async (ctx) => {
   const url = 'http://localhost:5000';
   const id = ctx.query.idArtikel;
 
-  const detailArtikel = await fetch(`${url}/posts/${id}`)
-    .then((res) => res.json())
-    .then((res) => res.data);
-
-  const comentArtikel = await fetch(`${url}/postsCom/${id}`)
-    .then((res) => res.json())
-    .then((res) => res.data.komentar);
-
-  const artikelSameCategori = await fetch(`${url}/postsCat/${id}`)
-    .then((res) => res.json())
-    .then((res) => res.data);
-
-  const allComentArtikel = await fetch(`${url}/postsCom/`)
+  // Pake data ini
+  const detailArtikel = await fetch(`${url}/postsCom/${id}`)
     .then((res) => res.json())
     .then((res) => res.data);
 
   return {
     detailArtikel: detailArtikel,
-    comentArtikel: comentArtikel,
-    artikelRekomendasi: artikelSameCategori,
-    allComentArtikel: allComentArtikel,
     id: id,
   };
 };
