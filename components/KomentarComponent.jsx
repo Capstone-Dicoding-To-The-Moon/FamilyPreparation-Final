@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import alert from '../utils/alert';
+import { getHeaders } from '../utils/konstanta';
 
 const KomentarComponent = ({ datas, id }) => {
   const [token, setToken] = useState(null);
@@ -23,11 +24,13 @@ const KomentarComponent = ({ datas, id }) => {
       alert('error', 'komentar tidak boleh kosong');
     } else {
       // push komentar
-
+      const headers = getHeaders();
+      const data = { content: value, postId: id };
+      await axios.post('http://localhost:5000/komentar_post', data, headers);
       // get all komentar
       const komentarUpdate = await axios.get(`http://localhost:5000/postsCom/${id}`).then((res) => res.data.data.komentar);
 
-      alert('success', 'Komentar berhasil dikirim');
+      alert('success', 'komentar berhasil ditambahkan');
       setKomentar(komentarUpdate);
     }
   };
@@ -66,7 +69,7 @@ const KomentarComponent = ({ datas, id }) => {
                 <h3 className="fs-4">{data.author}</h3>
                 <p>{data.createdAt}</p>
               </div>
-              <p style={{ fontSize: '13px' }}>{data.content}</p>
+              <p style={{ fontSize: '16px' }}>{data.content}</p>
             </div>
           );
         })}

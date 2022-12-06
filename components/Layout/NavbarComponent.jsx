@@ -50,7 +50,7 @@ const NavbarComponent = () => {
   };
   return (
     <>
-      <Navbar collapseOnSelect expand="md" bg="light" variant="light" className="d-flex flex-column shadow">
+      <Navbar collapseOnSelect expand="md" bg="light" variant="light" className="d-flex flex-column shadow-sm">
         <Container fluid style={{ fontFamily: 'serif' }}>
           <Link href="/" style={{ fontFamily: 'serif', fontWeight: 'bold', fontSize: '24px' }} className="navbar-brand">
             <img src="/favicon.png" style={{ height: '40px' }} className="border rounded-circle me-2"></img>
@@ -74,7 +74,7 @@ const NavbarComponent = () => {
                 About Us
               </Link>
               {token ? (
-                <DropdownButton id="dropdown-item-button" title={<IoPersonCircle></IoPersonCircle>} variant="" className="border border-2 rounded" size="md" align="end">
+                <DropdownButton id="dropdown-item-button" title={<IoPersonCircle></IoPersonCircle>} variant="" className="border border-2 rounded ms-3" size="md" align="end">
                   <Link href="/profile">
                     <Dropdown.Item as="button">Profile</Dropdown.Item>
                   </Link>

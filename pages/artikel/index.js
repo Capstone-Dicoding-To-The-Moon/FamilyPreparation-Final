@@ -22,7 +22,6 @@ const Artikel = ({ allArtikel, allCategories, queryCheck }) => {
     setDataArtikel(data);
   };
 
-  console.log(dataArtikel.length);
   return (
     <div style={{ minHeight: '100vh' }}>
       <Head>
@@ -39,7 +38,7 @@ const Artikel = ({ allArtikel, allCategories, queryCheck }) => {
                     <h1 className={`${Styles.mainHeading} m-2`}>Rekomendasi Artikel</h1>
                   </div>
                   <div className={`${Styles.search} m-2`}>
-                    <SearchElement setKonten={changeDataArtikel} dataAwal={allArtikel} />
+                    <SearchElement setKonten={changeDataArtikel} dataAwal={allArtikel} path="artikel" />
                   </div>
                 </div>
               </div>

@@ -36,40 +36,36 @@ const login = () => {
   };
 
   return (
-    <div>
-      <Container style={{ minHeight: '100vh' }}>
-        <Row className="justify-content-md-center">
-          <h1 className="text-center mt-5 mb-4 fw-bold" style={{ fontSize: '44px' }}>
-            Login
-          </h1>
-          <Col md={6}>
-            <div className="rounded p-5 shadow-lg" style={{ border: '1px solid #f76c2f' }}>
-              <Form>
-                <InputGroup className="mb-3">
-                  <InputGroup.Text id="basic-addon1">
-                    <IoMailSharp></IoMailSharp>
-                  </InputGroup.Text>
-                  <Form.Control placeholder="Username" type="email" name="email" />
-                </InputGroup>
+    <Container>
+      <Row className="align-items-center justify-content-center" style={{ height: '100vh', width: '100%' }}>
+        <Col md={6}>
+          <div className="rounded p-5 shadow-lg" style={{ border: '1px solid #f76c2f' }}>
+            <h1 className="text-center mb-4">Login</h1>
+            <Form>
+              <InputGroup className="mb-3">
+                <InputGroup.Text id="basic-addon1">
+                  <IoMailSharp></IoMailSharp>
+                </InputGroup.Text>
+                <Form.Control placeholder="Username" type="email" name="email" />
+              </InputGroup>
 
-                <InputGroup className="mb-3">
-                  <InputGroup.Text id="basic-addon1">
-                    <IoKey></IoKey>
-                  </InputGroup.Text>
-                  <Form.Control type="password" name="password" placeholder="Password" />
-                </InputGroup>
-                <p>
-                  Belum punya akun? <Link href="./signup">daftar</Link>
-                </p>
-                <Button className="btnUpdate" style={{ float: 'none' }} onClick={(e) => click(e)} type="submit">
-                  Login
-                </Button>
-              </Form>
-            </div>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+              <InputGroup className="mb-3">
+                <InputGroup.Text id="basic-addon1">
+                  <IoKey></IoKey>
+                </InputGroup.Text>
+                <Form.Control type="password" name="password" placeholder="Password" />
+              </InputGroup>
+              <p>
+                Belum punya akun? <Link href="./signup">daftar</Link>
+              </p>
+              <Button className="btnUpdate" style={{ float: 'none' }} onClick={(e) => click(e)} type="submit">
+                Login
+              </Button>
+            </Form>
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 export default login;

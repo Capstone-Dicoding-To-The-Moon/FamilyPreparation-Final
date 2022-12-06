@@ -44,13 +44,11 @@ const login = () => {
 
   return (
     <div>
-      <Container style={{ minHeight: '100vh' }}>
-        <Row className="justify-content-md-center">
-          <h1 className="text-center mt-5 mb-4 fw-bold" style={{ fontSize: '44px' }}>
-            Sign Up
-          </h1>
+      <Container>
+        <Row className="align-items-center justify-content-center" style={{ height: '100vh', width: '100%' }}>
           <Col md={6}>
             <div className="rounded p-5 shadow-lg" style={{ border: '1px solid #f76c2f' }}>
+              <h1 className="text-center mb-4">SignUp</h1>
               <Form action="post" encType="multipart/form-data">
                 <InputGroup className="mb-3">
                   <InputGroup.Text id="basic-addon1">

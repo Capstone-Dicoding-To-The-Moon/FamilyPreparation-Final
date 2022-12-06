@@ -27,14 +27,11 @@ const Home = ({ allArtikel, allCategories, artikelNewest }) => {
       </section>
 
       <section>
-        <h1 style={{ color: '#a34a23' }}>Artikel</h1>
+        <h1 style={{ color: '#a34a23' }}>Artikel Populer</h1>
         <div className={`${Styles.underline} mx-auto mb-4`}></div>
         <Row>
-          <Col lg={9}>
+          <Col lg={12}>
             <CardArtikelComponent dataArtikel={allArtikel} />
-          </Col>
-          <Col>
-            <ListArtikelComponent dataArtikel={allCategories} title={'Top Artikel'} />
           </Col>
         </Row>
       </section>

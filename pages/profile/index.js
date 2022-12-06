@@ -9,8 +9,55 @@ import Styles from '../../styles/profile/profilePage.module.css';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { getHeaders } from '../../utils/konstanta';
 
 const profile = () => {
+  function getImgURL(url, callback) {
+    // xhr.onload = function () {
+    //   callback(xhr.response);
+    // };
+    // xhr.open('GET', url);
+    // xhr.setRequestHeader('Authorization', getHeaders().headers['Authorization']);
+    // xhr.responseType = 'blob';
+    // xhr.send();
+    // const headers = getHeaders();
+    // axios.get(url, headers);
+  }
+
+  // function main(url) {
+  //   getImgURL(url, (imgBlob) => {
+  //     let name = 'hello.jpg';
+  //     let file = new File([imgBlob], name, { type: 'image/jpeg', lastModified: new Date().getTime() }, 'utf-8');
+  //     let container = new DataTransfer();
+  //     container.items.add(file);
+  //     document.querySelector('[name="image"]').files = container.files;
+  //   });
+  // }
+
+  // console.log('jalan');
+  // main('http://localhost:5000/user/image/cQ8mG4cbVEO9cY4KYQoNAuR5cXXJL3RQllXiSS7IW8QefF9t0N-small.png');
+  // console.log('masuk');
+
+  const [user, setUser] = useState([]);
+
+  useEffect(() => {
+    const getDetail = async () => {
+      const headers = getHeaders();
+      const profileUser = await fetch(`http://localhost:5000/user/detail`, headers);
+
+      const result = await profileUser.json();
+
+      setUser(result.data);
+    };
+
+    getDetail();
+  }, []);
+
+  const click = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div style={{ minHeight: '100vh' }}>
       <Head>
@@ -30,7 +77,7 @@ const profile = () => {
                       <Card.Body>
                         <Form>
                           <Form.Group controlId="formFile" className="text-center mb-3">
-                            <Card.Img variant="top" src="./profile.png" className={`${Styles.photoProfile}`}></Card.Img>
+                            <Card.Img variant="top" src={user.image_small} srcSet="./profile.png" name="image" className={`${Styles.photoProfile}`}></Card.Img>
                             <Form.Control type="file" className={`${Styles.chooseFile} ${Styles.form}`}></Form.Control>
                           </Form.Group>
 
@@ -39,7 +86,7 @@ const profile = () => {
                               Nama
                             </Form.Label>
                             <Col sm="10">
-                              <Form.Control type="text" className={`${Styles.form}`} placeholder="Nama" />
+                              <Form.Control type="text" className={`${Styles.form}`} value={user.name} name="name" disabled />
                             </Col>
                           </Form.Group>
                           <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -47,18 +94,10 @@ const profile = () => {
                               Email
                             </Form.Label>
                             <Col sm="10">
-                              <Form.Control type="text" className={`${Styles.form}`} placeholder="Email" />
+                              <Form.Control type="email" className={`${Styles.form}`} value={user.email} name="email" disabled />
                             </Col>
                           </Form.Group>
-                          <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-                            <Form.Label column sm="2">
-                              No Telepon
-                            </Form.Label>
-                            <Col sm="10">
-                              <Form.Control type="number" className={`${Styles.form}`} placeholder="noTelepon" />
-                            </Col>
-                          </Form.Group>
-                          <Button type="submit" className={`${Styles.btnUpdate}`}>
+                          <Button type="submit" className={`${Styles.btnUpdate}`} onClick={(e) => click(e)}>
                             Submit
                           </Button>
                         </Form>

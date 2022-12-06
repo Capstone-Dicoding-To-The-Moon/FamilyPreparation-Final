@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 const CardArtikelComponent = ({ dataArtikel }) => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 6;
+  const pageSize = 9;
 
   useEffect(() => {
     const getPosts = () => {

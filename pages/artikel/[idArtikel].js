@@ -9,10 +9,11 @@ import KomentarComponent from '../../components/komentarComponent';
 import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
 import alert from '../../utils/alert';
+import { getHeaders } from '../../utils/konstanta';
 
 import { BsSuitHeart, BsSuitHeartFill } from 'react-icons/bs';
 
-const artikel = ({ detailArtikel, comentArtikel, artikelRekomendasi }) => {
+const artikel = ({ detailArtikel, comentArtikel, artikelRekomendasi, allComentArtikel, id }) => {
   const [token, setToken] = useState();
   const [heart, setHeart] = useState(false);
   const [vote, setVote] = useState(detailArtikel.vote);
@@ -24,22 +25,38 @@ const artikel = ({ detailArtikel, comentArtikel, artikelRekomendasi }) => {
     }
   }, [token]);
 
-  const clickHeart = (e) => {
+  const clickHeart = async (e) => {
     e.preventDefault();
     if (token) {
       if (heart === false) {
-        setHeart(true);
-        setVote((prev) => prev + 1);
+        const headers = getHeaders();
+
+        const data = { id: id };
+        const res = await axios
+          .put('http://localhost:5000/postsUpVote', data, headers)
+          .then((res) => {
+            setHeart(true);
+          })
+          .catch((err) => {
+            console.error(err);
+            alert('error', 'Ooopss!!', `${err.response.status} ${err.response.statusText}`);
+          });
+
+        let updateVote = await axios.get(`http://localhost:5000/posts/${id}`).then((r) => r.data.data.vote);
+
+        setVote(updateVote);
       } else {
         setHeart(false);
-        setVote((prev) => prev - 1);
+        if (vote !== 0) {
+          let updateVote = await axios.get(`http://localhost:5000/posts/${id}`).then((r) => r.data.data.vote);
+          setVote(updateVote);
+        }
       }
     } else {
       alert('error', 'error', 'silahkan login terlebih dahulu');
     }
   };
 
-  console.log(heart);
   return (
     <>
       <Head>
@@ -130,10 +147,16 @@ artikel.getInitialProps = async (ctx) => {
     .then((res) => res.json())
     .then((res) => res.data);
 
+  const allComentArtikel = await fetch(`${url}/postsCom/`)
+    .then((res) => res.json())
+    .then((res) => res.data);
+
   return {
     detailArtikel: detailArtikel,
     comentArtikel: comentArtikel,
     artikelRekomendasi: artikelSameCategori,
+    allComentArtikel: allComentArtikel,
+    id: id,
   };
 };
 

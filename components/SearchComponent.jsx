@@ -5,14 +5,21 @@ import Styles from '../styles/SearchComponent.module.css';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 
-const SearchElement = ({ setKonten, dataAwal }) => {
+const SearchElement = ({ setKonten, dataAwal, path }) => {
+  let endPointSearch = '';
+  if (path === 'artikel') {
+    endPointSearch = 'search-post';
+  } else if (path === 'forum') {
+    endPointSearch = 'search-forum';
+  }
+
   const router = useRouter();
 
   const click = async (e) => {
     e.preventDefault();
     const value = e.target.search.value;
     if (value !== '') {
-      const update = await axios.get(`http://localhost:5000/search-post/${value}`).then((res) => res.data.data);
+      const update = await axios.get(`http://localhost:5000/${endPointSearch}/${value}`).then((res) => res.data.data);
       setKonten(update);
     } else {
       setKonten(dataAwal);

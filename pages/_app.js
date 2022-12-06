@@ -12,6 +12,7 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>The Parentings</title>
         <link rel="icon" href="/favicon.png" />
+        <meta name="dicoding:email" content="shellyvictory92@gmail.com"></meta>
       </Head>
       <Layout>
         <Component {...pageProps} />

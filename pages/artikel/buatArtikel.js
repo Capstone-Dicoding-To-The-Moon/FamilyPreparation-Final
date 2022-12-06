@@ -8,6 +8,9 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import HeroComponent from '../../components/HeroComponent';
+import axios from 'axios';
+import alert from '../../utils/alert';
+import { getHeadersMultiPart } from '../../utils/konstanta';
 
 const postArtikel = ({ listKategori }) => {
   const router = useRouter();
@@ -15,7 +18,6 @@ const postArtikel = ({ listKategori }) => {
 
   // didmount
 
-  console.log(listKategori);
   useEffect(() => {
     const getToken = localStorage.getItem('token');
     if (!getToken) {
@@ -24,17 +26,20 @@ const postArtikel = ({ listKategori }) => {
     setToken(getToken);
   }, [token]);
 
-  const click = (e) => {
+  const click = async (e) => {
     e.preventDefault();
     const title = document.querySelector('[name="title"]').value;
-    const author = document.querySelector('[name="author"]').value;
-    const kategori = document.querySelector('[name="kategori"]').value;
+    const kategoriId = document.querySelector('[name="kategori"]').value;
     const content = document.querySelector('[name="content"]').value;
 
-    if (title === '' || author === '' || kategori === '' || content === '') {
-      console.log('field tidak boleh ada yang kosong');
+    if (title === '' || kategoriId === '' || content === '') {
+      alert('error', 'error', 'field tidak boleh ada yang kosong');
     } else {
-      
+      const data = { title, kategoriId, content };
+      const headers = getHeadersMultiPart();
+      const post = await axios.post('http://localhost:5000/posts', data, headers);
+
+      alert('success', 'Data berhasil ditambahkan');
     }
   };
 
@@ -68,11 +73,12 @@ const postArtikel = ({ listKategori }) => {
                                 </Form.Group>
 
                                 <Form.Group as={Row} className="mb-3" controlId="author">
+                                  {/* disable get data user (author) */}
                                   <Form.Label column sm="2">
                                     Author
                                   </Form.Label>
                                   <Col sm="10">
-                                    <Form.Control type="text" name="author" />
+                                    <Form.Control type="text" value="author" disabled />
                                   </Col>
                                 </Form.Group>
 
@@ -87,7 +93,7 @@ const postArtikel = ({ listKategori }) => {
                                       </option>
                                       {listKategori.map((kategori, id) => {
                                         return (
-                                          <option value={kategori.title} key={id}>
+                                          <option value={kategori.id} key={id}>
                                             {kategori.title}
                                           </option>
                                         );
