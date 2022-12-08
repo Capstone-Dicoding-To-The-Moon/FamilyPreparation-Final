@@ -5,23 +5,8 @@ import { getHeaders } from '../../utils/konstanta';
 import axios from 'axios';
 import alert from '../../utils/alert';
 
-const InputKomentarComponent = ({ setKomentar, id }) => {
+const InputKomentarComponent = ({ setKomentar, id, user }) => {
   const currentDate = new Date().toJSON().slice(0, 10);
-
-  const [user, setUser] = useState([]);
-
-  useEffect(() => {
-    const getDetail = async () => {
-      const headers = getHeaders();
-      const profileUser = await fetch(`http://localhost:5000/user/detail`, headers);
-
-      const result = await profileUser.json();
-
-      setUser(result.data);
-    };
-
-    getDetail();
-  }, []);
 
   const clickKomentar = async (e) => {
     e.preventDefault();

@@ -4,22 +4,31 @@ import BreadcrumbElement from '../../components/ForumDiskusi/BreadcrumbComponent
 import ListKomentarComponent from '../../components/ForumDiskusi/ListKomentarComponent';
 import InputKomentarComponent from '../../components/ForumDiskusi/inputKomentarComponent';
 import { useEffect, useState } from 'react';
+import { getHeaders } from '../../utils/konstanta';
+import axios from 'axios';
 
 const detailForum = ({ dataDetailForum }) => {
   const [komentar, setKomentar] = useState([]);
   const [clickedUpVote, setClickedUpVote] = useState(true);
+  const [user, setUser] = useState([]);
 
   useEffect(() => {
+    const getDetail = async () => {
+      const headers = getHeaders();
+      const profileUser = await axios
+        .get(`http://localhost:5000/user/detail`, headers)
+        .then((res) => res.data.data)
+        .catch((err) => undefined);
+      setUser(profileUser);
+    };
+
+    getDetail();
     setKomentar(dataDetailForum.komentar);
-  }, dataDetailForum);
+  }, []);
 
   // digunakan untuk menambah komentar
   const addKomentar = (data) => {
     setKomentar(data);
-  };
-  // digunakan untuk penanda upvote
-  const upVote = (data) => {
-    setClickedUpVote(data);
   };
 
   return (
@@ -36,7 +45,7 @@ const detailForum = ({ dataDetailForum }) => {
               <div className="underline mx-auto mb-4"></div>
               <BreadcrumbElement />
               <main className="mainContent">
-                <div class="content">
+                <div className="content">
                   <Card className="mb-3">
                     <Card.Body>
                       <Card.Title>{dataDetailForum.title}</Card.Title>
@@ -47,7 +56,7 @@ const detailForum = ({ dataDetailForum }) => {
                         </span>
                       </Card.Subtitle>
 
-                      <div class="card mb-3" style={{ maxWidth: 1200, backgroundColor: 'Gainsboro' }}>
+                      <div className="card mb-3" style={{ maxWidth: 1200, backgroundColor: 'Gainsboro' }}>
                         <div className="row g-0">
                           <div className="col-md-1">
                             <img src="/profile.png" className="img-fluid" style={{ width: 70, margin: 12 }}></img>
@@ -66,12 +75,12 @@ const detailForum = ({ dataDetailForum }) => {
 
                       <hr />
                       <div className="card mb-3" style={{ maxWidth: 1200, border: 'none' }}>
-                        <ListKomentarComponent dataKomentar={komentar} setKomentar={addKomentar} idPage={dataDetailForum.id} />
+                        <ListKomentarComponent dataKomentar={komentar} setKomentar={addKomentar} />
                       </div>
                       <hr />
 
                       <div className="card mb-3" style={{ maxWidth: 1200, border: 'none' }}>
-                        <InputKomentarComponent setKomentar={addKomentar} id={dataDetailForum.id} />
+                        <InputKomentarComponent setKomentar={addKomentar} id={dataDetailForum.id} user={user} />
                       </div>
                     </Card.Body>
                   </Card>

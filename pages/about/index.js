@@ -10,7 +10,7 @@ const about = () => {
       <Head>
         <title>The Parentings - About Us</title>
       </Head>
-      <div style={{ minHeight: '100vh' }}>
+      <div style={{ minHeight: '100vh' }} className="text-dark">
         <Container className="py-3">
           <HeroComponent tittle="About Us" />
           <main className="section">
@@ -56,7 +56,7 @@ const about = () => {
                               <Image src="./profile_Dewa.jpg" className="img-fluid" alt="team1" height={'20px'} />
                             </div>
                             <div className={`${Styles.memberInfo}`}>
-                              <h4 style={{ fontWeight: '700', marginBottom: '5px', fontSize: '20px', color: 'tomato' }}>Dewa Putra Hernanda</h4>
+                              <h4 style={{ fontWeight: '700', marginBottom: '5px', fontSize: '20px' }}>Dewa Putra Hernanda</h4>
                               <span className="border-top" style={{ display: 'block', fontSize: '15px', paddingBottom: '10px', position: 'relative', fontWeight: '500' }}>
                                 Front End Developer
                               </span>
@@ -85,7 +85,7 @@ const about = () => {
                               <Image src="./profile.png" className="img-fluid" alt="team1" />
                             </div>
                             <div className={`${Styles.memberInfo}`}>
-                              <h4 style={{ fontWeight: '700', marginBottom: '5px', fontSize: '20px', color: 'tomato' }}>Resa Fajar Sukma</h4>
+                              <h4 style={{ fontWeight: '700', marginBottom: '5px', fontSize: '20px' }}>Resa Fajar Sukma</h4>
                               <span className="border-top" style={{ display: 'block', fontSize: '15px', paddingBottom: '10px', position: 'relative', fontWeight: '500' }}>
                                 Back End Developer
                               </span>
@@ -111,10 +111,10 @@ const about = () => {
                         <Col lg={6} mt={4} className="my-2">
                           <div className={`${Styles.member} d-flex  shadow`}>
                             <div className={`${Styles.teampic}`}>
-                              <Image src="./profile.png" className="img-fluid" alt="team1" />
+                              <Image src="./profile_desi.jpg" className="img-fluid" alt="team1" />
                             </div>
                             <div className={`${Styles.memberInfo}`}>
-                              <h4 style={{ fontWeight: '700', marginBottom: '5px', fontSize: '20px', color: 'tomato' }}>Desi Sihamita</h4>
+                              <h4 style={{ fontWeight: '700', marginBottom: '5px', fontSize: '20px' }}>Desi Sihamita</h4>
                               <span className="border-top" style={{ display: 'block', fontSize: '15px', paddingBottom: '10px', position: 'relative', fontWeight: '500' }}>
                                 Front End Developer
                               </span>
@@ -140,10 +140,10 @@ const about = () => {
                         <Col lg={6} mt={4} className="my-2">
                           <div className={`${Styles.member} d-flex  shadow`}>
                             <div className={`${Styles.teampic}`}>
-                              <Image src="./profile_J.PNG" className="img-fluid" alt="team1" />
+                              <Image src="./profile_J.jpeg" className="img-fluid" alt="team1" />
                             </div>
                             <div className={`${Styles.memberInfo}`}>
-                              <h4 style={{ fontWeight: '700', marginBottom: '5px', fontSize: '20px', color: 'tomato' }}>Annisa Janiar Husein</h4>
+                              <h4 style={{ fontWeight: '700', marginBottom: '5px', fontSize: '20px' }}>Annisa Janiar Husein</h4>
                               <span className="border-top" style={{ display: 'block', fontSize: '15px', paddingBottom: '10px', position: 'relative', fontWeight: '500' }}>
                                 Front End Developer
                               </span>

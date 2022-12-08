@@ -7,6 +7,7 @@ import axios from 'axios';
 import { getHeaders } from '../../utils/konstanta';
 
 const ListKomentarComponent = ({ dataKomentar, setKomentar }) => {
+
   const upVote = async (e, forumId, userId) => {
     e.preventDefault();
     const headers = getHeaders();

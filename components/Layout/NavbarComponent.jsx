@@ -17,7 +17,7 @@ const NavbarComponent = () => {
 
   useEffect(() => {
     setToken(localStorage.getItem('token'));
-  }, token);
+  }, [token]);
 
   // Jika ingin akses data, tapi data tertutup oleh token gunakan baris 21
   // const getData = async () => {

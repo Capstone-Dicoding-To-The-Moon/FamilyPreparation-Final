@@ -21,7 +21,6 @@ const detailDiskusi = ({ allForum }) => {
     setDataForum(data);
   };
 
-  console.log(dataForum);
   return (
     <Container>
       <section className="section">
