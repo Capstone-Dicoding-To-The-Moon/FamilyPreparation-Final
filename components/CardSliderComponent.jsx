@@ -5,7 +5,6 @@ import Styles from '../styles/CardArtikelComponent.module.css';
 import Link from 'next/link';
 
 const CardSliderComponent = ({ data }) => {
-  console.log(data);
   var settings = {
     dots: true,
     infinite: false,

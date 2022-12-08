@@ -45,7 +45,6 @@ const detailForum = ({ dataDetailForum }) => {
                         <span>
                           <BsChatLeftText /> {dataDetailForum.komentar.length - 1} Komentar
                         </span>
-                        <span>Like</span>
                       </Card.Subtitle>
 
                       <div class="card mb-3" style={{ maxWidth: 1200, backgroundColor: 'Gainsboro' }}>

@@ -10,11 +10,13 @@ import CardSliderComponent from '../components/CardSliderComponent';
 const Home = ({ allArtikel, allCategories, artikelNewest }) => {
   const [token, setToken] = useState();
 
+  if (artikelNewest.length >= 5) {
+    artikelNewest.length = 5;
+  }
+  
   useEffect(() => {
     localStorage.getItem('token');
   }, token);
-
-  artikelNewest.length = 5;
 
   return (
     <Container className="py-3" style={{ minHeight: '100vh' }}>
@@ -53,8 +55,6 @@ Home.getInitialProps = async (ctx) => {
   const artikelNewest = await fetch(`${url}/postsDates`)
     .then((res) => res.json())
     .then((res) => res.data);
-
-  const currentRoute = ctx.query;
 
   return {
     allArtikel: allArtikel,

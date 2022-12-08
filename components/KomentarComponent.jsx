@@ -66,7 +66,7 @@ const KomentarComponent = ({ datas, id }) => {
             <div className="border p-3 rounded mb-3" key={idx}>
               <div className="d-flex justify-content-between mb-3 border-bottom">
                 <h3 className="fs-4">{data.author}</h3>
-                <p>{data.createdAt}</p>
+                <p>{data.createdAt.split('T')[0]}</p>
               </div>
               <p style={{ fontSize: '16px' }}>{data.content}</p>
             </div>

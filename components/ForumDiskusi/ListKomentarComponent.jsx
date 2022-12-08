@@ -10,7 +10,7 @@ const ListKomentarComponent = ({ dataKomentar, setKomentar }) => {
   const upVote = async (e, forumId, userId) => {
     e.preventDefault();
     const headers = getHeaders();
-    const data = { id: userId.toString() };
+    const data = { id: forumId.toString() };
     await axios
       .put('http://localhost:5000/forumUpVote', data, headers)
       .then((res) => {
@@ -29,6 +29,34 @@ const ListKomentarComponent = ({ dataKomentar, setKomentar }) => {
     changeUpVote.classList.remove('btn-outline-secondary');
     changeDownVote.classList.add('btn-outline-secondary');
     changeDownVote.classList.remove('disabled', 'btn-secondary');
+
+    let komentarUpdate = await axios.get(`http://localhost:5000/forumDis/${forumId}`).then((res) => res.data.data.komentar);
+    console.log(komentarUpdate);
+    setKomentar(komentarUpdate);
+  };
+
+  const downVote = async (e, forumId, userId) => {
+    e.preventDefault();
+    const headers = getHeaders();
+    const data = { id: forumId.toString() };
+    await axios
+      .put('http://localhost:5000/forumUpVote', data, headers)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.error(err);
+        alert('error', 'Ooopss!!', `${err.response.status} ${err.response.statusText}`);
+      });
+    const upVote = `upVote${userId}`;
+    const downVote = `downVote${userId}`;
+
+    const changeUpVote = document.getElementById(upVote);
+    const changeDownVote = document.getElementById(downVote);
+    changeDownVote.classList.add('disabled', 'btn-secondary');
+    changeDownVote.classList.remove('btn-outline-secondary');
+    changeUpVote.classList.add('btn-outline-secondary');
+    changeUpVote.classList.remove('disabled', 'btn-secondary');
 
     let komentarUpdate = await axios.get(`http://localhost:5000/forumDis/${forumId}`).then((res) => res.data.data.komentar);
     console.log(komentarUpdate);
