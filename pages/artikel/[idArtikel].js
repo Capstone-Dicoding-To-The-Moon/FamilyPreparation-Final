@@ -19,12 +19,6 @@ const artikel = ({ detailArtikel, id }) => {
   const [heart, setHeart] = useState(false);
   const [vote, setVote] = useState(detailArtikel.vote);
 
-  const [dataKomentar, setDataKomentar] = useState(detailArtikel.komentar);
-
-  // console.log(dataKomentar);
-
-  const updateKomentar = () => {};
-
   useEffect(() => {
     const getToken = localStorage.getItem('token');
     if (getToken) {

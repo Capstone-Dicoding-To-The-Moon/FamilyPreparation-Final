@@ -21,10 +21,8 @@ const login = () => {
         const token = response.data.data;
         localStorage.setItem('token', token);
         router.push('/');
-        // console.log(token);
       })
       .catch(function (error) {
-        console.log('a');
         console.log(error);
       });
   };

@@ -3,9 +3,25 @@ import { BsChatLeftText } from 'react-icons/bs';
 import BreadcrumbElement from '../../components/ForumDiskusi/BreadcrumbComponent';
 import ListKomentarComponent from '../../components/ForumDiskusi/ListKomentarComponent';
 import InputKomentarComponent from '../../components/ForumDiskusi/inputKomentarComponent';
+import { useEffect, useState } from 'react';
 
 const detailForum = ({ dataDetailForum }) => {
-  console.log(dataDetailForum);
+  const [komentar, setKomentar] = useState([]);
+  const [clickedUpVote, setClickedUpVote] = useState(true);
+
+  useEffect(() => {
+    setKomentar(dataDetailForum.komentar);
+  }, dataDetailForum);
+
+  // digunakan untuk menambah komentar
+  const addKomentar = (data) => {
+    setKomentar(data);
+  };
+  // digunakan untuk penanda upvote
+  const upVote = (data) => {
+    setClickedUpVote(data);
+  };
+
   return (
     <Container>
       <section className="section">
@@ -29,6 +45,7 @@ const detailForum = ({ dataDetailForum }) => {
                         <span>
                           <BsChatLeftText /> {dataDetailForum.komentar.length - 1} Komentar
                         </span>
+                        <span>Like</span>
                       </Card.Subtitle>
 
                       <div class="card mb-3" style={{ maxWidth: 1200, backgroundColor: 'Gainsboro' }}>
@@ -38,7 +55,7 @@ const detailForum = ({ dataDetailForum }) => {
                           </div>
                           <div className="col-md-8">
                             <Card.Body>
-                              <h5 className="card-title">{dataDetailForum.author}</h5>
+                              <h5 className="card-title">{dataDetailForum.author} (author) </h5>
                               <Card.Subtitle className="mb-3 text-muted">
                                 <span style={{ marginRight: 20 }}> {dataDetailForum.createdAt.split('T')[0]} </span>
                               </Card.Subtitle>
@@ -49,13 +66,13 @@ const detailForum = ({ dataDetailForum }) => {
                       </div>
 
                       <hr />
-                      <div class="card mb-3" style={{ maxWidth: 1200, border: 'none' }}>
-                        <ListKomentarComponent data={dataDetailForum.komentar} />
+                      <div className="card mb-3" style={{ maxWidth: 1200, border: 'none' }}>
+                        <ListKomentarComponent dataKomentar={komentar} setKomentar={addKomentar} idPage={dataDetailForum.id} />
                       </div>
                       <hr />
 
-                      <div class="card mb-3" style={{ maxWidth: 1200, border: 'none' }}>
-                        <InputKomentarComponent />
+                      <div className="card mb-3" style={{ maxWidth: 1200, border: 'none' }}>
+                        <InputKomentarComponent setKomentar={addKomentar} id={dataDetailForum.id} />
                       </div>
                     </Card.Body>
                   </Card>

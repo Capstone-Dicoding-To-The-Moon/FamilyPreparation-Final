@@ -15,7 +15,6 @@ const KategoriArtikelComponent = ({ dataKategori, setKonten}) => {
     setKonten(update);
   };
 
-  console.log(dataKategori);
   return (
     <div className="card p-3">
       <h3 className={`${Styles.title}`}>Kategori Artikel</h3>

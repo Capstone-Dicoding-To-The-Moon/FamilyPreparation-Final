@@ -4,14 +4,10 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { Col, Container, Row, Button } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
-import Table from 'react-bootstrap/Table';
 import ListDiskusiComponent from '../../components/ForumDiskusi/ListDiskusiComponent';
-import PaginationElement from '../../components/PagenationComponent';
 import SearchElement from '../../components/SearchComponent';
 
-const detailDiskusi = ({ allForum, id }) => {
-  const router = useRouter();
-
+const detailDiskusi = ({ allForum }) => {
   const [dataForum, setDataForum] = useState([]);
 
   useEffect(() => {
@@ -25,6 +21,7 @@ const detailDiskusi = ({ allForum, id }) => {
     setDataForum(data);
   };
 
+  console.log(dataForum);
   return (
     <Container>
       <section className="section">
