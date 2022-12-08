@@ -8,10 +8,10 @@ import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
-const KategoriArtikelComponent = ({ dataKategori, setKonten}) => {
+const KategoriArtikelComponent = ({ dataKategori, setKonten }) => {
   const click = async (e, data) => {
     e.preventDefault();
-    const update = await axios.get(`http://localhost:5000/postsCat/${data.id}`).then((res) => res.data.data);
+    const update = await axios.get(`https://familypreparation.up.railway.app/postsCat/${data.id}`).then((res) => res.data.data);
     setKonten(update);
   };
 

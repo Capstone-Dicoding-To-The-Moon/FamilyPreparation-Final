@@ -26,9 +26,9 @@ const KomentarComponent = ({ datas, id }) => {
       // push komentar
       const headers = getHeaders();
       const data = { content: value, postId: id };
-      await axios.post('http://localhost:5000/komentar_post', data, headers);
+      await axios.post('https://familypreparation.up.railway.app/komentar_post', data, headers);
       // get all komentar
-      const komentarUpdate = await axios.get(`http://localhost:5000/postsCom/${id}`).then((res) => res.data.data.komentar);
+      const komentarUpdate = await axios.get(`https://familypreparation.up.railway.app/postsCom/${id}`).then((res) => res.data.data.komentar);
       alert('success', 'komentar berhasil ditambahkan');
       setKomentar(komentarUpdate);
     }

@@ -7,13 +7,12 @@ import axios from 'axios';
 import { getHeaders } from '../../utils/konstanta';
 
 const ListKomentarComponent = ({ dataKomentar, setKomentar }) => {
-
   const upVote = async (e, forumId, userId) => {
     e.preventDefault();
     const headers = getHeaders();
-    const data = { id: forumId.toString() };
+    const data = { id: userId.toString() };
     await axios
-      .put('http://localhost:5000/forumUpVote', data, headers)
+      .put('https://familypreparation.up.railway.app/komentar_forum_up_vote', data, headers)
       .then((res) => {
         console.log(res);
       })
@@ -32,16 +31,15 @@ const ListKomentarComponent = ({ dataKomentar, setKomentar }) => {
     changeDownVote.classList.remove('disabled', 'btn-secondary');
 
     let komentarUpdate = await axios.get(`http://localhost:5000/forumDis/${forumId}`).then((res) => res.data.data.komentar);
-    console.log(komentarUpdate);
     setKomentar(komentarUpdate);
   };
 
   const downVote = async (e, forumId, userId) => {
     e.preventDefault();
     const headers = getHeaders();
-    const data = { id: forumId.toString() };
+    const data = { id: userId.toString() };
     await axios
-      .put('http://localhost:5000/forumUpVote', data, headers)
+      .put('http://localhost:5000/komentar_forum_down_vote', data, headers)
       .then((res) => {
         console.log(res);
       })
@@ -60,7 +58,6 @@ const ListKomentarComponent = ({ dataKomentar, setKomentar }) => {
     changeUpVote.classList.remove('disabled', 'btn-secondary');
 
     let komentarUpdate = await axios.get(`http://localhost:5000/forumDis/${forumId}`).then((res) => res.data.data.komentar);
-    console.log(komentarUpdate);
     setKomentar(komentarUpdate);
   };
 

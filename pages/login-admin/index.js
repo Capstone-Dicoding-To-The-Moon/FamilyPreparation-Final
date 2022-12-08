@@ -13,13 +13,20 @@ const login = () => {
     const password = document.querySelector('[name="password"]').value;
 
     axios
-      .post('http://localhost:5000/admin-login', {
+      .post('https://familypreparation.up.railway.app/admin-login', {
         email,
         password,
       })
       .then(function (response) {
         const token = response.data.data;
         localStorage.setItem('token', token);
+        localStorage.setItem(
+          'user',
+          JSON.stringify({
+            email,
+            roleId: 1,
+          })
+        );
         router.push('/');
       })
       .catch(function (error) {

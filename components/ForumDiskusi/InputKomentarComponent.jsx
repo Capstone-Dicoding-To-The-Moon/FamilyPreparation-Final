@@ -17,9 +17,9 @@ const InputKomentarComponent = ({ setKomentar, id, user }) => {
       const headers = getHeaders();
       const data = { content: dataInput.value, forumId: id };
       await axios
-        .post('http://localhost:5000/komentar_forum', data, headers)
+        .post('https://familypreparation.up.railway.app/komentar_forum', data, headers)
         .then(async () => {
-          const komentarUpdate = await axios.get(`http://localhost:5000/forumDis/${id}`).then((res) => res.data.data.komentar);
+          const komentarUpdate = await axios.get(`https://familypreparation.up.railway.app/forumDis/${id}`).then((res) => res.data.data.komentar);
           setKomentar(komentarUpdate);
           alert('success', 'komentar berhasil ditambahkan');
         })

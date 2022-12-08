@@ -4,7 +4,7 @@ import BreadcrumbElement from '../../components/ForumDiskusi/BreadcrumbComponent
 import ListKomentarComponent from '../../components/ForumDiskusi/ListKomentarComponent';
 import InputKomentarComponent from '../../components/ForumDiskusi/inputKomentarComponent';
 import { useEffect, useState } from 'react';
-import { getHeaders } from '../../utils/konstanta';
+import { getAPI_URL, getHeaders } from '../../utils/konstanta';
 import axios from 'axios';
 
 const detailForum = ({ dataDetailForum }) => {
@@ -16,7 +16,7 @@ const detailForum = ({ dataDetailForum }) => {
     const getDetail = async () => {
       const headers = getHeaders();
       const profileUser = await axios
-        .get(`http://localhost:5000/user/detail`, headers)
+        .get(`https://familypreparation.up.railway.app/detail`, headers)
         .then((res) => res.data.data)
         .catch((err) => undefined);
       setUser(profileUser);
@@ -95,7 +95,7 @@ const detailForum = ({ dataDetailForum }) => {
 };
 
 detailForum.getInitialProps = async (ctx) => {
-  const url = 'http://localhost:5000';
+  const url = getAPI_URL;
   const id = ctx.query.idForum;
 
   const dataDetailForum = await fetch(`${url}/forumDis/${id}`)

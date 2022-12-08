@@ -34,7 +34,7 @@ const buatDiskusi = ({ listKategori }) => {
     } else {
       const data = { title, kategoriId, content, image };
       const headers = getHeadersMultiPart();
-      const post = await axios.post('http://localhost:5000/forum', data, headers);
+      const post = await axios.post('https://familypreparation.up.railway.app/forum', data, headers);
 
       const idPost = post.data.data.id;
 
@@ -126,7 +126,7 @@ const buatDiskusi = ({ listKategori }) => {
 };
 
 buatDiskusi.getInitialProps = async (ctx) => {
-  const listKategori = await fetch(`http://localhost:5000/categories`)
+  const listKategori = await fetch(`https://familypreparation.up.railway.app/categories`)
     .then((res) => res.json())
     .then((res) => res.data);
 

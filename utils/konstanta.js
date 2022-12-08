@@ -32,8 +32,10 @@ const getHeaders = () => {
   return headers;
 };
 
-// const checkUpVote = () => {
-//   const 
-// }
+const getToken = () => {
+  return localStorage.getItem('token');
+};
 
-export { getHeadersMultiPart, getHeaders };
+const getAPI_URL = () => 'https://familypreparation.up.railway.app';
+
+export { getHeadersMultiPart, getHeaders, getToken, getAPI_URL };

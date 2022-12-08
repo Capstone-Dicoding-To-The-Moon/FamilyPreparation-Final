@@ -18,14 +18,20 @@ const login = () => {
     const password = document.querySelector('[name="password"]').value;
 
     axios
-      .post('http://localhost:5000/user-login', {
+      .post('https://familypreparation.up.railway.app/user-login', {
         email,
         password,
       })
       .then(function (response) {
         const token = response.data.data;
-        console.log(response);
         localStorage.setItem('token', token);
+        localStorage.setItem(
+          'user',
+          JSON.stringify({
+            email,
+            roleId: 2,
+          })
+        );
         alert('success', response.data.status);
         router.push('/');
       })

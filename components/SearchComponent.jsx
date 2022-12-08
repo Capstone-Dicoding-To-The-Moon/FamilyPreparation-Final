@@ -19,7 +19,7 @@ const SearchElement = ({ setKonten, dataAwal, path }) => {
     e.preventDefault();
     const value = e.target.search.value;
     if (value !== '') {
-      const update = await axios.get(`http://localhost:5000/${endPointSearch}/${value}`).then((res) => res.data.data);
+      const update = await axios.get(`https://familypreparation.up.railway.app/${endPointSearch}/${value}`).then((res) => res.data.data);
       setKonten(update);
     } else {
       setKonten(dataAwal);

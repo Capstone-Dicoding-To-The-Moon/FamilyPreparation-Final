@@ -6,6 +6,7 @@ import CarouselComponent from '../components/CarouselComponent';
 import Styles from '../styles/Home.module.css';
 import ListArtikelComponent from '../components/ListArtikelComponent';
 import CardSliderComponent from '../components/CardSliderComponent';
+import { getAPI_URL } from '../utils/konstanta';
 
 const Home = ({ allArtikel, allCategories, artikelNewest }) => {
   const [token, setToken] = useState();
@@ -13,7 +14,7 @@ const Home = ({ allArtikel, allCategories, artikelNewest }) => {
   if (artikelNewest.length >= 5) {
     artikelNewest.length = 5;
   }
-  
+
   useEffect(() => {
     localStorage.getItem('token');
   }, token);
@@ -42,7 +43,7 @@ const Home = ({ allArtikel, allCategories, artikelNewest }) => {
 };
 
 Home.getInitialProps = async (ctx) => {
-  const url = 'http://localhost:5000';
+  const url = getAPI_URL();
 
   const allArtikel = await fetch(`${url}/posts`)
     .then((res) => res.json())

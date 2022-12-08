@@ -7,10 +7,11 @@ import Styles from '../../styles/artikel/artikelPage.module.css';
 import KategoriArtikelComponent from '../../components/KategoriArtikelComponent';
 import Head from 'next/head';
 import Link from 'next/link';
+import { getAPI_URL } from '../../utils/konstanta';
 
-const Artikel = ({ allArtikel, allCategories }) => {
+const Artikel = ({ allArtikel, allCategories, queryCheck }) => {
+  console.log(queryCheck);
   const [dataArtikel, setDataArtikel] = useState([]);
-
   useEffect(() => {
     const getDataArtikel = () => {
       setDataArtikel(allArtikel);
@@ -74,8 +75,8 @@ const Artikel = ({ allArtikel, allCategories }) => {
 };
 
 Artikel.getInitialProps = async (ctx) => {
-  const url = 'http://localhost:5000';
-
+  const url = getAPI_URL();
+  console.log(url);
   const allArtikel = await fetch(`${url}/posts`)
     .then((res) => res.json())
     .then((res) => res.data);
@@ -88,7 +89,7 @@ Artikel.getInitialProps = async (ctx) => {
   return {
     allArtikel: allArtikel,
     allCategories: allCategories,
-    queryCheck: test,
+    queryCheck: url,
   };
 };
 

@@ -12,6 +12,7 @@ const ListDiskusiComponent = ({ allForum }) => {
           <thead>
             <tr>
               <th style={{ width: 600 }}>Topics</th>
+              <th className="text-center">Category</th>
               <th className="text-center">Comment</th>
               <th className="text-center">Author</th>
               <th style={{ width: 200 }} className="text-center">
@@ -28,7 +29,8 @@ const ListDiskusiComponent = ({ allForum }) => {
                       {data.title}
                     </Link>
                   </td>
-                  <td className="text-center">{data.total_komentar-1}</td>
+                  <td className="text-center">{data.total_komentar - 1}</td>
+                  <td className="text-center">{data.kategori_forum[0].kategori.title}</td>
                   <td className="text-center">{data.author}</td>
                   <td className="text-center">{data.createdAt.split('T')[0]}</td>
                 </tr>

@@ -6,8 +6,10 @@ import { Col, Container, Row, Button } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import ListDiskusiComponent from '../../components/ForumDiskusi/ListDiskusiComponent';
 import SearchElement from '../../components/SearchComponent';
+import { getAPI_URL } from '../../utils/konstanta';
 
 const detailDiskusi = ({ allForum }) => {
+  console.log(allForum);
   const [dataForum, setDataForum] = useState([]);
 
   useEffect(() => {
@@ -63,7 +65,7 @@ const detailDiskusi = ({ allForum }) => {
 };
 
 detailDiskusi.getInitialProps = async (ctx) => {
-  const url = 'http://localhost:5000';
+  const url = getAPI_URL();
   const id = ctx.query.idArtikel;
 
   const allForum = await fetch(`${url}/forum`)

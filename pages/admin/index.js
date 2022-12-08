@@ -3,35 +3,50 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { useState, useEffect } from 'react';
-import { getHeaders } from '../../utils/konstanta';
+import { getAPI_URL, getHeaders } from '../../utils/konstanta';
 import ListArtikelComponent from '../../components/admin/listArtikelComponent';
 import axios from 'axios';
 import Link from 'next/link';
+import ListForumDiskusiComponent from '../../components/admin/ListForumDiskusiComponent';
+import { useRouter } from 'next/router';
 
 const admin = ({ allArtikel, allForum, allUser }) => {
+  const router = useRouter();
   const [user, setUser] = useState([]);
 
   const [artikel, setArtikel] = useState([]);
+  const [forum, setForum] = useState([]);
 
   useEffect(() => {
-    const getDetail = async () => {
+    const roleId = JSON.parse(localStorage.getItem('user'))?.roleId;
+    if (roleId !== 1) {
+      router.push('/');
+    }
+
+    const getData = async () => {
       const headers = getHeaders();
-      const profileUser = await fetch(`http://localhost:5000/user/detail`, headers);
+      const profileUser = await fetch(`https://familypreparation.up.railway.app/user/detail`, headers);
       const result = await profileUser.json();
       setUser(result.data);
 
-      const getArtikel = await axios.get('http://localhost:5000/posts').then((res) => res.data.data);
+      const getArtikel = await axios.get('https://familypreparation.up.railway.app/posts').then((res) => res.data.data);
       setArtikel(getArtikel);
+
+      const getForum = await axios.get('https://familypreparation.up.railway.app/forum').then((res) => res.data.data);
+      setForum(getForum);
     };
 
-    getDetail();
+    getData();
   }, []);
 
   const changeArtikel = (data) => {
     setArtikel(data);
   };
 
-  console.log(artikel);
+  const changeForum = (data) => {
+    setForum(data);
+  };
+
   return (
     <Container>
       <div className="my-4 d-flex justify-content-between">
@@ -47,48 +62,11 @@ const admin = ({ allArtikel, allForum, allUser }) => {
       </div>
       <div className="underline mx-auto mb-4"></div>
 
-      <ListArtikelComponent dataArtikel={allArtikel} />
+      <ListArtikelComponent dataArtikel={artikel} setArtikel={changeArtikel} />
 
-      <Card className="my-4">
-        <Card.Header className="d-flex justify-content-between">
-          <h2 className="fs-4">Data Forum Diskusi</h2>
-          <p>Total artikel : {allForum.length}</p>
-        </Card.Header>
-        <Card.Body>
-          <Table responsive>
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>Title</th>
-                <th className="text-center">Author</th>
-                <th className="text-center">Created At</th>
-                <th className="text-center">Komentar</th>
-                <th className="text-center">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {allForum.map((data, idx) => {
-                return (
-                  <tr key={idx}>
-                    <td>{idx + 1}</td>
-                    <td>{data.title}</td>
-                    <td className="text-center">{data.author}</td>
-                    <td className="text-center">{data.createdAt.split('T')[0]}</td>
-                    <td className="text-center">{data.total_komentar}</td>
-                    <td className="text-center">
-                      <Button variant="outline-danger">
-                        <BsFillTrashFill></BsFillTrashFill>
-                      </Button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </Table>
-        </Card.Body>
-      </Card>
+      <ListForumDiskusiComponent dataForum={forum} setForum={changeForum} />
 
-      <Card>
+      {/* <Card>
         <Card.Header className="d-flex justify-content-between">
           <h2 className="fs-4">Data User</h2>
           <p>Total artikel : {allArtikel.length}</p>
@@ -125,21 +103,21 @@ const admin = ({ allArtikel, allForum, allUser }) => {
             </tbody>
           </Table>
         </Card.Body>
-      </Card>
+      </Card> */}
     </Container>
   );
 };
 
 admin.getInitialProps = async (ctx) => {
-  const url = 'http://localhost:5000';
+  const url = getAPI_URL();
 
   const allArtikel = await fetch(`${url}/posts`)
     .then((res) => res.json())
     .then((res) => res.data);
 
-  const allForum = await fetch(`${url}/forum`)
-    .then((res) => res.json())
-    .then((res) => res.data);
+  // const allForum = await fetch(`${url}/forum`)
+  //   .then((res) => res.json())
+  //   .then((res) => res.data);
 
   // const allUser = await fetch(`${url}/user`)
   //   .then((res) => res.json())
@@ -147,7 +125,7 @@ admin.getInitialProps = async (ctx) => {
 
   return {
     allArtikel: allArtikel,
-    allForum: allForum,
+    // allForum: allForum,
     // allUser: allUser,
   };
 };

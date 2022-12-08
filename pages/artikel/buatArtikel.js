@@ -13,7 +13,6 @@ import alert from '../../utils/alert';
 import { getHeadersMultiPart } from '../../utils/konstanta';
 
 const postArtikel = ({ listKategori }) => {
-  console.log(listKategori);
   const router = useRouter();
   const [token, setToken] = useState();
 
@@ -38,7 +37,7 @@ const postArtikel = ({ listKategori }) => {
     } else {
       const data = { title, kategoriId, content };
       const headers = getHeadersMultiPart();
-      const post = await axios.post('http://localhost:5000/posts', data, headers);
+      const post = await axios.post('https://familypreparation.up.railway.app/posts', data, headers);
 
       alert('success', 'Data berhasil ditambahkan');
     }
@@ -135,7 +134,7 @@ const postArtikel = ({ listKategori }) => {
 export default postArtikel;
 
 postArtikel.getInitialProps = async (ctx) => {
-  const listKategori = await fetch(`http://localhost:5000/categories`)
+  const listKategori = await fetch(`https://familypreparation.up.railway.app/categories`)
     .then((res) => res.json())
     .then((res) => res.data);
 

@@ -24,7 +24,7 @@ const login = () => {
 
     axios
       .post(
-        'http://localhost:5000/user',
+        'https://familypreparation.up.railway.app/user',
         {
           name,
           email,

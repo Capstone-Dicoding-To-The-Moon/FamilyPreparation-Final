@@ -10,19 +10,24 @@ import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
 import alert from '../../utils/alert';
 import { getHeaders } from '../../utils/konstanta';
-
+import { getAPI_URL } from '../../utils/konstanta';
 import { BsSuitHeart, BsSuitHeartFill } from 'react-icons/bs';
 
-// , comentArtikel, sameKategori,
 const artikel = ({ detailArtikel, id }) => {
+  console.log(detailArtikel);
   const [token, setToken] = useState();
   const [heart, setHeart] = useState(false);
   const [vote, setVote] = useState(detailArtikel.vote);
+  const [profile, setProfile] = useState(null);
 
   useEffect(() => {
     const getToken = localStorage.getItem('token');
+    const profile = localStorage.getItem('user');
     if (getToken) {
       setToken(getToken);
+    }
+    if (profile) {
+      setProfile(profile);
     }
   }, []);
 
@@ -33,7 +38,7 @@ const artikel = ({ detailArtikel, id }) => {
     if (token) {
       if (heart === false) {
         await axios
-          .put('http://localhost:5000/postsUpVote', data, headers)
+          .put('https://familypreparation.up.railway.app/postsUpVote', data, headers)
           .then((res) => {
             setHeart(true);
           })
@@ -42,14 +47,14 @@ const artikel = ({ detailArtikel, id }) => {
             alert('error', 'Ooopss!!', `${err.response.status} ${err.response.statusText}`);
           });
 
-        const updateVote = await axios.get(`http://localhost:5000/posts/${id}`).then((r) => r.data.data.vote);
+        const updateVote = await axios.get(`https://familypreparation.up.railway.app/posts/${id}`).then((r) => r.data.data.vote);
 
         setVote(updateVote);
       } else {
         // postsDownVote
         if (vote !== 0) {
           await axios
-            .put('http://localhost:5000/postsDownVote', data, headers)
+            .put('https://familypreparation.up.railway.app/postsDownVote', data, headers)
             .then((res) => {
               setHeart(false);
             })
@@ -57,7 +62,7 @@ const artikel = ({ detailArtikel, id }) => {
               console.error(err);
               alert('error', 'Ooopss!!', `${err.response.status} ${err.response.statusText}`);
             });
-          const updateVote = await axios.get(`http://localhost:5000/posts/${id}`).then((r) => r.data.data.vote);
+          const updateVote = await axios.get(`https://familypreparation.up.railway.app/posts/${id}`).then((r) => r.data.data.vote);
           setVote(updateVote);
         }
       }
@@ -116,11 +121,20 @@ const artikel = ({ detailArtikel, id }) => {
                 <aside className={`${Styles.aside}`}>
                   <div className="card">
                     <h3 className={`${Styles.title} border-bottom py-2 pb-3`}>Artikel {detailArtikel.kategori.title} Lainnya</h3>
-                    <ol>
+                    <ol className="mx-2">
                       {detailArtikel.kategori.kategori_post.map((data, idx) => (
-                        <li key={idx}>
-                          <Link href={`/artikel/${data.postId}`}>Artikel {data.post.title}</Link>
-                        </li>
+                        <div key={idx}>
+                          {data.post.id == id ? (
+                            <></>
+                          ) : (
+                            <li className="my-1">
+                              <Link href={`/artikel/${data.postId}`}>Artikel {data.post.title}</Link>
+                            </li>
+                          )}
+                        </div>
+                        // <li key={idx} className="my-1">
+                        //   <Link href={`/artikel/${data.postId}`}>Artikel {data.post.title}</Link>
+                        // </li>
                       ))}
                     </ol>
                   </div>
@@ -141,7 +155,7 @@ const artikel = ({ detailArtikel, id }) => {
 };
 
 artikel.getInitialProps = async (ctx) => {
-  const url = 'http://localhost:5000';
+  const url = getAPI_URL();
   const id = ctx.query.idArtikel;
 
   // Pake data ini

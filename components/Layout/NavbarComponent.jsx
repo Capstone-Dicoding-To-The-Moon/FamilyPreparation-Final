@@ -10,25 +10,26 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { IoPersonCircle } from 'react-icons/io5';
 import Swal from 'sweetalert2';
+import { getToken } from '../../utils/konstanta';
 
 const NavbarComponent = () => {
   const router = useRouter();
   const [token, setToken] = useState(null);
 
   useEffect(() => {
-    setToken(localStorage.getItem('token'));
+    setToken(getToken());
   }, [token]);
 
   // Jika ingin akses data, tapi data tertutup oleh token gunakan baris 21
-  // const getData = async () => {
-  //   const headers = {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //   };
-  //   const data = await axios.get('http://localhost:5000/admin', headers);
-  //   console.log(data);
-  // };
+  const getData = async () => {
+    const headers = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const data = await axios.get('https://familypreparation.up.railway.app/admin', headers);
+    console.log(data);
+  };
 
   const logout = () => {
     Swal.fire({
@@ -43,6 +44,7 @@ const NavbarComponent = () => {
           timer: 1000,
         });
         localStorage.removeItem('token');
+        localStorage.removeItem('user');
         setToken();
         router.push('/');
       }
@@ -50,6 +52,9 @@ const NavbarComponent = () => {
   };
   return (
     <>
+      <a href="#main" className="skipContent">
+        Skip to content
+      </a>
       <Navbar collapseOnSelect expand="md" bg="light" variant="light" className="d-flex flex-column shadow-sm">
         <Container fluid style={{ fontFamily: 'serif' }}>
           <Link href="/" style={{ fontFamily: 'serif', fontWeight: 'bold', fontSize: '24px' }} className="navbar-brand">
