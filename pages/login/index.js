@@ -42,36 +42,47 @@ const login = () => {
   };
 
   return (
-    <Container>
-      <Row className="align-items-center justify-content-center" style={{ height: '100vh', width: '100%' }}>
-        <Col md={6}>
-          <div className="rounded p-5 shadow-lg" style={{ border: '1px solid #f76c2f' }}>
-            <h1 className="text-center mb-4">Login</h1>
-            <Form>
-              <InputGroup className="mb-3">
-                <InputGroup.Text id="basic-addon1">
-                  <IoMailSharp></IoMailSharp>
-                </InputGroup.Text>
-                <Form.Control placeholder="Username" type="email" name="email" />
-              </InputGroup>
+    <div style={{ backgroundColor: 'white'}}>
+      <Container className="py-5">
+        <Card style={{ borderColor: 'red', width: 900, margin: 'auto' }}>
+            <div class="row g-0">
+                <div class="col-md-5">
+                    <Card.Img variant="top" src="cover.png" className="cover" style={{ width: 400}}/>
+                </div>
+                <div className="col-md-7 ">
+                    <div class="card-body">
+                        <Row className="align-items-center justify-content-center" >
+                            <Col md={8}>
+                                <h1 className="text-center mb-4 mt-5">Login</h1>
+                                <Form>
+                                  <InputGroup className="mb-3">
+                                      <InputGroup.Text id="basic-addon1">
+                                      <IoMailSharp></IoMailSharp>
+                                      </InputGroup.Text>
+                                      <Form.Control placeholder="Username" type="email" name="email" />
+                                  </InputGroup>
 
-              <InputGroup className="mb-3">
-                <InputGroup.Text id="basic-addon1">
-                  <IoKey></IoKey>
-                </InputGroup.Text>
-                <Form.Control type="password" name="password" placeholder="Password" />
-              </InputGroup>
-              <p>
-                Belum punya akun? <Link href="./signup">daftar</Link>
-              </p>
-              <Button className="btnUpdate" style={{ float: 'none' }} onClick={(e) => click(e)} type="submit">
-                Login
-              </Button>
-            </Form>
-          </div>
-        </Col>
-      </Row>
-    </Container>
+                                  <InputGroup className="mb-3">
+                                      <InputGroup.Text id="basic-addon1">
+                                      <IoKey></IoKey>
+                                      </InputGroup.Text>
+                                      <Form.Control type="password" name="password" placeholder="Password" />
+                                  </InputGroup>
+                                  <p>
+                                      Belum punya akun? <Link href="./signup">daftar</Link>
+                                  </p>
+                                  <Button className="btnUpdate" style={{ float: 'none' }} onClick={(e) => click(e)} type="submit">
+                                      Login
+                                  </Button>
+                                </Form>
+                            </Col>
+                        </Row>
+                    </div>
+                </div>
+            </div>
+        </Card>
+      </Container>
+    </div>
   );
 };
 export default login;
