@@ -1,11 +1,11 @@
 .btnColor {
-    background-color: #f76c2f;
-    border-color: #f76c2f;
+    background-color: #FF9E9E;
+    border-color: #FF9E9E;
     margin-right: 0px;
   }
   .btnColor:hover {
-    background-color: #f37e4c;
-    border-color: #f37e4c;
+    background-color: #f78a8a;
+    border-color: #f78a8a;
   }
 
   .icon{

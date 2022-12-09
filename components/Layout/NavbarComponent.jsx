@@ -56,8 +56,8 @@ const NavbarComponent = () => {
       <a href="#main" className="skipContent">
         Skip to content
       </a>
-      <Navbar collapseOnSelect expand="md" bg="light" variant="light" className="d-flex flex-column shadow-sm">
-        <Container fluid style={{ fontFamily: 'serif' }}>
+      <Navbar collapseOnSelect expand="md"  className="d-flex flex-column shadow-sm" style={{ backgroundColor: '#FEBE8C'}}>
+        <Container fluid style={{ fontFamily: 'serif', paddingRight:50, paddingLeft:50 }}>
           <Link href="/" style={{ fontFamily: 'serif', fontWeight: 'bold', fontSize: '24px' }} className="navbar-brand">
             <img src="/favicon.png" style={{ height: '40px' }} className="border rounded-circle me-2"></img>
             The Parentings
@@ -91,7 +91,7 @@ const NavbarComponent = () => {
                 </DropdownButton>
               ) : (
                 <Link href="/login">
-                  <Button variant="light" className="ms-3 border-success">
+                  <Button className="ms-3 border-success" style={{ backgroundColor: '#FFFBC1', color: 'black'}}>
                     Masuk
                   </Button>
                 </Link>

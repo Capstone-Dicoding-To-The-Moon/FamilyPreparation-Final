@@ -30,13 +30,13 @@ const detailDiskusi = ({ allForum }) => {
           <Row>
             <Col md={12}>
               <div className="d-flex justify-content-between">
-                <div className="contentHeader mb-3">
+                <div className="contentHeader mb-3 ">
                   <h3 className="main-heading">The Parentings Forum</h3>
-                  <Link href="/forumDiskusi/buatDiskusi">
+                  <Link href="/forumDiskusi/buatDiskusi" >
                     <Button className="buttonTanya">Buat Pertanyaan</Button>
                   </Link>
                 </div>
-                <div className="ms-3" style={{ float: 'right' }}>
+                <div className="ms-3" style={{ float: 'Right' }}>
                   <SearchElement dataAwal={allForum} setKonten={changeDataForum} path="forum" />
                 </div>
               </div>

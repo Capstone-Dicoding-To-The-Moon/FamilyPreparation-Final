@@ -16,7 +16,7 @@
 }
 
 .mainHeading {
-  color: #a34a23;
+  color: #FF8787;
   font-size: 32px;
   text-align: left;
 }
@@ -32,7 +32,7 @@
 .underline {
   height: 4px;
   width: 100%;
-  background-color: #f76c2f;
+  background-color: #B6E2A1;
 }
 
 .aside {
@@ -49,14 +49,14 @@
   color: white;
   padding: 5px;
   text-align: center;
-  background-color: #f76c2f;
-  border-color: #f76c2f;
+  background-color: #B6E2A1;
+  border-color: #B6E2A1;
 }
 
 .postButton:hover {
   color: white;
-  background-color: #f37e4c;
-  border-color: #f37e4c;
+  background-color: #9cd681;
+  border-color: #9cd681;
 }
 
 @media only screen and (max-width: 768px) {

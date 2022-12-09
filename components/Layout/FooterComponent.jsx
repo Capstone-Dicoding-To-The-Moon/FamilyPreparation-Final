@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 
 const FooterComponent = () => {
   return (
-    <footer className="bg-light text-dark" style={{ boxShadow: 'rgba(0, 0, 0, 0.20) 0px 5px 15px' }}>
+    <footer className="text-dark" style={{ boxShadow: 'rgba(0, 0, 0, 0.20) 0px 5px 15px', backgroundColor: '#FEBE8C' }}>
       <Container className="d-flex flex-column py-3 ">
         <Link style={{ textDecoration: 'none'}} className="text-body d-inline" href="/">
           <h3>The Parentings</h3>
