@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import alert from '../../utils/alert';
+import Card from 'react-bootstrap/Card';
 
 const login = () => {
   const router = useRouter();
@@ -43,50 +44,59 @@ const login = () => {
   };
 
   return (
-    <div>
-      <Container>
-        <Row className="align-items-center justify-content-center" style={{ height: '100vh', width: '100%' }}>
-          <Col md={6}>
-            <div className="rounded p-5 shadow-lg" style={{ border: '1px solid #f76c2f' }}>
-              <h1 className="text-center mb-4">SignUp</h1>
-              <Form action="post" encType="multipart/form-data">
-                <InputGroup className="mb-3">
-                  <InputGroup.Text id="basic-addon1">
-                    <IoPersonSharp></IoPersonSharp>
-                  </InputGroup.Text>
-                  <Form.Control type="text" name="name" placeholder="Enter name" />
-                </InputGroup>
+    <div style={{ backgroundColor: 'white'}}>
+      <Container className="py-5">
+        <Card style={{ borderColor: 'red', width: 900, margin: 'auto' }}>
+            <div class="row g-0">
+                <div class="col-md-5">
+                    <Card.Img variant="top" src="cover.png" className="cover" style={{ width: 400}}/>
+                </div>
+                <div className="col-md-7 ">
+                    <div class="card-body">
+                        <Row className="align-items-center justify-content-center" >
+                            <Col md={8}>
+                                <h1 className="text-center mb-4 mt-5">SignUp</h1>
+                                <Form action="post" encType="multipart/form-data">
+                                  <InputGroup className="mb-3">
+                                    <InputGroup.Text id="basic-addon1">
+                                      <IoPersonSharp></IoPersonSharp>
+                                    </InputGroup.Text>
+                                    <Form.Control type="text" name="name" placeholder="Enter name" />
+                                  </InputGroup>
 
-                <InputGroup className="mb-3">
-                  <InputGroup.Text id="basic-addon1">
-                    <IoMailSharp></IoMailSharp>
-                  </InputGroup.Text>
-                  <Form.Control type="email" name="email" placeholder="email" />
-                </InputGroup>
+                                  <InputGroup className="mb-3">
+                                    <InputGroup.Text id="basic-addon1">
+                                      <IoMailSharp></IoMailSharp>
+                                    </InputGroup.Text>
+                                    <Form.Control type="email" name="email" placeholder="email" />
+                                  </InputGroup>
 
-                <InputGroup className="mb-3">
-                  <InputGroup.Text id="basic-addon1">
-                    <IoKey></IoKey>
-                  </InputGroup.Text>
-                  <Form.Control type="password" name="password" placeholder="Password" />
-                </InputGroup>
+                                  <InputGroup className="mb-3">
+                                    <InputGroup.Text id="basic-addon1">
+                                      <IoKey></IoKey>
+                                    </InputGroup.Text>
+                                    <Form.Control type="password" name="password" placeholder="Password" />
+                                  </InputGroup>
 
-                <InputGroup className="mb-3">
-                  <InputGroup.Text id="basic-addon1">
-                    <IoImageSharp></IoImageSharp>
-                  </InputGroup.Text>
-                  <Form.Control type="file" name="image" />
-                </InputGroup>
-                <p>
-                  Sudah punya akun? <Link href="./login">masuk</Link>
-                </p>
-                <Button className="btnUpdate" style={{ float: 'none' }} onClick={(e) => click(e)} type="submit">
-                  Daftar
-                </Button>
-              </Form>
+                                  <InputGroup className="mb-3">
+                                    <InputGroup.Text id="basic-addon1">
+                                      <IoImageSharp></IoImageSharp>
+                                    </InputGroup.Text>
+                                    <Form.Control type="file" name="image" />
+                                  </InputGroup>
+                                  <p>
+                                    Sudah punya akun? <Link href="./login">masuk</Link>
+                                  </p>
+                                  <Button className="btnUpdate" style={{ float: 'none' }} onClick={(e) => click(e)} type="submit">
+                                    Daftar
+                                  </Button>
+                                </Form>
+                            </Col>
+                        </Row>
+                    </div>
+                </div>
             </div>
-          </Col>
-        </Row>
+        </Card>
       </Container>
     </div>
   );
