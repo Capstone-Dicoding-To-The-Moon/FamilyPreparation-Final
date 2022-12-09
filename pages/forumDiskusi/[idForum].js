@@ -11,25 +11,25 @@ const detailForum = ({ dataDetailForum }) => {
   const [komentar, setKomentar] = useState([]);
   const [clickedUpVote, setClickedUpVote] = useState(true);
   const [user, setUser] = useState([]);
-
+  const author = dataDetailForum.user.name;
   useEffect(() => {
     const getDetail = async () => {
       const headers = getHeaders();
-      const profileUser = await axios.get(`https://familypreparation.up.railway.app/detail`, headers).then((res) => res.data);
-      console.log(profileUser);
+      const profileUser = await axios
+        .get(`https://familypreparation.up.railway.app/user/detail`, headers)
+        .then((res) => res.data.data)
+        .catch((err) => err);
       setUser(profileUser);
     };
 
     getDetail();
     setKomentar(dataDetailForum.komentar);
   }, []);
-
   // digunakan untuk menambah komentar
   const addKomentar = (data) => {
     setKomentar(data);
   };
 
-  console.log(user);
   return (
     <Container>
       <section className="section">
@@ -62,7 +62,7 @@ const detailForum = ({ dataDetailForum }) => {
                           </div>
                           <div className="col-md-8">
                             <Card.Body>
-                              <h5 className="card-title">{dataDetailForum.author} (author) </h5>
+                              <h5 className="card-title">{author} (author) </h5>
                               <Card.Subtitle className="mb-3 text-muted">
                                 <span style={{ marginRight: 20 }}> {dataDetailForum.createdAt.split('T')[0]} </span>
                               </Card.Subtitle>

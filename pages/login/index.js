@@ -42,6 +42,7 @@ const login = () => {
         localStorage.setItem(
           'user',
           JSON.stringify({
+            name,
             email,
             roleId: 2,
           })
