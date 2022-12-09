@@ -29,9 +29,9 @@ const ListDiskusiComponent = ({ allForum }) => {
                       {data.title}
                     </Link>
                   </td>
-                  <td className="text-center">{data.total_komentar - 1}</td>
                   <td className="text-center">{data.kategori_forum[0].kategori.title}</td>
-                  <td className="text-center">{data.author}</td>
+                  <td className="text-center">{data.total_komentar}</td>
+                  <td className="text-center">{data.user.name}</td>
                   <td className="text-center">{data.createdAt.split('T')[0]}</td>
                 </tr>
               );

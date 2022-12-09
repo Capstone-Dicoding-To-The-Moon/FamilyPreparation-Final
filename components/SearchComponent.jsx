@@ -13,7 +13,6 @@ const SearchElement = ({ setKonten, dataAwal, path }) => {
     endPointSearch = 'search-forum';
   }
 
-  const router = useRouter();
 
   const click = async (e) => {
     e.preventDefault();
@@ -21,6 +20,7 @@ const SearchElement = ({ setKonten, dataAwal, path }) => {
     if (value !== '') {
       const update = await axios.get(`https://familypreparation.up.railway.app/${endPointSearch}/${value}`).then((res) => res.data.data);
       setKonten(update);
+      // console.log(update);
     } else {
       setKonten(dataAwal);
     }
