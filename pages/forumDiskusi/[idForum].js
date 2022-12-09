@@ -2,7 +2,7 @@ import { Button, Card, Col, Container, InputGroup, Row } from 'react-bootstrap';
 import { BsChatLeftText } from 'react-icons/bs';
 import BreadcrumbElement from '../../components/ForumDiskusi/BreadcrumbComponent';
 import ListKomentarComponent from '../../components/ForumDiskusi/ListKomentarComponent';
-import InputKomentarComponent from '../../components/ForumDiskusi/inputKomentarComponent';
+import InputKomentarComponent from '../../components/ForumDiskusi/InputKomentarComponent';
 import { useEffect, useState } from 'react';
 import { getAPI_URL, getHeaders } from '../../utils/konstanta';
 import axios from 'axios';

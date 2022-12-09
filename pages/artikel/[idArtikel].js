@@ -5,7 +5,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import Styles from '../../styles/artikel/detailArtikelPage.module.css';
 import { useEffect, useState } from 'react';
-import KomentarComponent from '../../components/komentarComponent';
+import KomentarComponent from '../../components/KomentarComponent';
 import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
 import alert from '../../utils/alert';

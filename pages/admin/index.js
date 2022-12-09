@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { useState, useEffect } from 'react';
 import { getAPI_URL, getHeaders } from '../../utils/konstanta';
-import ListArtikelComponent from '../../components/admin/listArtikelComponent';
+import ListArtikelComponent from '../../components/admin/ListArtikelComponent';
 import axios from 'axios';
 import Link from 'next/link';
 import ListForumDiskusiComponent from '../../components/admin/ListForumDiskusiComponent';
