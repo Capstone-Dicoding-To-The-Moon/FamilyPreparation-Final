@@ -35,8 +35,8 @@ const Artikel = ({ allArtikel, allCategories, queryCheck }) => {
             <div className="row">
               <div className="col-md-12">
                 <div className={`${Styles.mainHeader} mb-3`}>
-                  <div className={`${Styles.contentHeader} mb-3`}>
-                    <h1 className={`${Styles.mainHeading} m-2`}>Rekomendasi Artikel</h1>
+                  <div className={`${Styles.contentHeader}`}>
+                    <h1 className={`${Styles.mainHeading}`}>Rekomendasi Artikel</h1>
                   </div>
                   <div className={`${Styles.search} m-2`}>
                     <SearchElement setKonten={changeDataArtikel} dataAwal={allArtikel} path="artikel" />

@@ -32,7 +32,7 @@ const CardArtikelComponent = ({ dataArtikel }) => {
           <Col key={idx} sm style={{ minHeight: '388px', minWidth: '260px' }}>
             <Card className="text-center shadow" style={{ marginBottom: 20, marginRight:12 }}>
               <Card.Img variant="top" className="border " src={data.image_large} srcSet="./artikel.jpg" style={{ height: '212px' }} />
-              <Card.Body style={{ height: '250px' }} className="d-flex flex-column justify-content-around">
+              <Card.Body style={{ height: '200px' }} className="d-flex flex-column justify-content-around">
                 <Card.Title style={{ textAlign: 'left', fontWeight: 'bold' }} className={`${styles.cutoffTextTittle} flex-grow-2 text-dark`}>
                   {data.title}
                 </Card.Title>

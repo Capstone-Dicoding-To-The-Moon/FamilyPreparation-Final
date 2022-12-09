@@ -111,7 +111,6 @@ const artikel = ({ detailArtikel, id }) => {
         router.push('/artikel');
       }
     });
-
   };
 
   return (
@@ -126,7 +125,7 @@ const artikel = ({ detailArtikel, id }) => {
             <Col md={12}>
               <div className={`${Styles.mainHeader}`}>
                 <div className={`${Styles.contentHeader} d-flex`}>
-                  <h1 className="main-heading fs-1">{detailArtikel?.title}</h1>
+                  <h1 className="main-heading fs-1">{detailArtikel.title}</h1>
                   {user.email != authorEmail ? (
                     <></>
                   ) : (
