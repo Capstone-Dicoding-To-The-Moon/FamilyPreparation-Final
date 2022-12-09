@@ -9,13 +9,15 @@ import axios from 'axios';
 import Link from 'next/link';
 import ListForumDiskusiComponent from '../../components/admin/ListForumDiskusiComponent';
 import { useRouter } from 'next/router';
+import ListUserComponent from '../../components/admin/ListUserComponent';
 
-const admin = ({ allArtikel, allForum, allUser }) => {
+const admin = () => {
   const router = useRouter();
   const [user, setUser] = useState([]);
 
   const [artikel, setArtikel] = useState([]);
   const [forum, setForum] = useState([]);
+  const [allUser, setAllUser] = useState([]);
 
   useEffect(() => {
     const roleId = JSON.parse(localStorage.getItem('user'))?.roleId;
@@ -34,6 +36,9 @@ const admin = ({ allArtikel, allForum, allUser }) => {
 
       const getForum = await axios.get('https://familypreparation.up.railway.app/forum').then((res) => res.data.data);
       setForum(getForum);
+
+      const getUser = await axios.get('https://familypreparation.up.railway.app/user', headers).then((res) => res.data.data);
+      setAllUser(getUser);
     };
 
     getData();
@@ -45,6 +50,10 @@ const admin = ({ allArtikel, allForum, allUser }) => {
 
   const changeForum = (data) => {
     setForum(data);
+  };
+
+  const changeUser = (data) => {
+    setUser(data);
   };
 
   return (
@@ -66,68 +75,9 @@ const admin = ({ allArtikel, allForum, allUser }) => {
 
       <ListForumDiskusiComponent dataForum={forum} setForum={changeForum} />
 
-      {/* <Card>
-        <Card.Header className="d-flex justify-content-between">
-          <h2 className="fs-4">Data User</h2>
-          <p>Total artikel : {allArtikel.length}</p>
-        </Card.Header>
-        <Card.Body>
-          <Table responsive>
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>Title</th>
-                <th className="text-center">Author</th>
-                <th className="text-center">Created At</th>
-                <th className="text-center">Total Comment</th>
-                <th className="text-center">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {allForum.map((data, idx) => {
-                return (
-                  <tr key={idx}>
-                    <td>{idx + 1}</td>
-                    <td>{data.title}</td>
-                    <td className="text-center">{data.author}</td>
-                    <td className="text-center">{data.createdAt.split('T')[0]}</td>
-                    <td className="text-center">{data.total_komentar}</td>
-                    <td className="text-center">
-                      <Button variant="outline-danger">
-                        <BsFillTrashFill></BsFillTrashFill>
-                      </Button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </Table>
-        </Card.Body>
-      </Card> */}
+      <ListUserComponent dataUser={allUser} setUser={changeUser} />
     </Container>
   );
-};
-
-admin.getInitialProps = async (ctx) => {
-  const url = getAPI_URL();
-
-  const allArtikel = await fetch(`${url}/posts`)
-    .then((res) => res.json())
-    .then((res) => res.data);
-
-  // const allForum = await fetch(`${url}/forum`)
-  //   .then((res) => res.json())
-  //   .then((res) => res.data);
-
-  // const allUser = await fetch(`${url}/user`)
-  //   .then((res) => res.json())
-  //   .then((res) => res.data);
-
-  return {
-    allArtikel: allArtikel,
-    // allForum: allForum,
-    // allUser: allUser,
-  };
 };
 
 export default admin;

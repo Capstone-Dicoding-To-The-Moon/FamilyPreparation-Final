@@ -9,7 +9,6 @@ import Link from 'next/link';
 const ListArtikelComponent = ({ dataArtikel, setArtikel }) => {
   const clickDelete = (e, id) => {
     e.preventDefault();
-    console.log(id);
     setArtikel([]);
   };
   return (
@@ -38,7 +37,7 @@ const ListArtikelComponent = ({ dataArtikel, setArtikel }) => {
                   <td>
                     <Link href={`/artikel/${data.id}`}>{data.title}</Link>
                   </td>
-                  <td className="text-center">{data.author}</td>
+                  <td className="text-center">{data.user.name}</td>
                   <td className="text-center">{data.createdAt.split('T')[0]}</td>
                   <td className="text-center">{data.vote}</td>
                   <td className="text-center">

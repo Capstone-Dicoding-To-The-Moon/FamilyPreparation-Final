@@ -26,13 +26,12 @@ const buatDiskusi = ({ listKategori }) => {
     e.preventDefault();
     const title = document.querySelector('[name="title"]').value;
     const kategoriId = document.querySelector('[name="kategori"]').value;
-    const image = document.querySelector('[name="image"]').files[0];
     const content = document.querySelector('[name="content"]').value;
 
-    if (title === '' || kategoriId === '' || content === '' || image === '') {
+    if (title === '' || kategoriId === '' || content === '') {
       alert('error', 'error', 'field tidak boleh ada yang kosong');
     } else {
-      const data = { title, kategoriId, content, image };
+      const data = { title, kategoriId, content };
       const headers = getHeadersMultiPart();
       const post = await axios.post('https://familypreparation.up.railway.app/forum', data, headers);
 
@@ -69,15 +68,6 @@ const buatDiskusi = ({ listKategori }) => {
                         </Form.Label>
                         <Col sm="10">
                           <Form.Control type="text" disabled value={currentDate} />
-                        </Col>
-                      </Form.Group>
-
-                      <Form.Group as={Row} className="mb-3" controlId="image">
-                        <Form.Label column sm="2">
-                          Image
-                        </Form.Label>
-                        <Col sm="10">
-                          <Form.Control type="file" name="image" />
                         </Col>
                       </Form.Group>
 
