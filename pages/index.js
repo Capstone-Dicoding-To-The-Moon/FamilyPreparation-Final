@@ -34,7 +34,7 @@ const Home = ({ allArtikel, allCategories, artikelNewest }) => {
         <div className={`${Styles.underline} mx-auto mb-4`}></div>
         <Row>
           <Col lg={12}>
-            <CardArtikelComponent dataArtikel={allArtikel} />
+            <CardArtikelComponent dataArtikel={allArtikel} style={{marginRight:20}} />
           </Col>
         </Row>
       </section>

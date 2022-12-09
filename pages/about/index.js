@@ -120,15 +120,15 @@ const about = () => {
                               </span>
 
                               <div className="fs-5">
-                                <a href="#" target="_blank">
+                                <a href="https://github.com/desihamita" target="_blank">
                                   <BsGithub></BsGithub>
                                 </a>
 
-                                <a href="#" className="mx-2" target="_blank">
+                                <a href="https://www.instagram.com/desihamita_/" className="mx-2" target="_blank">
                                   <BsInstagram></BsInstagram>
                                 </a>
 
-                                <a href="#" target="_blank">
+                                <a href="https://www.linkedin.com/in/desi-sihamita-a031411b5/" target="_blank">
                                   <BsLinkedin></BsLinkedin>
                                 </a>
                               </div>
