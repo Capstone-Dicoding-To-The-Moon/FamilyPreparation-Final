@@ -6,18 +6,12 @@ import CarouselComponent from '../components/CarouselComponent';
 import Styles from '../styles/Home.module.css';
 import ListArtikelComponent from '../components/ListArtikelComponent';
 import CardSliderComponent from '../components/CardSliderComponent';
-import { getAPI_URL } from '../utils/konstanta';
+import { getAPI_URL, getToken } from '../utils/konstanta';
 
 const Home = ({ allArtikel, allCategories, artikelNewest }) => {
-  const [token, setToken] = useState();
-
   if (artikelNewest.length >= 5) {
     artikelNewest.length = 5;
   }
-
-  useEffect(() => {
-    localStorage.getItem('token');
-  }, token);
 
   return (
     <Container className="py-3" style={{ minHeight: '100vh' }}>
