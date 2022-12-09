@@ -132,9 +132,6 @@ const artikel = ({ detailArtikel, id }) => {
                             </li>
                           )}
                         </div>
-                        // <li key={idx} className="my-1">
-                        //   <Link href={`/artikel/${data.postId}`}>Artikel {data.post.title}</Link>
-                        // </li>
                       ))}
                     </ol>
                   </div>
