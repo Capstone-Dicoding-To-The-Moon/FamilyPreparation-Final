@@ -11,14 +11,17 @@ import Button from 'react-bootstrap/Button';
 import alert from '../../utils/alert';
 import { getHeaders } from '../../utils/konstanta';
 import { getAPI_URL } from '../../utils/konstanta';
-import { BsSuitHeart, BsSuitHeartFill } from 'react-icons/bs';
+import { BsSuitHeart, BsSuitHeartFill, BsFillTrashFill } from 'react-icons/bs';
 
 const artikel = ({ detailArtikel, id }) => {
-  console.log(detailArtikel);
   const [token, setToken] = useState();
   const [heart, setHeart] = useState(false);
   const [vote, setVote] = useState(detailArtikel.vote);
   const [profile, setProfile] = useState(null);
+  const [user, setUser] = useState([]);
+
+  const authorEmail = detailArtikel.user.email;
+  const router = useRouter();
 
   useEffect(() => {
     const getToken = localStorage.getItem('token');
@@ -29,6 +32,16 @@ const artikel = ({ detailArtikel, id }) => {
     if (profile) {
       setProfile(profile);
     }
+    const getDetail = async () => {
+      const headers = getHeaders();
+      const profileUser = await axios
+        .get(`https://familypreparation.up.railway.app/user/detail`, headers)
+        .then((res) => res.data.data)
+        .catch((err) => 'undefined');
+      setUser(profileUser);
+    };
+
+    getDetail();
   }, []);
 
   const clickHeart = async (e) => {
@@ -71,6 +84,13 @@ const artikel = ({ detailArtikel, id }) => {
     }
   };
 
+  const clickDelete = async (e) => {
+    e.preventDefault();
+    const headers = getHeaders();
+
+    const data = { id: id };
+  };
+
   return (
     <>
       <Head>
@@ -82,8 +102,17 @@ const artikel = ({ detailArtikel, id }) => {
           <Row>
             <Col md={12}>
               <div className={`${Styles.mainHeader}`}>
-                <div className={`${Styles.contentHeader}`}>
+                <div className={`${Styles.contentHeader} d-flex`}>
                   <h1 className="main-heading fs-1">{detailArtikel.title}</h1>
+                  {user.email != authorEmail ? (
+                    <></>
+                  ) : (
+                    <div className="mx-3 d-flex flex-column justify-content-center">
+                      <Button variant="outline-danger" className="p-1 mt-1 fs-6" onClick={(e) => clickDelete(e)}>
+                        <BsFillTrashFill></BsFillTrashFill>
+                      </Button>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -97,7 +126,7 @@ const artikel = ({ detailArtikel, id }) => {
                       <Card.Body className="border-top">
                         <div className="d-flex justify-content-between">
                           <div>
-                            <p className="mb-1">Diterbitkan oleh : {detailArtikel.author}</p>
+                            <p className="mb-1">Diterbitkan oleh : {detailArtikel.user.name}</p>
                             <p>{detailArtikel.createdAt.split('T')[0]}</p>
                           </div>
 

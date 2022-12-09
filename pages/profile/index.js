@@ -46,9 +46,7 @@ const profile = () => {
       const headers = getHeaders();
       const profileUser = await axios.get(`https://familypreparation.up.railway.app/user/detail`, headers).catch((e) => console.log(e));
 
-      console.log(profileUser);
-
-      setUser(result.data);
+      setUser(profileUser.data.data);
     };
 
     getDetail();
@@ -58,6 +56,7 @@ const profile = () => {
     e.preventDefault();
   };
 
+  console.log(user);
   return (
     <div style={{ minHeight: '100vh' }}>
       <Head>
@@ -78,7 +77,7 @@ const profile = () => {
                         <Form>
                           <Form.Group controlId="formFile" className="text-center mb-3">
                             <Card.Img variant="top" src={user.image_small} srcSet="./profile.png" name="image" className={`${Styles.photoProfile}`}></Card.Img>
-                            <Form.Control type="file" className={`${Styles.chooseFile} ${Styles.form}`}></Form.Control>
+                            <Form.Control type="file" className={`${Styles.chooseFile} ${Styles.form}`} disabled></Form.Control>
                           </Form.Group>
 
                           <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -97,7 +96,7 @@ const profile = () => {
                               <Form.Control type="email" className={`${Styles.form}`} value={user.email} name="email" disabled />
                             </Col>
                           </Form.Group>
-                          <Button type="submit" className={`${Styles.btnUpdate}`} onClick={(e) => click(e)}>
+                          <Button type="submit" variant="outline-secondary" className={`${Styles.btnUpdate}`} onClick={(e) => click(e)} disabled>
                             Submit
                           </Button>
                         </Form>

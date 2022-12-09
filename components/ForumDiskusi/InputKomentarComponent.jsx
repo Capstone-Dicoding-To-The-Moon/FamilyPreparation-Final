@@ -7,7 +7,6 @@ import alert from '../../utils/alert';
 
 const InputKomentarComponent = ({ setKomentar, id, user }) => {
   const currentDate = new Date().toJSON().slice(0, 10);
-
   const clickKomentar = async (e) => {
     e.preventDefault();
     const dataInput = document.querySelector('[name="komentar"]');
@@ -36,12 +35,12 @@ const InputKomentarComponent = ({ setKomentar, id, user }) => {
       </Col>
       <Col md={11}>
         <Card.Body>
-          <h5 className="card-title">{user === undefined ? 'User' : user.name}</h5>
+          <h5 className="card-title">{user == 'undefined' ? 'Guest' : user.name}</h5>
           <Card.Subtitle className="mb-3 text-muted">
             <span style={{ marginRight: 20 }}>{currentDate}</span>
           </Card.Subtitle>
           <InputGroup>
-            {user === undefined ? (
+            {user == 'undefined' ? (
               <>
                 <Form.Control placeholder="Masukan komentar anda ..." aria-label="Recipient's username" name="komentar" aria-describedby="basic-addon2" required disabled />
                 <Button variant="outline-secondary" id="button-addon2" disabled>

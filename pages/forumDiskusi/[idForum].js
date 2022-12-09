@@ -1,24 +1,25 @@
 import { Button, Card, Col, Container, InputGroup, Row } from 'react-bootstrap';
-import { BsChatLeftText } from 'react-icons/bs';
+import { BsChatLeftText, BsFillTrashFill } from 'react-icons/bs';
 import BreadcrumbElement from '../../components/ForumDiskusi/BreadcrumbComponent';
 import ListKomentarComponent from '../../components/ForumDiskusi/ListKomentarComponent';
 import InputKomentarComponent from '../../components/ForumDiskusi/InputKomentarComponent';
 import { useEffect, useState } from 'react';
 import { getAPI_URL, getHeaders } from '../../utils/konstanta';
 import axios from 'axios';
+import Head from 'next/head';
 
 const detailForum = ({ dataDetailForum }) => {
   const [komentar, setKomentar] = useState([]);
-  const [clickedUpVote, setClickedUpVote] = useState(true);
   const [user, setUser] = useState([]);
   const author = dataDetailForum.user.name;
+  const authorEmail = dataDetailForum.user.email;
   useEffect(() => {
     const getDetail = async () => {
       const headers = getHeaders();
       const profileUser = await axios
         .get(`https://familypreparation.up.railway.app/user/detail`, headers)
         .then((res) => res.data.data)
-        .catch((err) => err);
+        .catch((err) => 'undefined');
       setUser(profileUser);
     };
 
@@ -47,11 +48,20 @@ const detailForum = ({ dataDetailForum }) => {
                 <div className="content">
                   <Card className="mb-3">
                     <Card.Body>
-                      <Card.Title>{dataDetailForum.title}</Card.Title>
-                      <Card.Subtitle className="mb-2 text-muted">
+                      <Card.Title className="fs-2 mb-3">
+                        {dataDetailForum.title}
+                        {user.email != authorEmail ? (
+                          <></>
+                        ) : (
+                          <Button variant="outline-danger" className="fs-6 py-0 ms-3">
+                            <BsFillTrashFill className="p-0 m-0"></BsFillTrashFill>
+                          </Button>
+                        )}
+                      </Card.Title>
+                      <Card.Subtitle className="my-2 text-muted">
                         <span style={{ marginRight: 20 }}>{dataDetailForum.createdAt.split('T')[0]}</span>
                         <span>
-                          <BsChatLeftText /> {dataDetailForum.komentar.length - 1} Komentar
+                          <BsChatLeftText /> {dataDetailForum.komentar.length} Komentar
                         </span>
                       </Card.Subtitle>
 
@@ -66,7 +76,7 @@ const detailForum = ({ dataDetailForum }) => {
                               <Card.Subtitle className="mb-3 text-muted">
                                 <span style={{ marginRight: 20 }}> {dataDetailForum.createdAt.split('T')[0]} </span>
                               </Card.Subtitle>
-                              <Card.Text>{dataDetailForum.komentar[0].content}</Card.Text>
+                              <Card.Text>{dataDetailForum.content}</Card.Text>
                             </Card.Body>
                           </div>
                         </div>

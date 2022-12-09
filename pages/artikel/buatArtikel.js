@@ -16,8 +16,6 @@ const postArtikel = ({ listKategori }) => {
   const router = useRouter();
   const [token, setToken] = useState();
 
-  // didmount
-
   useEffect(() => {
     const getToken = localStorage.getItem('token');
     if (!getToken) {
@@ -40,6 +38,7 @@ const postArtikel = ({ listKategori }) => {
       const post = await axios.post('https://familypreparation.up.railway.app/posts', data, headers);
 
       alert('success', 'Data berhasil ditambahkan');
+      router.push(`/artikel/${post.data.data.id}`);
     }
   };
 
@@ -87,9 +86,9 @@ const postArtikel = ({ listKategori }) => {
                                     Kategori
                                   </Form.Label>
                                   <Col sm="10">
-                                    <Form.Select aria-label="Default select example" name="kategori">
-                                      <option selected disabled>
-                                        Open this select menu
+                                    <Form.Select defaultValue={'DEFAULT'} aria-label="Default select example" name="kategori">
+                                      <option value="DEFAULT" disabled>
+                                        Pilih kategori ...
                                       </option>
                                       {listKategori.map((kategori, id) => {
                                         return (

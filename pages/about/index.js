@@ -82,7 +82,7 @@ const about = () => {
                         <Col lg={6} mt={4} className="my-2">
                           <div className={`${Styles.member} d-flex  shadow`}>
                             <div className={`${Styles.teampic}`}>
-                              <Image src="./profile.png" className="img-fluid" alt="team1" />
+                              <Image src="./profile_resa.jpg" className="img-fluid" alt="team1" />
                             </div>
                             <div className={`${Styles.memberInfo}`}>
                               <h4 style={{ fontWeight: '700', marginBottom: '5px', fontSize: '20px' }}>Resa Fajar Sukma</h4>
