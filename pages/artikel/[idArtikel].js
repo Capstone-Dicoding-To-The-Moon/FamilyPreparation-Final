@@ -12,16 +12,27 @@ import alert from '../../utils/alert';
 import { getHeaders } from '../../utils/konstanta';
 import { getAPI_URL } from '../../utils/konstanta';
 import { BsSuitHeart, BsSuitHeartFill, BsFillTrashFill } from 'react-icons/bs';
+import { deleteData } from '../../utils/fetchApi';
+import Swal from 'sweetalert2';
 
 const artikel = ({ detailArtikel, id }) => {
+  // router
+  const router = useRouter();
+
   const [token, setToken] = useState();
   const [heart, setHeart] = useState(false);
-  const [vote, setVote] = useState(detailArtikel.vote);
+  const [vote, setVote] = useState(detailArtikel?.vote);
   const [profile, setProfile] = useState(null);
   const [user, setUser] = useState([]);
 
-  const authorEmail = detailArtikel.user.email;
-  const router = useRouter();
+  const authorEmail = detailArtikel?.user?.email;
+
+  useEffect(() => {
+    if (!detailArtikel) {
+      alert('error', 'error', 'Tidak terdapat artikel dengan id yang diminta');
+      router.push('/artikel');
+    }
+  }, []);
 
   useEffect(() => {
     const getToken = localStorage.getItem('token');
@@ -86,9 +97,20 @@ const artikel = ({ detailArtikel, id }) => {
 
   const clickDelete = async (e) => {
     e.preventDefault();
-    const headers = getHeaders();
-
-    const data = { id: id };
+    Swal.fire({
+      title: 'Apakah anda yakin untuk menghapus artikel ini?',
+      icon: 'warning',
+      showDenyButton: true,
+      confirmButtonText: 'Ya',
+      denyButtonText: `Tidak`,
+    }).then(async (result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.fire('Data berhasil dihapus', '', 'success');
+        const result = await deleteData('posts', id);
+        router.push('/artikel');
+      }
+    });
   };
 
   return (
@@ -103,7 +125,7 @@ const artikel = ({ detailArtikel, id }) => {
             <Col md={12}>
               <div className={`${Styles.mainHeader}`}>
                 <div className={`${Styles.contentHeader} d-flex`}>
-                  <h1 className="main-heading fs-1" >{detailArtikel.title}</h1>
+                  <h1 className="main-heading fs-1">{detailArtikel.title}</h1>
                   {user.email != authorEmail ? (
                     <></>
                   ) : (
@@ -122,12 +144,12 @@ const artikel = ({ detailArtikel, id }) => {
                 <div className={`${Styles.content} p-2`}>
                   <div>
                     <Card>
-                      <Card.Img variant="top" className={`${Styles.imagesCard} mb-4`} src={detailArtikel.image_large} srcSet="/artikel.jpg"></Card.Img>
+                      <Card.Img variant="top" className={`${Styles.imagesCard} mb-4`} src={detailArtikel?.image_large} srcSet="/artikel.jpg"></Card.Img>
                       <Card.Body className="border-top">
                         <div className="d-flex justify-content-between">
                           <div>
-                            <p className="mb-1">Diterbitkan oleh : {detailArtikel.user.name}</p>
-                            <p>{detailArtikel.createdAt.split('T')[0]}</p>
+                            <p className="mb-1">Diterbitkan oleh : {detailArtikel?.user?.name}</p>
+                            <p>{detailArtikel?.createdAt?.split('T')[0]}</p>
                           </div>
 
                           <div className="d-flex flex-column">
@@ -140,7 +162,7 @@ const artikel = ({ detailArtikel, id }) => {
                           </div>
                         </div>
                         <Card.Text style={{ textAlign: 'justify' }} className="fs-6 border-top pt-3">
-                          {detailArtikel.content}
+                          {detailArtikel?.content}
                         </Card.Text>
                       </Card.Body>
                     </Card>
@@ -149,9 +171,9 @@ const artikel = ({ detailArtikel, id }) => {
 
                 <aside className={`${Styles.aside}`}>
                   <div className="card">
-                    <h3 className={`${Styles.title} border-bottom py-2 pb-3`}>Artikel {detailArtikel.kategori.title} Lainnya</h3>
+                    <h3 className={`${Styles.title} border-bottom py-2 pb-3`}>Artikel {detailArtikel?.kategori?.title} Lainnya</h3>
                     <ol className="mx-2">
-                      {detailArtikel.kategori.kategori_post.map((data, idx) => (
+                      {detailArtikel?.kategori?.kategori_post.map((data, idx) => (
                         <div key={idx}>
                           {data.post.id == id ? (
                             <></>
@@ -170,7 +192,7 @@ const artikel = ({ detailArtikel, id }) => {
               <div style={{ padding: '24px' }}>
                 <h1 className="main-heading">Komentar</h1>
                 <div className={`${Styles.underline} mx-auto`}></div>
-                <KomentarComponent datas={detailArtikel.komentar} id={detailArtikel.id} />
+                {detailArtikel ? <KomentarComponent datas={detailArtikel?.komentar} id={detailArtikel?.id} /> : ''}
               </div>
             </Col>
           </Row>

@@ -53,7 +53,7 @@ const admin = () => {
   };
 
   const changeUser = (data) => {
-    setUser(data);
+    setAllUser(data);
   };
 
   return (

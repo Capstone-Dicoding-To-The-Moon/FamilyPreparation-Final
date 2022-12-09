@@ -5,12 +5,30 @@ import { BsFillTrashFill } from 'react-icons/bs';
 import { useState, useEffect } from 'react';
 import { getHeaders } from '../../utils/konstanta';
 import Link from 'next/link';
+import { deleteData } from '../../utils/fetchApi';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const ListForumDiskusiComponent = ({ dataForum, setForum }) => {
-  const clickDelete = (e, id) => {
+  const clickDelete = async (e, id) => {
     e.preventDefault();
-    console.log(id);
-    setForum([]);
+    const headers = getHeaders();
+    Swal.fire({
+      title: 'Apakah anda yakin untuk menghapus forum ini?',
+      icon: 'warning',
+      showDenyButton: true,
+      confirmButtonText: 'Ya',
+      denyButtonText: `Tidak`,
+    }).then(async (result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.fire('Data berhasil dihapus', '', 'success');
+        const result = await deleteData('forum', id);
+        const updateData = await axios.get('https://familypreparation.up.railway.app/forum').then((res) => res.data.data);
+        console.log(updateData);
+        setForum(updateData);
+      }
+    });
   };
   return (
     <Card className="my-3">
