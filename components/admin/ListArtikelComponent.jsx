@@ -5,11 +5,14 @@ import { BsFillTrashFill } from 'react-icons/bs';
 import { useState, useEffect } from 'react';
 import { getHeaders } from '../../utils/konstanta';
 import Link from 'next/link';
+import { deleteData } from '../../utils/fetchApi';
 
 const ListArtikelComponent = ({ dataArtikel, setArtikel }) => {
-  const clickDelete = (e, id) => {
+  const clickDelete = async (e, id) => {
     e.preventDefault();
-    setArtikel([]);
+    // setArtikel([]);
+    const result = await deleteData('posts', id);
+    alert('success', 'success', result.data.message);
   };
   return (
     <Card>

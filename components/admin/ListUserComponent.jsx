@@ -5,11 +5,14 @@ import { BsFillTrashFill } from 'react-icons/bs';
 import { useState, useEffect } from 'react';
 import { getHeaders } from '../../utils/konstanta';
 import Link from 'next/link';
+import { deleteData } from '../../utils/fetchApi';
 
 const ListUserComponent = ({ dataUser, setUser }) => {
-  const clickDelete = (e, id) => {
+  const clickDelete = async (e, email) => {
     e.preventDefault();
-    setUser([]);
+    // setUser([]);
+    const result = await deleteData('user', email);
+    alert('success', 'success', result.data.message);
   };
   return (
     <Card>
@@ -37,7 +40,7 @@ const ListUserComponent = ({ dataUser, setUser }) => {
                   <td className="text-center">{data.email}</td>
                   <td className="text-center">{data.createdAt.split('T')[0]}</td>
                   <td className="text-center">
-                    <Button variant="outline-danger" onClick={(e) => clickDelete(e, data.id)}>
+                    <Button variant="outline-danger" onClick={(e) => clickDelete(e, data.email)}>
                       <BsFillTrashFill></BsFillTrashFill>
                     </Button>
                   </td>

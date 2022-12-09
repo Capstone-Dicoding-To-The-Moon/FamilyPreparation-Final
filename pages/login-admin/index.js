@@ -4,9 +4,22 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { getToken } from '../../utils/konstanta';
 
 const login = () => {
   const router = useRouter();
+
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    setToken(getToken(token));
+  });
+
+  if (token !== null) {
+    router.push('/');
+  }
+
   const click = (e) => {
     e.preventDefault();
     const email = document.querySelector('[name="email"]').value;
@@ -25,9 +38,10 @@ const login = () => {
           JSON.stringify({
             email,
             roleId: 1,
-          })
+          }),
         );
-        router.push('/');
+        alert('success', 'Berhasil Login');
+        router.reload();
       })
       .catch(function (error) {
         console.log(error);
@@ -39,13 +53,19 @@ const login = () => {
       <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" name="email" />
-          <Form.Text className="text-muted">We'll never share your email with anyone else.</Form.Text>
+          <Form.Control type="email" name="email" placeholder="Email" />
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" name="password" placeholder="Password" />
+          <Form.Control
+            type="password"
+            name="password"
+            placeholder="Password"
+          />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
           <Form.Check type="checkbox" label="Check me out" />

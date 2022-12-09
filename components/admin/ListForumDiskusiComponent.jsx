@@ -5,12 +5,15 @@ import { BsFillTrashFill } from 'react-icons/bs';
 import { useState, useEffect } from 'react';
 import { getHeaders } from '../../utils/konstanta';
 import Link from 'next/link';
+import { deleteData } from '../../utils/fetchApi';
 
 const ListForumDiskusiComponent = ({ dataForum, setForum }) => {
-  const clickDelete = (e, id) => {
+  const clickDelete = async (e, id) => {
     e.preventDefault();
-    console.log(id);
-    setForum([]);
+    // console.log(id);
+    // setForum([]);
+    const result = await deleteData('forum', id);
+    alert('success', 'success', result.data.message);
   };
   return (
     <Card className="my-3">
