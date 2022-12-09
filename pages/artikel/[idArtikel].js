@@ -13,6 +13,7 @@ import { getHeaders } from '../../utils/konstanta';
 import { getAPI_URL } from '../../utils/konstanta';
 import { BsSuitHeart, BsSuitHeartFill, BsFillTrashFill } from 'react-icons/bs';
 import { deleteData } from '../../utils/fetchApi';
+import Swal from 'sweetalert2';
 
 const artikel = ({ detailArtikel, id }) => {
   // router
@@ -61,51 +62,31 @@ const artikel = ({ detailArtikel, id }) => {
     if (token) {
       if (heart === false) {
         await axios
-          .put(
-            'https://familypreparation.up.railway.app/postsUpVote',
-            data,
-            headers,
-          )
+          .put('https://familypreparation.up.railway.app/postsUpVote', data, headers)
           .then((res) => {
             setHeart(true);
           })
           .catch((err) => {
             console.error(err);
-            alert(
-              'error',
-              'Ooopss!!',
-              `${err.response.status} ${err.response.statusText}`,
-            );
+            alert('error', 'Ooopss!!', `${err.response.status} ${err.response.statusText}`);
           });
 
-        const updateVote = await axios
-          .get(`https://familypreparation.up.railway.app/posts/${id}`)
-          .then((r) => r.data.data.vote);
+        const updateVote = await axios.get(`https://familypreparation.up.railway.app/posts/${id}`).then((r) => r.data.data.vote);
 
         setVote(updateVote);
       } else {
         // postsDownVote
         if (vote !== 0) {
           await axios
-            .put(
-              'https://familypreparation.up.railway.app/postsDownVote',
-              data,
-              headers,
-            )
+            .put('https://familypreparation.up.railway.app/postsDownVote', data, headers)
             .then((res) => {
               setHeart(false);
             })
             .catch((err) => {
               console.error(err);
-              alert(
-                'error',
-                'Ooopss!!',
-                `${err.response.status} ${err.response.statusText}`,
-              );
+              alert('error', 'Ooopss!!', `${err.response.status} ${err.response.statusText}`);
             });
-          const updateVote = await axios
-            .get(`https://familypreparation.up.railway.app/posts/${id}`)
-            .then((r) => r.data.data.vote);
+          const updateVote = await axios.get(`https://familypreparation.up.railway.app/posts/${id}`).then((r) => r.data.data.vote);
           setVote(updateVote);
         }
       }
@@ -116,9 +97,21 @@ const artikel = ({ detailArtikel, id }) => {
 
   const clickDelete = async (e) => {
     e.preventDefault();
-    const result = await deleteData('posts', id);
-    alert('success', 'success', result.data.message);
-    router.push('/artikel');
+    Swal.fire({
+      title: 'Apakah anda yakin untuk menghapus artikel ini?',
+      icon: 'warning',
+      showDenyButton: true,
+      confirmButtonText: 'Ya',
+      denyButtonText: `Tidak`,
+    }).then(async (result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.fire('Data berhasil dihapus', '', 'success');
+        const result = await deleteData('posts', id);
+        router.push('/artikel');
+      }
+    });
+
   };
 
   return (
@@ -138,11 +131,7 @@ const artikel = ({ detailArtikel, id }) => {
                     <></>
                   ) : (
                     <div className="mx-3 d-flex flex-column justify-content-center">
-                      <Button
-                        variant="outline-danger"
-                        className="p-1 mt-1 fs-6"
-                        onClick={(e) => clickDelete(e)}
-                      >
+                      <Button variant="outline-danger" className="p-1 mt-1 fs-6" onClick={(e) => clickDelete(e)}>
                         <BsFillTrashFill></BsFillTrashFill>
                       </Button>
                     </div>
@@ -156,48 +145,24 @@ const artikel = ({ detailArtikel, id }) => {
                 <div className={`${Styles.content} p-2`}>
                   <div>
                     <Card>
-                      <Card.Img
-                        variant="top"
-                        className={`${Styles.imagesCard} mb-4`}
-                        src={detailArtikel?.image_large}
-                        srcSet="/artikel.jpg"
-                      ></Card.Img>
+                      <Card.Img variant="top" className={`${Styles.imagesCard} mb-4`} src={detailArtikel?.image_large} srcSet="/artikel.jpg"></Card.Img>
                       <Card.Body className="border-top">
                         <div className="d-flex justify-content-between">
                           <div>
-                            <p className="mb-1">
-                              Diterbitkan oleh : {detailArtikel?.user?.name}
-                            </p>
+                            <p className="mb-1">Diterbitkan oleh : {detailArtikel?.user?.name}</p>
                             <p>{detailArtikel?.createdAt?.split('T')[0]}</p>
                           </div>
 
                           <div className="d-flex flex-column">
-                            <Button
-                              className="p-0 bg-transparent border-0"
-                              onClick={(e) => clickHeart(e)}
-                            >
-                              <p
-                                className="mb-1 fs-6 text-dark"
-                                style={{ color: '#F76C2F' }}
-                              >
-                                {heart ? (
-                                  <BsSuitHeartFill
-                                    style={{ color: '#F76C2F' }}
-                                  ></BsSuitHeartFill>
-                                ) : (
-                                  <BsSuitHeart
-                                    style={{ color: '#F76C2F' }}
-                                  ></BsSuitHeart>
-                                )}
+                            <Button className="p-0 bg-transparent border-0" onClick={(e) => clickHeart(e)}>
+                              <p className="mb-1 fs-6 text-dark" style={{ color: '#F76C2F' }}>
+                                {heart ? <BsSuitHeartFill style={{ color: '#F76C2F' }}></BsSuitHeartFill> : <BsSuitHeart style={{ color: '#F76C2F' }}></BsSuitHeart>}
                               </p>
                             </Button>
                             <p className="text-center">{vote}</p>
                           </div>
                         </div>
-                        <Card.Text
-                          style={{ textAlign: 'justify' }}
-                          className="fs-6 border-top pt-3"
-                        >
+                        <Card.Text style={{ textAlign: 'justify' }} className="fs-6 border-top pt-3">
                           {detailArtikel?.content}
                         </Card.Text>
                       </Card.Body>
@@ -207,25 +172,19 @@ const artikel = ({ detailArtikel, id }) => {
 
                 <aside className={`${Styles.aside}`}>
                   <div className="card">
-                    <h3 className={`${Styles.title} border-bottom py-2 pb-3`}>
-                      Artikel {detailArtikel?.kategori?.title} Lainnya
-                    </h3>
+                    <h3 className={`${Styles.title} border-bottom py-2 pb-3`}>Artikel {detailArtikel?.kategori?.title} Lainnya</h3>
                     <ol className="mx-2">
-                      {detailArtikel?.kategori?.kategori_post.map(
-                        (data, idx) => (
-                          <div key={idx}>
-                            {data.post.id == id ? (
-                              <></>
-                            ) : (
-                              <li className="my-1">
-                                <Link href={`/artikel/${data.postId}`}>
-                                  Artikel {data.post.title}
-                                </Link>
-                              </li>
-                            )}
-                          </div>
-                        ),
-                      )}
+                      {detailArtikel?.kategori?.kategori_post.map((data, idx) => (
+                        <div key={idx}>
+                          {data.post.id == id ? (
+                            <></>
+                          ) : (
+                            <li className="my-1">
+                              <Link href={`/artikel/${data.postId}`}>Artikel {data.post.title}</Link>
+                            </li>
+                          )}
+                        </div>
+                      ))}
                     </ol>
                   </div>
                 </aside>
@@ -234,14 +193,7 @@ const artikel = ({ detailArtikel, id }) => {
               <div style={{ padding: '24px' }}>
                 <h1 className="main-heading">Komentar</h1>
                 <div className={`${Styles.underline} mx-auto`}></div>
-                {detailArtikel ? (
-                  <KomentarComponent
-                    datas={detailArtikel?.komentar}
-                    id={detailArtikel?.id}
-                  />
-                ) : (
-                  ''
-                )}
+                {detailArtikel ? <KomentarComponent datas={detailArtikel?.komentar} id={detailArtikel?.id} /> : ''}
               </div>
             </Col>
           </Row>

@@ -40,6 +40,7 @@ const CardSliderComponent = ({ data }) => {
     ],
   };
 
+  console.log(data);
   return (
     <div>
       <Slider {...settings}>
@@ -50,7 +51,11 @@ const CardSliderComponent = ({ data }) => {
                 <Card.Img variant="top" className="img-fluid" src="/Hero-img.png" srcSet="/artikel.jpg" style={{ height: '150px' }} />
               </div>
               <Card.Body>
-                <Card.Title className={`${Styles.cutoffTextTittle} mb-4`}>{item.title}</Card.Title>
+                <div className="mb-4">
+                  <Card.Title className={`${Styles.cutoffTextTittle} mb-1`}>{item.title}</Card.Title>
+                  <p className="mb-0">author : {item.author}</p>
+                  <p>Date : {item.createdAt.split('T')[0]}</p>
+                </div>
                 <Link href={`/artikel/${item.id}`}>
                   <Button variant="primary" bsPrefix={`${Styles.cardBtn}`}>
                     Read More

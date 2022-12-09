@@ -4,7 +4,7 @@ import { getAPI_URL, getHeaders } from './konstanta';
 const deleteData = async (endpoint, id) => {
   const base_url = getAPI_URL();
   const config = getHeaders();
-  if (id.includes('@')) {
+  if (String(id).includes('@')) {
     config.data = {
       email: id,
     };

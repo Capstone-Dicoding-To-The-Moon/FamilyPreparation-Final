@@ -1,11 +1,12 @@
 import Link from 'next/link';
-import { Container } from 'react-bootstrap';
+import { Card, Col, Container, InputGroup, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { getToken } from '../../utils/konstanta';
+import { IoMailSharp, IoKey } from 'react-icons/io5';
 
 const login = () => {
   const router = useRouter();
@@ -38,7 +39,7 @@ const login = () => {
           JSON.stringify({
             email,
             roleId: 1,
-          }),
+          })
         );
         alert('success', 'Berhasil Login');
         router.reload();
@@ -49,33 +50,44 @@ const login = () => {
   };
 
   return (
-    <Container>
-      <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" name="email" placeholder="Email" />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
+    <div style={{ backgroundColor: 'white' }}>
+      <Container className="py-5">
+        <Card style={{ borderColor: 'red', width: 900, margin: 'auto' }}>
+          <div className="row g-0">
+            <div className="col-md-5">
+              <Card.Img variant="top" src="cover.png" className="cover" style={{ width: 400 }} />
+            </div>
+            <div className="col-md-7 ">
+              <div className="card-body" style={{ height: '100%' }}>
+                <Row className="align-items-center justify-content-center mt-5">
+                  <Col md={8}>
+                    <h1 className="text-center mb-4 mt-5">Login</h1>
+                    <Form>
+                      <InputGroup className="mb-3">
+                        <InputGroup.Text id="basic-addon1">
+                          <IoMailSharp></IoMailSharp>
+                        </InputGroup.Text>
+                        <Form.Control placeholder="Username" type="email" name="email" />
+                      </InputGroup>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            name="password"
-            placeholder="Password"
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
-
-        <Button variant="primary" onClick={(e) => click(e)} type="submit">
-          Login
-        </Button>
-      </Form>
-    </Container>
+                      <InputGroup className="mb-3">
+                        <InputGroup.Text id="basic-addon1">
+                          <IoKey></IoKey>
+                        </InputGroup.Text>
+                        <Form.Control type="password" name="password" placeholder="Password" autoComplete="on" />
+                      </InputGroup>
+                      <Button className="btnUpdate" style={{ float: 'none' }} onClick={(e) => click(e)} type="submit">
+                        Login
+                      </Button>
+                    </Form>
+                  </Col>
+                </Row>
+              </div>
+            </div>
+          </div>
+        </Card>
+      </Container>
+    </div>
   );
 };
 export default login;

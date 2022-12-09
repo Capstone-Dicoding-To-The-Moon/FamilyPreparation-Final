@@ -7,12 +7,16 @@ import { useEffect, useState } from 'react';
 import { getAPI_URL, getHeaders } from '../../utils/konstanta';
 import axios from 'axios';
 import Head from 'next/head';
+import { deleteData } from '../../utils/fetchApi';
+import { useRouter } from 'next/router';
+import Swal from 'sweetalert2';
 
-const detailForum = ({ dataDetailForum }) => {
+const detailForum = ({ dataDetailForum, id }) => {
   const [komentar, setKomentar] = useState([]);
   const [user, setUser] = useState([]);
   const author = dataDetailForum.user.name;
   const authorEmail = dataDetailForum.user.email;
+  const router = useRouter();
   useEffect(() => {
     const getDetail = async () => {
       const headers = getHeaders();
@@ -31,6 +35,23 @@ const detailForum = ({ dataDetailForum }) => {
     setKomentar(data);
   };
 
+  const clickDelete = async (e) => {
+    e.preventDefault();
+    Swal.fire({
+      title: 'Apakah anda yakin untuk menghapus forum ini?',
+      icon: 'warning',
+      showDenyButton: true,
+      confirmButtonText: 'Ya',
+      denyButtonText: `Tidak`,
+    }).then(async (result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.fire('Data berhasil dihapus', '', 'success');
+        const result = await deleteData('forum', id);
+        router.push('/forumDiskusi');
+      }
+    });
+  };
   return (
     <Container>
       <section className="section">
@@ -53,7 +74,7 @@ const detailForum = ({ dataDetailForum }) => {
                         {user.email != authorEmail ? (
                           <></>
                         ) : (
-                          <Button variant="outline-danger" className="fs-6 py-0 ms-3">
+                          <Button variant="outline-danger" className="fs-6 py-0 ms-3" onClick={(e) => clickDelete(e)}>
                             <BsFillTrashFill className="p-0 m-0"></BsFillTrashFill>
                           </Button>
                         )}
@@ -113,6 +134,7 @@ detailForum.getInitialProps = async (ctx) => {
 
   return {
     dataDetailForum: dataDetailForum,
+    id: id,
   };
 };
 
