@@ -15,10 +15,8 @@ const detailForum = ({ dataDetailForum }) => {
   useEffect(() => {
     const getDetail = async () => {
       const headers = getHeaders();
-      const profileUser = await axios
-        .get(`https://familypreparation.up.railway.app/detail`, headers)
-        .then((res) => res.data.data)
-        .catch((err) => undefined);
+      const profileUser = await axios.get(`https://familypreparation.up.railway.app/detail`, headers).then((res) => res.data);
+      console.log(profileUser);
       setUser(profileUser);
     };
 
@@ -31,6 +29,7 @@ const detailForum = ({ dataDetailForum }) => {
     setKomentar(data);
   };
 
+  console.log(user);
   return (
     <Container>
       <section className="section">
@@ -95,7 +94,7 @@ const detailForum = ({ dataDetailForum }) => {
 };
 
 detailForum.getInitialProps = async (ctx) => {
-  const url = getAPI_URL;
+  const url = getAPI_URL();
   const id = ctx.query.idForum;
 
   const dataDetailForum = await fetch(`${url}/forumDis/${id}`)
