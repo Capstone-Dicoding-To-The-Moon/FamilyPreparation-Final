@@ -19,17 +19,18 @@ const KomentarComponent = ({ datas, id }) => {
 
   const clickAddKomentar = async (e) => {
     e.preventDefault();
-    const value = document.querySelector('[name="komentar"]').value;
-    if (value === '') {
+    const komentar = document.querySelector('[name="komentar"]');
+    if (komentar.value === '') {
       alert('error', 'komentar tidak boleh kosong');
     } else {
       // push komentar
       const headers = getHeaders();
-      const data = { content: value, postId: id };
+      const data = { content: komentar.value, postId: id };
       await axios.post('https://familypreparation.up.railway.app/komentar_post', data, headers);
       // get all komentar
       const komentarUpdate = await axios.get(`https://familypreparation.up.railway.app/postsCom/${id}`).then((res) => res.data.data.komentar);
       alert('success', 'komentar berhasil ditambahkan');
+      komentar.value = '';
       setKomentar(komentarUpdate);
     }
   };

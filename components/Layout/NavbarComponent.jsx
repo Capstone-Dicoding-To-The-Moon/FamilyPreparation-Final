@@ -10,26 +10,26 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { IoPersonCircle } from 'react-icons/io5';
 import Swal from 'sweetalert2';
-import { getToken } from '../../utils/konstanta';
 
 const NavbarComponent = () => {
   const router = useRouter();
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState([]);
 
   useEffect(() => {
-    setToken(getToken());
+    const token = localStorage.getItem('token');
+    setToken(token);
   }, [token]);
 
+
   // Jika ingin akses data, tapi data tertutup oleh token gunakan baris 21
-  const getData = async () => {
-    const headers = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    const data = await axios.get('https://familypreparation.up.railway.app/admin', headers);
-    console.log(data);
-  };
+  // const getData = async () => {
+  //   const headers = {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   };
+  //   const data = await axios.get('https://familypreparation.up.railway.app/admin', headers);
+  // };
 
   const logout = () => {
     Swal.fire({
@@ -50,6 +50,7 @@ const NavbarComponent = () => {
       }
     });
   };
+
   return (
     <>
       <a href="#main" className="skipContent">

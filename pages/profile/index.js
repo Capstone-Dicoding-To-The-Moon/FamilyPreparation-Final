@@ -44,9 +44,9 @@ const profile = () => {
   useEffect(() => {
     const getDetail = async () => {
       const headers = getHeaders();
-      const profileUser = await fetch(`http://localhost:5000/user/detail`, headers);
+      const profileUser = await axios.get(`https://familypreparation.up.railway.app/user/detail`, headers).catch((e) => console.log(e));
 
-      const result = await profileUser.json();
+      console.log(profileUser);
 
       setUser(result.data);
     };

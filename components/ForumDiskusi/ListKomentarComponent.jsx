@@ -30,7 +30,7 @@ const ListKomentarComponent = ({ dataKomentar, setKomentar }) => {
     changeDownVote.classList.add('btn-outline-secondary');
     changeDownVote.classList.remove('disabled', 'btn-secondary');
 
-    let komentarUpdate = await axios.get(`http://localhost:5000/forumDis/${forumId}`).then((res) => res.data.data.komentar);
+    let komentarUpdate = await axios.get(`https://familypreparation.up.railway.app/forumDis/${forumId}`).then((res) => res.data.data.komentar);
     setKomentar(komentarUpdate);
   };
 
@@ -39,7 +39,7 @@ const ListKomentarComponent = ({ dataKomentar, setKomentar }) => {
     const headers = getHeaders();
     const data = { id: userId.toString() };
     await axios
-      .put('http://localhost:5000/komentar_forum_down_vote', data, headers)
+      .put('https://familypreparation.up.railway.app/komentar_forum_down_vote', data, headers)
       .then((res) => {
         console.log(res);
       })
@@ -57,7 +57,7 @@ const ListKomentarComponent = ({ dataKomentar, setKomentar }) => {
     changeUpVote.classList.add('btn-outline-secondary');
     changeUpVote.classList.remove('disabled', 'btn-secondary');
 
-    let komentarUpdate = await axios.get(`http://localhost:5000/forumDis/${forumId}`).then((res) => res.data.data.komentar);
+    let komentarUpdate = await axios.get(`https://familypreparation.up.railway.app/forumDis/${forumId}`).then((res) => res.data.data.komentar);
     setKomentar(komentarUpdate);
   };
 

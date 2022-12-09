@@ -36,6 +36,10 @@ const getToken = () => {
   return localStorage.getItem('token');
 };
 
+const getUser = () => {
+  return localStorage.getItem('user');
+};
+
 const getAPI_URL = () => 'https://familypreparation.up.railway.app';
 
-export { getHeadersMultiPart, getHeaders, getToken, getAPI_URL };
+export { getHeadersMultiPart, getHeaders, getToken, getAPI_URL, getUser };
