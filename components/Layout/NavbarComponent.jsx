@@ -68,13 +68,15 @@ const NavbarComponent = () => {
               <Link className="nav-link" href="/forumDiskusi">
                 Forum Diskusi
               </Link>
-              <Link className="nav-link" href="/about">
+              <Link className="nav-link me-3" href="/about">
                 About Us
               </Link>
               {token ? (
-                <DropdownButton className="ms-3" id="dropdown-item-button" title={<IoPersonCircle></IoPersonCircle>} variant="outline-secondary" size="md" align="end">
-                  <Link href="/profile">
-                    <Dropdown.Item as="button">Profile</Dropdown.Item>
+                <DropdownButton id="dropdown-item-button" title={<IoPersonCircle></IoPersonCircle>} variant="outline-secondary" size="md" align="end">
+                  <Link href="/profile" variant="outline-secondary">
+                    <Dropdown.Item as="button" variant="outline-secondary">
+                      Profile
+                    </Dropdown.Item>
                   </Link>
                   {user.roleId == 1 ? (
                     <Link href="/admin">
@@ -91,7 +93,7 @@ const NavbarComponent = () => {
                 </DropdownButton>
               ) : (
                 <Link href="/login">
-                  <Button className="ms-3 border-success" style={{ backgroundColor: '#FFFBC1', color: 'black' }}>
+                  <Button className="border-success" style={{ backgroundColor: '#FFFBC1', color: 'black', width: '100%' }}>
                     Masuk
                   </Button>
                 </Link>

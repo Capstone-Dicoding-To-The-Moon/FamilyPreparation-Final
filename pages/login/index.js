@@ -56,9 +56,9 @@ const login = () => {
   };
 
   return (
-    <div style={{ backgroundColor: 'white' }}>
+    <div>
       <Container className="py-5">
-        <Card style={{ borderColor: 'red', width: 900, margin: 'auto' }}>
+        <Card style={{ borderColor: 'secondary', width: 900, margin: 'auto' }}>
           <div className="row g-0">
             <div className="col-md-5">
               <Card.Img variant="top" src="cover.png" className="cover" style={{ width: 400 }} />

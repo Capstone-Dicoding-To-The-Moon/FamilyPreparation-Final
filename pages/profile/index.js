@@ -77,7 +77,6 @@ const profile = () => {
                         <Form>
                           <Form.Group controlId="formFile" className="text-center mb-3">
                             <Card.Img variant="top" src={user.image_small} srcSet="./profile.png" name="image" className={`${Styles.photoProfile}`}></Card.Img>
-                            <Form.Control type="file" className={`${Styles.chooseFile} ${Styles.form}`} disabled></Form.Control>
                           </Form.Group>
 
                           <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -96,9 +95,6 @@ const profile = () => {
                               <Form.Control type="email" className={`${Styles.form}`} value={user.email} name="email" disabled />
                             </Col>
                           </Form.Group>
-                          <Button type="submit" variant="outline-secondary" className={`${Styles.btnUpdate}`} onClick={(e) => click(e)} disabled>
-                            Submit
-                          </Button>
                         </Form>
                       </Card.Body>
                     </Card>

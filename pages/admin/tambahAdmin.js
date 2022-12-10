@@ -13,7 +13,10 @@ const tambahAdmin = () => {
 
   useEffect(() => {
     const getToken = localStorage.getItem('token');
-    if (!getToken) {
+    let getUser = localStorage.getItem('user');
+    // console.log(JSON.parse(getUser));
+    getUser = JSON.parse(getUser);
+    if (!getToken || getUser.roleId != 1) {
       router.push('/login');
     }
     setToken(getToken);
@@ -33,8 +36,8 @@ const tambahAdmin = () => {
       const data = { name: nama, email, password, image };
       console.log(data);
       const headers = getHeadersMultiPart();
-      await axios.post('https://familypreparation.up.railway.app/admin', data, headers).catch(err => alert('error', 'error'));
-      
+      await axios.post('https://familypreparation.up.railway.app/admin', data, headers).catch((err) => alert('error', 'error'));
+
       alert('success', 'Data berhasil ditambahkan');
       router.push(`/admin`);
     }
@@ -65,7 +68,7 @@ const tambahAdmin = () => {
                                     Nama
                                   </Form.Label>
                                   <Col sm="10">
-                                    <Form.Control type="text" name="nama" required/>
+                                    <Form.Control type="text" name="nama" required />
                                   </Col>
                                 </Form.Group>
 
@@ -74,7 +77,7 @@ const tambahAdmin = () => {
                                     Email
                                   </Form.Label>
                                   <Col sm="10">
-                                    <Form.Control type="email" name="email" required/>
+                                    <Form.Control type="email" name="email" required />
                                   </Col>
                                 </Form.Group>
 
@@ -83,7 +86,7 @@ const tambahAdmin = () => {
                                     password
                                   </Form.Label>
                                   <Col sm="10">
-                                    <Form.Control type="password" name="password" required/>
+                                    <Form.Control type="password" name="password" required />
                                   </Col>
                                 </Form.Group>
 
@@ -92,7 +95,7 @@ const tambahAdmin = () => {
                                     Image
                                   </Form.Label>
                                   <Col sm="10">
-                                    <Form.Control type="file" name="image" required/>
+                                    <Form.Control type="file" name="image" required />
                                   </Col>
                                 </Form.Group>
 

@@ -126,7 +126,7 @@ const artikel = ({ detailArtikel, id }) => {
               <div className={`${Styles.mainHeader}`}>
                 <div className={`${Styles.contentHeader} d-flex`}>
                   <h1 className="main-heading fs-1">{detailArtikel.title}</h1>
-                  {user.email != authorEmail ? (
+                  {user.email != authorEmail && user.roleId != 1 ? (
                     <></>
                   ) : (
                     <div className="mx-3 d-flex flex-column justify-content-center">

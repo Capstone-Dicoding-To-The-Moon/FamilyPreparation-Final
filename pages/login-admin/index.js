@@ -51,7 +51,7 @@ const login = () => {
   };
 
   return (
-    <div style={{ backgroundColor: 'white' }}>
+    <div>
       <Container className="py-5">
         <Card style={{ borderColor: 'red', width: 900, margin: 'auto' }}>
           <div className="row g-0">

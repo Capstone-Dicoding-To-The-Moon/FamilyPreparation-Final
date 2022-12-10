@@ -52,6 +52,7 @@ const detailForum = ({ dataDetailForum, id }) => {
       }
     });
   };
+
   return (
     <Container>
       <section className="section">
@@ -71,7 +72,7 @@ const detailForum = ({ dataDetailForum, id }) => {
                     <Card.Body>
                       <Card.Title className="fs-2 mb-3">
                         {dataDetailForum.title}
-                        {user.email != authorEmail ? (
+                        {user.email != authorEmail && user.roleId != 1 ? (
                           <></>
                         ) : (
                           <Button variant="outline-danger" className="fs-6 py-0 ms-3" onClick={(e) => clickDelete(e)}>

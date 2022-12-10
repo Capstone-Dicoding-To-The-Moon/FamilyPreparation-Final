@@ -7,7 +7,7 @@ export default function Layout({ children }) {
   return (
     <>
       <NavbarComponent />
-      <main className={`${styles.main} p-4`} id="main">
+      <main className={`${styles.main} p-4`} style={{ backgroundColor: '#FFFAE7' }} id="main">
         {children}
       </main>
       <FooterComponent />

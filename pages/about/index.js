@@ -91,7 +91,7 @@ const about = () => {
                               </span>
 
                               <div className="fs-5">
-                                <a href="#" target="_blank">
+                                <a href="https://github.com/Jarsters" target="_blank">
                                   <BsGithub></BsGithub>
                                 </a>
 
@@ -99,7 +99,7 @@ const about = () => {
                                   <BsInstagram></BsInstagram>
                                 </a>
 
-                                <a href="#" target="_blank">
+                                <a href="https://www.linkedin.com/in/resa-fajar-sukma-a847b6112/" target="_blank">
                                   <BsLinkedin></BsLinkedin>
                                 </a>
                               </div>
