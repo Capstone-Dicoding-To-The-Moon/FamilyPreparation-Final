@@ -51,7 +51,6 @@ const ListUserComponent = ({ dataUser, setUser }) => {
         <Table responsive>
           <thead>
             <tr>
-              <th>No</th>
               <th>Nama</th>
               <th className="text-center">Email</th>
               <th className="text-center">Created At</th>
@@ -62,7 +61,6 @@ const ListUserComponent = ({ dataUser, setUser }) => {
             {paginatePosts.map((data, idx) => {
               return (
                 <tr key={idx}>
-                  <td>{idx + 1}</td>
                   <td>{data.name}</td>
                   <td className="text-center">{data.email}</td>
                   <td className="text-center">{data.createdAt.split('T')[0]}</td>

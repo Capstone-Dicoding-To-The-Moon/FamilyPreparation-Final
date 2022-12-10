@@ -175,7 +175,7 @@ const artikel = ({ detailArtikel, id }) => {
 
                 <aside className={`${Styles.aside}`}>
                   <div className="card">
-                    <h3 className={`${Styles.title} border-bottom py-2 pb-3`}>Artikel {detailArtikel?.kategori?.title} Lainnya</h3>
+                    <h3 className={`${Styles.title} border-bottom py-2 mx-3`}>Artikel {detailArtikel?.kategori?.title} Lainnya</h3>
                     <ol className="mx-2">
                       {detailArtikel?.kategori?.kategori_post.map((data, idx) => (
                         <div key={idx}>

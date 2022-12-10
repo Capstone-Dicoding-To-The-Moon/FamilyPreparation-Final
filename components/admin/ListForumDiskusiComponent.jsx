@@ -50,7 +50,6 @@ const ListForumDiskusiComponent = ({ dataForum, setForum }) => {
         <Table responsive>
           <thead>
             <tr>
-              <th>No</th>
               <th>Title</th>
               <th className="text-center">Author</th>
               <th className="text-center">Created At</th>
@@ -62,7 +61,6 @@ const ListForumDiskusiComponent = ({ dataForum, setForum }) => {
             {paginatePosts.map((data, idx) => {
               return (
                 <tr key={idx}>
-                  <td>{idx + 1}</td>
                   <td>
                     <Link href={`/forumDiskusi/${data.id}`}>{data.title}</Link>
                   </td>

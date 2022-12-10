@@ -38,7 +38,7 @@ const KomentarComponent = ({ datas, id }) => {
   return (
     <>
       <div className="mt-3">
-        <div className="border p-3 rounded mb-3">
+        <div className="border p-3 rounded mb-3" style={{ borderColor: 'red' }}>
           <Row className="mt-3 align-items-start">
             <Col xs={12} className=" align-self-center">
               <InputGroup className="mb-3">
