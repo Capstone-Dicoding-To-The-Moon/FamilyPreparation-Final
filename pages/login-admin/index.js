@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { getToken } from '../../utils/konstanta';
 import { IoMailSharp, IoKey } from 'react-icons/io5';
+import alert from '../../utils/alert';
 
 const login = () => {
   const router = useRouter();

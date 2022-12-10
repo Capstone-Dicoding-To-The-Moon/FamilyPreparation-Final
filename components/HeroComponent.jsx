@@ -2,6 +2,7 @@ import Card from 'react-bootstrap/Card';
 import Carousel from 'react-bootstrap/Carousel';
 import Styles from '../styles/HeroComponent.module.css';
 
+
 export default function HeroComponent({ tittle }) {
   return (
     <div className={`${Styles.heroImage}`}>

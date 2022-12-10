@@ -25,7 +25,6 @@ const ListForumDiskusiComponent = ({ dataForum, setForum }) => {
         Swal.fire('Data berhasil dihapus', '', 'success');
         const result = await deleteData('forum', id);
         const updateData = await axios.get('https://familypreparation.up.railway.app/forum').then((res) => res.data.data);
-        console.log(updateData);
         setForum(updateData);
       }
     });

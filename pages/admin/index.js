@@ -10,6 +10,7 @@ import Link from 'next/link';
 import ListForumDiskusiComponent from '../../components/admin/ListForumDiskusiComponent';
 import { useRouter } from 'next/router';
 import ListUserComponent from '../../components/admin/ListUserComponent';
+import Swal from 'sweetalert2';
 
 const admin = () => {
   const router = useRouter();
@@ -27,17 +28,26 @@ const admin = () => {
 
     const getData = async () => {
       const headers = getHeaders();
-      const profileUser = await fetch(`https://familypreparation.up.railway.app/user/detail`, headers);
+      const profileUser = await fetch(`https://familypreparation.up.railway.app/user/detail`, headers).catch((err) => router.push('/'));
       const result = await profileUser.json();
       setUser(result.data);
 
-      const getArtikel = await axios.get('https://familypreparation.up.railway.app/posts').then((res) => res.data.data);
+      const getArtikel = await axios
+        .get('https://familypreparation.up.railway.app/posts')
+        .then((res) => res.data.data)
+        .catch((err) => router.push('/'));
       setArtikel(getArtikel);
 
-      const getForum = await axios.get('https://familypreparation.up.railway.app/forum').then((res) => res.data.data);
+      const getForum = await axios
+        .get('https://familypreparation.up.railway.app/forum')
+        .then((res) => res.data.data)
+        .catch((err) => router.push('/'));
       setForum(getForum);
 
-      const getUser = await axios.get('https://familypreparation.up.railway.app/user', headers).then((res) => res.data.data);
+      const getUser = await axios
+        .get('https://familypreparation.up.railway.app/user', headers)
+        .then((res) => res.data.data)
+        .catch((err) => router.push('/'));
       setAllUser(getUser);
     };
 
@@ -62,7 +72,9 @@ const admin = () => {
         <h1 className="fs-2">Selamat Datang admin {user.name} !</h1>
         <div>
           <Link href="/admin/tambahAdmin" className="mx-2 my-1">
-            <Button variant="outline-success">Add admin</Button>
+            <Button variant="outline-success">
+              Add admin
+            </Button>
           </Link>
           <Link href="/admin/tambahKategori">
             <Button variant="outline-success">Add Kategori</Button>
