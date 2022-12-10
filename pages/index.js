@@ -18,17 +18,21 @@ const Home = ({ allArtikel, allCategories, artikelNewest }) => {
       <CarouselComponent />
 
       <section className="my-3">
-        <h1 style={{ color: '#FF8787' }} className="mt-4">Artikel Terbaru</h1>
+        <h1 style={{ color: '#FF8787' }} className="mt-4">
+          Artikel Terbaru
+        </h1>
         <div className={`${Styles.underline} mx-auto mb-5`}></div>
         <CardSliderComponent data={artikelNewest} className="mx-auto mb-5" />
       </section>
 
       <section>
-        <h1 style={{ color: '#FF8787' }} className="mt-5">Artikel Populer</h1>
+        <h1 style={{ color: '#FF8787' }} className="mt-5">
+          Artikel Populer
+        </h1>
         <div className={`${Styles.underline} mx-auto mb-5`}></div>
         <Row>
           <Col lg={12}>
-            <CardArtikelComponent dataArtikel={allArtikel} style={{marginRight:20}} />
+            <CardArtikelComponent dataArtikel={allArtikel} totalContent={9} style={{ marginRight: 20 }} />
           </Col>
         </Row>
       </section>

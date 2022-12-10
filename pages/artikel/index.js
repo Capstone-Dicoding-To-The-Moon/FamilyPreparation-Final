@@ -49,7 +49,7 @@ const Artikel = ({ allArtikel, allCategories, queryCheck }) => {
               <main className={`${Styles.mainContent}`}>
                 <div className={`${Styles.content}`}>
                   {dataArtikel.length !== 0 ? (
-                    <CardArtikelComponent dataArtikel={dataArtikel} />
+                    <CardArtikelComponent dataArtikel={dataArtikel} totalContent={6} />
                   ) : (
                     <>
                       {' '}

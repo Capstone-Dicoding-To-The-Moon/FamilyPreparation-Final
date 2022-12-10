@@ -10,13 +10,12 @@ import { useEffect } from 'react';
 import { getToken } from '../utils/konstanta';
 
 function MyApp({ Component, pageProps }) {
-
   return (
     <>
       <Head>
         <title>The Parentings</title>
         <link rel="icon" href="/favicon.png" />
-        <meta name="dicoding:email" content="shellyvictory92@gmail.com"></meta>
+        <meta name="dicoding:email" content="dewananda124@gmail.com"></meta>
         <link rel="manifest" href="/manifest/manifest.json" />
       </Head>
 
