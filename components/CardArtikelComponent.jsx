@@ -6,6 +6,9 @@ import Pagination from './PagenationComponent';
 import styles from '../styles/CardArtikelComponent.module.css';
 import { paginate } from '../utils/paginate';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import defaultPic from '../public/artikel.jpg';
+import { BsSuitHeartFill } from 'react-icons/bs';
 
 const CardArtikelComponent = ({ dataArtikel, totalContent }) => {
   const [posts, setPosts] = useState([]);
@@ -31,11 +34,19 @@ const CardArtikelComponent = ({ dataArtikel, totalContent }) => {
         {paginatePosts.map((data, idx) => (
           <Col key={idx} sm style={{ minHeight: '388px', minWidth: '260px' }}>
             <Card className="text-center shadow" style={{ marginBottom: 20, marginRight: 12 }}>
-              <Card.Img variant="top" className="border " src={data.image_large} srcSet="./artikel.jpg" style={{ height: '212px' }} />
+              <Card.Header style={{ height: '212px', width: '100%', position: 'relative' }}>
+                <Image src={defaultPic} srcSet={defaultPic} fill sizes="" alt="Picture of the artikel" />
+              </Card.Header>
               <Card.Body style={{ height: '200px' }} className="d-flex flex-column justify-content-around">
-                <Card.Title style={{ textAlign: 'left', fontWeight: 'bold' }} className={`${styles.cutoffTextTittle} flex-grow-2 text-dark`}>
-                  {data.title}
-                </Card.Title>
+                <div>
+                  <Card.Title style={{ textAlign: 'left', fontWeight: 'bold' }} className={`${styles.cutoffTextTittle} flex-grow-2 text-dark mb-1`}>
+                    {data.title}
+                  </Card.Title>
+
+                  <p className="text-start mb-1">
+                    <BsSuitHeartFill style={{ color: 'F76C2F' }}> </BsSuitHeartFill> {data.vote}
+                  </p>
+                </div>
                 <Card.Text style={{ textAlign: 'left' }} className={`${styles.cutoffText}`}>
                   {data.content}
                 </Card.Text>

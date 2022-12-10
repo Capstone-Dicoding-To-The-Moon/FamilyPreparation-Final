@@ -2,13 +2,15 @@ import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import Card from 'react-bootstrap/Card';
 import styles from '../styles/CarouselComponent.module.css';
+import heroPic1 from '../public/Hero-img.png';
+import Image from 'next/image';
 
 const CarouselComponent = () => {
   return (
     <div className="Container pb-4">
       <Carousel>
-        <Carousel.Item>
-          <img className={`${styles.dblock}`} src="Hero-img.png" alt="Second slide" />
+        <Carousel.Item style={{ position: 'relative' }}>
+          <img className={`${styles.dblock}`} src="Hero-img2.png" alt="Second slide" />
 
           <Carousel.Caption>
             <Card bsPrefix={`${styles.carouselCaptionCard}`}>
@@ -36,7 +38,7 @@ const CarouselComponent = () => {
           <Carousel.Caption>
             <Card bsPrefix={`${styles.carouselCaptionCard}`}>
               <Card.Body bsPrefix={`${styles.carouselBodyCard}`}>
-                <Card.Text className={`${styles.cardText}`} >Praesent commodo cursus magna.</Card.Text>
+                <Card.Text className={`${styles.cardText}`}>Praesent commodo cursus magna.</Card.Text>
               </Card.Body>
             </Card>
           </Carousel.Caption>

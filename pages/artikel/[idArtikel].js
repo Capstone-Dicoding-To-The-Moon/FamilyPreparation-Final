@@ -14,6 +14,8 @@ import { getAPI_URL } from '../../utils/konstanta';
 import { BsSuitHeart, BsSuitHeartFill, BsFillTrashFill } from 'react-icons/bs';
 import { deleteData } from '../../utils/fetchApi';
 import Swal from 'sweetalert2';
+import Image from 'next/image';
+import defaultPic from '../../public/artikel.jpg';
 
 const artikel = ({ detailArtikel, id }) => {
   // router
@@ -144,7 +146,9 @@ const artikel = ({ detailArtikel, id }) => {
                 <div className={`${Styles.content} p-2`}>
                   <div>
                     <Card>
-                      <Card.Img variant="top" className={`${Styles.imagesCard} mb-4`} src={detailArtikel?.image_large} srcSet="/artikel.jpg"></Card.Img>
+                      <div style={{ height: '352px', position: 'relative' }}>
+                        <Image src={defaultPic} srcSet={defaultPic} alt="Gambar Artikel" fill sizes="" />
+                      </div>
                       <Card.Body className="border-top">
                         <div className="d-flex justify-content-between">
                           <div>

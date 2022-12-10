@@ -10,7 +10,6 @@ import Link from 'next/link';
 import { getAPI_URL } from '../../utils/konstanta';
 
 const Artikel = ({ allArtikel, allCategories, queryCheck }) => {
-  console.log(queryCheck);
   const [dataArtikel, setDataArtikel] = useState([]);
   useEffect(() => {
     const getDataArtikel = () => {
@@ -76,7 +75,6 @@ const Artikel = ({ allArtikel, allCategories, queryCheck }) => {
 
 Artikel.getInitialProps = async (ctx) => {
   const url = getAPI_URL();
-  console.log(url);
   const allArtikel = await fetch(`${url}/posts`)
     .then((res) => res.json())
     .then((res) => res.data);

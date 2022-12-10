@@ -5,9 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/globals.scss';
 import Layout from '../components/Layout/Layout';
 import Head from 'next/head';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { getToken } from '../utils/konstanta';
+
+const START = 10;
+const NUMBER_OF_IMAGES = 100;
 
 function MyApp({ Component, pageProps }) {
   return (

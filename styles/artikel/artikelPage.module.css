@@ -55,8 +55,8 @@
 
 .postButton:hover {
   color: white;
-  background-color: #9cd681;
-  border-color: #9cd681;
+  background-color: #8fbf7a;
+  border-color: #bfeea9;
 }
 
 @media only screen and (max-width: 768px) {
