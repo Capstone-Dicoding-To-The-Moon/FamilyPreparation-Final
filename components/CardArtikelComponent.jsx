@@ -20,7 +20,7 @@ const CardArtikelComponent = ({ dataArtikel, totalContent }) => {
       setPosts(dataArtikel);
     };
     getPosts();
-  }, []);
+  }, dataArtikel);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);

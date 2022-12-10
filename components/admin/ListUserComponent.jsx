@@ -8,8 +8,19 @@ import Link from 'next/link';
 import { deleteData } from '../../utils/fetchApi';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { paginate } from '../../utils/paginate';
+import PaginationElement from '../PagenationComponent';
 
 const ListUserComponent = ({ dataUser, setUser }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const paginatePosts = paginate(dataUser, currentPage, pageSize);
+
   const clickDelete = async (e, email) => {
     e.preventDefault();
     const headers = getHeaders();
@@ -48,7 +59,7 @@ const ListUserComponent = ({ dataUser, setUser }) => {
             </tr>
           </thead>
           <tbody>
-            {dataUser.map((data, idx) => {
+            {paginatePosts.map((data, idx) => {
               return (
                 <tr key={idx}>
                   <td>{idx + 1}</td>
@@ -63,6 +74,9 @@ const ListUserComponent = ({ dataUser, setUser }) => {
                 </tr>
               );
             })}
+            <div className="d-flex">
+              <PaginationElement items={dataUser.length} currentPage={currentPage} pageSize={pageSize} onPageChange={handlePageChange} />
+            </div>
           </tbody>
         </Table>
       </Card.Body>

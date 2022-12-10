@@ -11,6 +11,7 @@ import { IoMailSharp, IoKey } from 'react-icons/io5';
 import alert from '../../utils/alert';
 import { getToken } from '../../utils/konstanta';
 import { useEffect, useState } from 'react';
+import Head from 'next/head';
 
 const login = () => {
   const router = useRouter();
@@ -56,47 +57,52 @@ const login = () => {
   };
 
   return (
-    <div>
-      <Container className={`${Styles.ctn} py-5`}>
-        <Card style={{ borderColor: 'secondary'}} className={`${Styles.card}`}>
-          <div className="row g-0">
-            <div className="col-md-5">
-              <Card.Img variant="top" src="cover.png" className={`${Styles.cardimg}`} />
-            </div>
-            <div className="col-md-7 ">
-              <div className="card-body">
-                <Row className="align-items-center justify-content-center">
-                  <Col md={8}>
-                    <h1 className="text-center mb-4 mt-5">Login</h1>
-                    <Form>
-                      <InputGroup className="mb-3">
-                        <InputGroup.Text id="basic-addon1">
-                          <IoMailSharp></IoMailSharp>
-                        </InputGroup.Text>
-                        <Form.Control placeholder="Username" type="email" name="email" />
-                      </InputGroup>
+    <>
+      <Head>
+        <title>The Parentings - Login</title>
+      </Head>
+      <div>
+        <Container className={`${Styles.ctn} py-5`}>
+          <Card style={{ borderColor: 'secondary' }} className={`${Styles.card}`}>
+            <div className="row g-0">
+              <div className="col-md-5">
+                <Card.Img variant="top" src="cover.png" className={`${Styles.cardimg}`} />
+              </div>
+              <div className="col-md-7 ">
+                <div className="card-body">
+                  <Row className="align-items-center justify-content-center">
+                    <Col md={8}>
+                      <h1 className="text-center mb-4 mt-5">Login</h1>
+                      <Form>
+                        <InputGroup className="mb-3">
+                          <InputGroup.Text id="basic-addon1">
+                            <IoMailSharp></IoMailSharp>
+                          </InputGroup.Text>
+                          <Form.Control placeholder="Username" type="email" name="email" />
+                        </InputGroup>
 
-                      <InputGroup className="mb-3">
-                        <InputGroup.Text id="basic-addon1">
-                          <IoKey></IoKey>
-                        </InputGroup.Text>
-                        <Form.Control type="password" name="password" placeholder="Password" autoComplete="on" />
-                      </InputGroup>
-                      <p>
-                        Belum punya akun? <Link href="./signup">daftar</Link>
-                      </p>
-                      <Button className="btnUpdate" style={{ float: 'none' }} onClick={(e) => click(e)} type="submit">
-                        Login
-                      </Button>
-                    </Form>
-                  </Col>
-                </Row>
+                        <InputGroup className="mb-3">
+                          <InputGroup.Text id="basic-addon1">
+                            <IoKey></IoKey>
+                          </InputGroup.Text>
+                          <Form.Control type="password" name="password" placeholder="Password" autoComplete="on" />
+                        </InputGroup>
+                        <p>
+                          Belum punya akun? <Link href="./signup">daftar</Link>
+                        </p>
+                        <Button className="btnUpdate" style={{ float: 'none' }} onClick={(e) => click(e)} type="submit">
+                          Login
+                        </Button>
+                      </Form>
+                    </Col>
+                  </Row>
+                </div>
               </div>
             </div>
-          </div>
-        </Card>
-      </Container>
-    </div>
+          </Card>
+        </Container>
+      </div>
+    </>
   );
 };
 export default login;

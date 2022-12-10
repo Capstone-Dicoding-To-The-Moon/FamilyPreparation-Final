@@ -10,6 +10,7 @@ import Card from 'react-bootstrap/Card';
 import { useEffect } from 'react';
 import { getToken } from '../../utils/konstanta';
 import Styles from '../../styles/LOGIN/pageLogin.module.css';
+import Head from 'next/head';
 
 const login = () => {
   const router = useRouter();
@@ -54,61 +55,67 @@ const login = () => {
   };
 
   return (
-    <div>
-      <Container className={`${Styles.ctn} py-5`}>
-        <Card style={{ borderColor: 'secondary'}} className={`${Styles.card}`} >
-          <div class="row g-0">
-            <div class="col-md-5">
-              <Card.Img variant="top" src="cover.png" className={`${Styles.cardimg}`} />
-            </div>
-            <div className="col-md-7 ">
-              <div class="card-body">
-                <Row className="align-items-center justify-content-center">
-                  <Col md={8}>
-                    <h1 className="text-center mb-4 mt-5">SignUp</h1>
-                    <Form action="post" encType="multipart/form-data">
-                      <InputGroup className="mb-3">
-                        <InputGroup.Text id="basic-addon1">
-                          <IoPersonSharp></IoPersonSharp>
-                        </InputGroup.Text>
-                        <Form.Control type="text" name="name" placeholder="Enter name" />
-                      </InputGroup>
+    <>
+      <Head>
+        <title>The Parentings - Sign up</title>
+      </Head>
 
-                      <InputGroup className="mb-3">
-                        <InputGroup.Text id="basic-addon1">
-                          <IoMailSharp></IoMailSharp>
-                        </InputGroup.Text>
-                        <Form.Control type="email" name="email" placeholder="email" />
-                      </InputGroup>
+      <div>
+        <Container className={`${Styles.ctn} py-5`}>
+          <Card style={{ borderColor: 'secondary' }} className={`${Styles.card}`}>
+            <div class="row g-0">
+              <div class="col-md-5">
+                <Card.Img variant="top" src="cover.png" className={`${Styles.cardimg}`} />
+              </div>
+              <div className="col-md-7 ">
+                <div class="card-body">
+                  <Row className="align-items-center justify-content-center">
+                    <Col md={8}>
+                      <h1 className="text-center mb-4 mt-5">SignUp</h1>
+                      <Form action="post" encType="multipart/form-data">
+                        <InputGroup className="mb-3">
+                          <InputGroup.Text id="basic-addon1">
+                            <IoPersonSharp></IoPersonSharp>
+                          </InputGroup.Text>
+                          <Form.Control type="text" name="name" placeholder="Enter name" />
+                        </InputGroup>
 
-                      <InputGroup className="mb-3">
-                        <InputGroup.Text id="basic-addon1">
-                          <IoKey></IoKey>
-                        </InputGroup.Text>
-                        <Form.Control type="password" name="password" placeholder="Password" />
-                      </InputGroup>
+                        <InputGroup className="mb-3">
+                          <InputGroup.Text id="basic-addon1">
+                            <IoMailSharp></IoMailSharp>
+                          </InputGroup.Text>
+                          <Form.Control type="email" name="email" placeholder="email" />
+                        </InputGroup>
 
-                      <InputGroup className="mb-3">
-                        <InputGroup.Text id="basic-addon1">
-                          <IoImageSharp></IoImageSharp>
-                        </InputGroup.Text>
-                        <Form.Control type="file" name="image" />
-                      </InputGroup>
-                      <p>
-                        Sudah punya akun? <Link href="./login">masuk</Link>
-                      </p>
-                      <Button className="btnUpdate" style={{ float: 'none' }} onClick={(e) => click(e)} type="submit">
-                        Daftar
-                      </Button>
-                    </Form>
-                  </Col>
-                </Row>
+                        <InputGroup className="mb-3">
+                          <InputGroup.Text id="basic-addon1">
+                            <IoKey></IoKey>
+                          </InputGroup.Text>
+                          <Form.Control type="password" name="password" placeholder="Password" />
+                        </InputGroup>
+
+                        <InputGroup className="mb-3">
+                          <InputGroup.Text id="basic-addon1">
+                            <IoImageSharp></IoImageSharp>
+                          </InputGroup.Text>
+                          <Form.Control type="file" name="image" />
+                        </InputGroup>
+                        <p>
+                          Sudah punya akun? <Link href="./login">masuk</Link>
+                        </p>
+                        <Button className="btnUpdate" style={{ float: 'none' }} onClick={(e) => click(e)} type="submit">
+                          Daftar
+                        </Button>
+                      </Form>
+                    </Col>
+                  </Row>
+                </div>
               </div>
             </div>
-          </div>
-        </Card>
-      </Container>
-    </div>
+          </Card>
+        </Container>
+      </div>
+    </>
   );
 };
 export default login;

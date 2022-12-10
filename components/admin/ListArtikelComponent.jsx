@@ -8,8 +8,19 @@ import Link from 'next/link';
 import { deleteData } from '../../utils/fetchApi';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { paginate } from '../../utils/paginate';
+import PaginationElement from '../PagenationComponent';
 
 const ListArtikelComponent = ({ dataArtikel, setArtikel }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const paginatePosts = paginate(dataArtikel, currentPage, pageSize);
+
   const clickDelete = async (e, id) => {
     e.preventDefault();
     const headers = getHeaders();
@@ -28,9 +39,9 @@ const ListArtikelComponent = ({ dataArtikel, setArtikel }) => {
         setArtikel(updateData);
       }
     });
-
-    
   };
+
+  console.log(dataArtikel);
   return (
     <Card>
       <Card.Header className="d-flex justify-content-between">
@@ -41,7 +52,6 @@ const ListArtikelComponent = ({ dataArtikel, setArtikel }) => {
         <Table responsive>
           <thead>
             <tr>
-              <th>No</th>
               <th>Title</th>
               <th className="text-center">Author</th>
               <th className="text-center">Created At</th>
@@ -50,10 +60,9 @@ const ListArtikelComponent = ({ dataArtikel, setArtikel }) => {
             </tr>
           </thead>
           <tbody>
-            {dataArtikel.map((data, idx) => {
+            {paginatePosts.map((data, idx) => {
               return (
                 <tr key={idx}>
-                  <td>{idx + 1}</td>
                   <td>
                     <Link href={`/artikel/${data.id}`}>{data.title}</Link>
                   </td>
@@ -68,6 +77,9 @@ const ListArtikelComponent = ({ dataArtikel, setArtikel }) => {
                 </tr>
               );
             })}
+            <div className='d-flex'>
+              <PaginationElement items={dataArtikel.length} currentPage={currentPage} pageSize={pageSize} onPageChange={handlePageChange} />
+            </div>
           </tbody>
         </Table>
       </Card.Body>
