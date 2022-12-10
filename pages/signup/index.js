@@ -9,6 +9,7 @@ import alert from '../../utils/alert';
 import Card from 'react-bootstrap/Card';
 import { useEffect } from 'react';
 import { getToken } from '../../utils/konstanta';
+import Styles from '../../styles/LOGIN/pageLogin.module.css';
 
 const login = () => {
   const router = useRouter();
@@ -54,11 +55,11 @@ const login = () => {
 
   return (
     <div>
-      <Container className="py-5">
-        <Card style={{ borderColor: 'red', width: 900, margin: 'auto' }}>
+      <Container className={`${Styles.ctn} py-5`}>
+        <Card style={{ borderColor: 'secondary'}} className={`${Styles.card}`} >
           <div class="row g-0">
             <div class="col-md-5">
-              <Card.Img variant="top" src="cover.png" className="cover" style={{ width: 400 }} />
+              <Card.Img variant="top" src="cover.png" className={`${Styles.cardimg}`} />
             </div>
             <div className="col-md-7 ">
               <div class="card-body">

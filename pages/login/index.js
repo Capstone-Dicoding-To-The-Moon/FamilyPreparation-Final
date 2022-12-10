@@ -57,11 +57,11 @@ const login = () => {
 
   return (
     <div>
-      <Container className="py-5">
-        <Card style={{ borderColor: 'secondary', width: 900, margin: 'auto' }}>
+      <Container className={`${Styles.ctn} py-5`}>
+        <Card style={{ borderColor: 'secondary'}} className={`${Styles.card}`}>
           <div className="row g-0">
             <div className="col-md-5">
-              <Card.Img variant="top" src="cover.png" className="cover" style={{ width: 400 }} />
+              <Card.Img variant="top" src="cover.png" className={`${Styles.cardimg}`} />
             </div>
             <div className="col-md-7 ">
               <div className="card-body">
