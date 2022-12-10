@@ -2,7 +2,7 @@
 Repository front-end untuk aplikasi family preparation kelompok C22-089 <br>
 Link aplikasi : 
 
-## How to use
+## Setting awal (jika ingin run secara local)
 1. npm install
 2. npm run dev
 
