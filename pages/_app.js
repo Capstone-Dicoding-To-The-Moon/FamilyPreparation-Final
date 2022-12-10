@@ -16,7 +16,9 @@ function MyApp({ Component, pageProps }) {
         <title>The Parentings</title>
         <link rel="icon" href="/favicon.png" />
         <meta name="dicoding:email" content="dewananda124@gmail.com"></meta>
+        <link rel="apple-touch-icon" href="/favicon.png"></link>
         <link rel="manifest" href="/manifest/manifest.json" />
+        <meta name="theme-color" content="#fff" />
       </Head>
 
       <Layout>
