@@ -1,6 +1,6 @@
 # Family-Preparation
 Repository front-end untuk aplikasi family preparation kelompok C22-089 <br>
-Link aplikasi : 
+Link aplikasi : https://hosting-capstone.vercel.app/
 
 ## Setting awal (jika ingin run secara local)
 1. npm install
